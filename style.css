@@ -1,0 +1,177 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
+
+/* --- Reset & Global Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    color: #f8fafc;
+}
+
+/* --- Form Container --- */
+.form-container {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.form-container h2 span {
+    color: #38bdf8;
+}
+
+.form-container p {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+}
+
+/* --- Input Groups --- */
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #cbd5e1;
+    display: block;
+}
+
+/* --- Inputs, Select, & Textarea --- */
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #334155;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #64748b;
+}
+
+/* --- Hover & Focus States --- */
+.input-group input:hover,
+.input-group select:hover,
+.input-group textarea:hover {
+    border-color: #475569;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    background-color: #0f172a;
+}
+
+/* --- Select Custom Arrow --- */
+.input-group select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2338bdf8" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left 14px center;
+    background-size: 18px;
+    padding-left: 40px;
+}
+
+.input-group select option {
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+/* --- Hide Number Arrows (بدون أخطاء للمحرر) --- */
+.input-group input[type="number"] {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input-group input[type="number"]::-webkit-inner-spin-button, 
+.input-group input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+/* --- Textarea Style --- */
+.input-group textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+}
+
+/* --- Submit Button --- */
+#submitBtn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+#submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.45);
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+}
+
+#submitBtn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+}
