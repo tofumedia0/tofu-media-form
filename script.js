@@ -1,4 +1,4 @@
-```javascript
+
 // ==========================================
 // TOFU MEDIA - VOLUNTEER APPLICATION
 // Web3Forms Connected Version
