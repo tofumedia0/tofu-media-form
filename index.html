@@ -1,83 +1,468 @@
+```html
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Join TOFU Media Team 🚀</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<html lang="en">
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <div class="form-container">
-            <h2>Join <span>TOFU Media</span> Team 🚀</h2>
-            <p>ابعت لينا بياناتك عشان تتطور معانا</p>
-            
-            <form id="applyForm">
+    <title>TOFU Media | Volunteer Application</title>
 
-                <!-- Name -->
-                <div class="input-group">
-                    <label for="name">الاسم بالكامل / Full Name :</label>
-                    <input type="text" id="name" name="Full Name" required placeholder="اكتب اسمك بالكامل">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="bg-circle circle-one"></div>
+    <div class="bg-circle circle-two"></div>
+
+    <main class="app">
+
+        <!-- ================= WELCOME ================= -->
+
+        <section class="screen active" id="welcomeScreen">
+
+            <div class="welcome-content">
+
+                <div class="logo">
+                    TOFU<span> Media</span>
                 </div>
 
-                <!-- Email -->
-                <div class="input-group">
-                    <label for="email">البريد الإلكتروني / Email Address :</label>
-                    <input type="email" id="email" name="Email" required placeholder="example@gmail.com">
+                <div class="rocket">🚀</div>
+
+                <h1>
+                    Ready to make<br>
+                    <span>opportunities happen?</span>
+                </h1>
+
+                <p>
+                    Join TOFU Media and help young people discover
+                    scholarships, courses, competitions, events and more.
+                </p>
+
+                <button class="primary-btn" id="startBtn">
+                    Let's Start
+                    <span>→</span>
+                </button>
+
+                <small>
+                    It won't take more than a few minutes.
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= APPLICATION ================= -->
+
+        <section class="screen" id="applicationScreen">
+
+            <!-- Progress -->
+
+            <div class="top-bar">
+
+                <button class="back-btn" id="backBtn">
+                    ←
+                </button>
+
+                <div class="progress-area">
+
+                    <div class="progress-info">
+                        <span id="stepText">Step 1 of 5</span>
+                        <span id="progressPercent">20%</span>
+                    </div>
+
+                    <div class="progress">
+                        <div id="progressBar"></div>
+                    </div>
+
                 </div>
 
-                <!-- Birth Year -->
-                <div class="input-group">
-                    <label for="birthYear">سنة الميلاد / Birth Year :</label>
-                    <input type="number" id="birthYear" name="Birth Year" min="1950" max="2020" required placeholder="مثال: 2002">
+            </div>
+
+
+            <!-- Form -->
+
+            <form id="applicationForm">
+
+                <!-- STEP 1 -->
+
+                <div class="step active-step" data-step="1">
+
+                    <span class="step-label">LET'S GET TO KNOW YOU</span>
+
+                    <h2>
+                        What's your name? 👋
+                    </h2>
+
+                    <p class="question-description">
+                        Tell us what we should call you.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your full name"
+                        required
+                        autocomplete="name"
+                    >
+
+                    <button type="button" class="next-btn">
+                        Continue →
+                    </button>
+
                 </div>
 
-                <!-- Personal Phone -->
-                <div class="input-group">
-                    <label for="phone">رقم الهاتف / Phone Number :</label>
-                    <input type="tel" id="phone" name="Phone Number" required placeholder="01xxxxxxxxx">
+
+                <!-- STEP 2 -->
+
+                <div class="step" data-step="2">
+
+                    <span class="step-label">ABOUT YOU</span>
+
+                    <h2>
+                        Tell us a little about yourself 🎓
+                    </h2>
+
+                    <p class="question-description">
+                        We just want to know the person behind the application.
+                    </p>
+
+                    <div class="input-grid">
+
+                        <div>
+                            <label>Age</label>
+
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                min="13"
+                                max="30"
+                                placeholder="Your age"
+                                required
+                            >
+                        </div>
+
+                        <div>
+                            <label>Governorate</label>
+
+                            <input
+                                type="text"
+                                id="governorate"
+                                name="governorate"
+                                placeholder="Cairo, Giza..."
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+
+                    <label>WhatsApp Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="01xxxxxxxxx"
+                        required
+                    >
+
+
+                    <button type="button" class="next-btn">
+                        Continue →
+                    </button>
+
                 </div>
 
-                <!-- WhatsApp Phone -->
-                <div class="input-group">
-                    <label for="whatsapp">رقم الواتساب / WhatsApp Number :</label>
-                    <input type="tel" id="whatsapp" name="WhatsApp Number" required placeholder="01xxxxxxxxx">            
+
+                <!-- STEP 3 -->
+
+                <div class="step" data-step="3">
+
+                    <span class="step-label">FIND YOUR PLACE</span>
+
+                    <h2>
+                        Where do you see yourself? 🎯
+                    </h2>
+
+                    <p class="question-description">
+                        Choose the department that matches your skills
+                        and interests.
+                    </p>
+
+
+                    <div class="department-grid">
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="Research & Opportunities"
+                        >
+                            <span class="card-icon">🔎</span>
+                            <strong>Research</strong>
+                            <small>Find opportunities</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="Content Writing"
+                        >
+                            <span class="card-icon">✍️</span>
+                            <strong>Content</strong>
+                            <small>Turn ideas into words</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="Marketing"
+                        >
+                            <span class="card-icon">📣</span>
+                            <strong>Marketing</strong>
+                            <small>Reach more people</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="Graphic Design"
+                        >
+                            <span class="card-icon">🎨</span>
+                            <strong>Design</strong>
+                            <small>Make ideas visual</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="Community"
+                        >
+                            <span class="card-icon">👥</span>
+                            <strong>Community</strong>
+                            <small>Connect with people</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="PR & Partnerships"
+                        >
+                            <span class="card-icon">🤝</span>
+                            <strong>PR</strong>
+                            <small>Build connections</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="department-card"
+                            data-department="HR"
+                        >
+                            <span class="card-icon">🧑‍💼</span>
+                            <strong>HR</strong>
+                            <small>Build the team</small>
+                        </button>
+
+                    </div>
+
+
+                    <input
+                        type="hidden"
+                        id="department"
+                        name="department"
+                        required
+                    >
+
+
+                    <button
+                        type="button"
+                        class="next-btn"
+                        id="departmentNext"
+                        disabled
+                    >
+                        Continue →
+                    </button>
+
                 </div>
 
-                <!-- Governorate -->
-                <div class="input-group">
-                    <label for="governorate">المحافظة / Governorate :</label>
-                    <input type="text" id="governorate" name="Governorate" required placeholder="مثال: القاهرة، الإسكندرية...">
+
+                <!-- STEP 4 -->
+
+                <div class="step" data-step="4">
+
+                    <span class="step-label">SHOW US WHAT YOU'VE GOT</span>
+
+                    <h2 id="challengeTitle">
+                        Your challenge 🧠
+                    </h2>
+
+                    <p class="question-description" id="challengeDescription">
+                        We don't expect you to be perfect.
+                        We just want to see how you think.
+                    </p>
+
+
+                    <div id="dynamicQuestions"></div>
+
+
+                    <button type="button" class="next-btn">
+                        Continue →
+                    </button>
+
                 </div>
 
-                <!-- School / College Specialization -->
-                <div class="input-group">
-                    <label for="specialization">اسم المدرسة / الكلية والتخصص :</label>
-                    <input type="text" id="specialization" name="Specialization" required placeholder="مثال: كلية حاسبات ومعلومات">
-                </div>
 
-                <!-- Role / Track -->
-                <div class="input-group">
-                    <label for="role">المجال المطلوب / Applying For (Track) :</label>
-                    <select id="role" name="Track" required>
-                        <option value="" disabled selected>اختر المجال المناسب لك</option>
-                        <option value="Copywriter">Copywriter</option>
-                        <option value="Designer and Editor">Designer / Editor</option> 
-                        <option value="Marketing">Marketing</option>
+                <!-- STEP 5 -->
+
+                <div class="step" data-step="5">
+
+                    <span class="step-label">ONE LAST THING</span>
+
+                    <h2>
+                        Tell us why TOFU? 💜
+                    </h2>
+
+                    <p class="question-description">
+                        There is no perfect answer. Just be yourself.
+                    </p>
+
+
+                    <label>
+                        Why do you want to join TOFU Media?
+                    </label>
+
+                    <textarea
+                        id="whyTofu"
+                        name="whyTofu"
+                        placeholder="Tell us your story..."
+                        required
+                    ></textarea>
+
+
+                    <label>
+                        What can you add to TOFU Media?
+                    </label>
+
+                    <textarea
+                        id="contribution"
+                        name="contribution"
+                        placeholder="Skills, ideas, experience..."
+                        required
+                    ></textarea>
+
+
+                    <label>
+                        How much time can you commit weekly?
+                    </label>
+
+                    <select
+                        id="hours"
+                        name="hours"
+                        required
+                    >
+                        <option value="">
+                            Choose an option
+                        </option>
+
+                        <option value="1-3 hours">
+                            1–3 hours
+                        </option>
+
+                        <option value="3-5 hours">
+                            3–5 hours
+                        </option>
+
+                        <option value="5-7 hours">
+                            5–7 hours
+                        </option>
+
+                        <option value="7+ hours">
+                            7+ hours
+                        </option>
+
                     </select>
+
+
+                    <button type="submit" class="submit-btn">
+                        Submit Application 🚀
+                    </button>
+
                 </div>
 
-                <!-- Why Join Us -->
-                <div class="input-group">
-                    <label for="whyJoin">ليه حابب تنضم لتيم توفو؟ / Why do you want to join TOFU?</label>
-                    <textarea id="whyJoin" name="Why Join" rows="4" required placeholder="اكتب لنا سبب اهتمامك بالانضمام للتيم..."></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn">إرسال / Submit</button>
             </form>
-        </div>
 
-        <script src="script.js"></script>
-    </body>
+        </section>
+
+
+        <!-- ================= SUCCESS ================= -->
+
+        <section class="screen" id="successScreen">
+
+            <div class="success-content">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div class="logo">
+                    TOFU<span> Media</span>
+                </div>
+
+                <h1>
+                    You're officially<br>
+                    <span>on our list! 🎉</span>
+                </h1>
+
+                <p>
+                    Your application has been received.
+                    Our team will review it and contact you soon.
+                </p>
+
+                <div class="success-box">
+
+                    <strong>
+                        What happens next?
+                    </strong>
+
+                    <p>
+                        Our HR team will review your application.
+                        Keep an eye on your email and WhatsApp.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
 </html>
+```
