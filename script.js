@@ -1,32 +1,41 @@
-
-// ==========================================
-// TOFU MEDIA - VOLUNTEER APPLICATION
-// Web3Forms Connected Version
-// ==========================================
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================================
-    // ELEMENTS
-    // ==========================================
+    /* ==========================================
+       ELEMENTS
+    ========================================== */
 
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const applicationScreen = document.getElementById("applicationScreen");
-    const successScreen = document.getElementById("successScreen");
+    const welcomeScreen =
+        document.getElementById("welcomeScreen");
 
-    const startBtn = document.getElementById("startBtn");
-    const backBtn = document.getElementById("backBtn");
+    const applicationScreen =
+        document.getElementById("applicationScreen");
 
-    const form = document.getElementById("applicationForm");
+    const successScreen =
+        document.getElementById("successScreen");
 
-    const steps = document.querySelectorAll(".step");
+    const startBtn =
+        document.getElementById("startBtn");
 
-    const progressBar = document.getElementById("progressBar");
-    const stepText = document.getElementById("stepText");
-    const progressPercent = document.getElementById("progressPercent");
+    const backBtn =
+        document.getElementById("backBtn");
+
+    const form =
+        document.getElementById("applicationForm");
+
+    const steps =
+        document.querySelectorAll(".step");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    const stepText =
+        document.getElementById("stepText");
+
+    const percentText =
+        document.getElementById("percentText");
 
     const departmentCards =
-        document.querySelectorAll(".department-card");
+        document.querySelectorAll(".department");
 
     const departmentInput =
         document.getElementById("department");
@@ -34,389 +43,919 @@ document.addEventListener("DOMContentLoaded", () => {
     const departmentNext =
         document.getElementById("departmentNext");
 
-    const dynamicQuestions =
-        document.getElementById("dynamicQuestions");
+    const questionsContainer =
+        document.getElementById("questionsContainer");
 
     const challengeTitle =
         document.getElementById("challengeTitle");
 
+    const languageBtn =
+        document.getElementById("languageBtn");
 
-    // ==========================================
-    // SETTINGS
-    // ==========================================
+    const languageBtn2 =
+        document.getElementById("languageBtn2");
 
-    const WEB3FORMS_ACCESS_KEY =
+
+    /* ==========================================
+       SETTINGS
+    ========================================== */
+
+    const ACCESS_KEY =
         "4579e504-4006-4d59-99fb-ff7ff12f1fc1";
 
-    const totalSteps = 5;
+    const TOTAL_STEPS = 5;
 
     let currentStep = 1;
 
     let selectedDepartment = "";
 
-
-    // ==========================================
-    // DEPARTMENT QUESTIONS
-    // ==========================================
-
-    const departmentQuestions = {
-
-        "Research & Opportunities": [
-
-            "You found a scholarship online. What would you check before sharing it with TOFU students?",
-
-            "Where would you search for reliable scholarships, free courses, competitions and youth opportunities?",
-
-            "Imagine the opportunity has complicated requirements. How would you make the information easier for students to understand?",
-
-            "What are the most important details that should be included in an opportunity post?"
-
-        ],
+    let currentLanguage = "en";
 
 
-        "Content Writing": [
+    /* ==========================================
+       TRANSLATIONS
+    ========================================== */
 
-            "Write a short hook that would make a student stop scrolling when they see a post about a free opportunity.",
+    const translations = {
 
-            "How would you explain a complicated scholarship to a student in a simple way?",
+        en: {
 
-            "What makes social media content interesting and useful at the same time?",
+            season: "TOFU MEDIA — SEASON 2",
 
-            "Imagine you have to write a post about a free course. What information would you include?"
+            welcomeTitle:
+                "Let's make<br><span>opportunities happen.</span>",
 
-        ],
+            welcomeText:
+                "Help us connect young people with scholarships, free courses, competitions, events and opportunities.",
+
+            start:
+                "Start Application",
+
+            hint:
+                "It only takes a few minutes.",
+
+            getToKnow:
+                "GET TO KNOW YOU",
+
+            nameTitle:
+                "What's your name? 👋",
+
+            nameDescription:
+                "Tell us your full name.",
+
+            fullName:
+                "Your full name",
+
+            aboutYou:
+                "ABOUT YOU",
+
+            aboutTitle:
+                "Tell us about yourself 🎓",
+
+            aboutDescription:
+                "These details help us understand our applicants better.",
+
+            age:
+                "Age",
+
+            governorate:
+                "Governorate",
+
+            email:
+                "Email",
+
+            whatsapp:
+                "WhatsApp Number",
+
+            chooseDepartment:
+                "CHOOSE YOUR DEPARTMENT",
+
+            departmentTitle:
+                "Where do you see yourself? 🎯",
+
+            departmentDescription:
+                "Choose the field that best matches your skills and interests.",
+
+            research:
+                "Research",
+
+            researchSmall:
+                "Find useful opportunities",
+
+            content:
+                "Content",
+
+            contentSmall:
+                "Turn opportunities into content",
+
+            marketing:
+                "Marketing",
+
+            marketingSmall:
+                "Reach the right audience",
+
+            design:
+                "Design",
+
+            designSmall:
+                "Make ideas visual",
+
+            community:
+                "Community",
+
+            communitySmall:
+                "Build a helpful community",
+
+            pr:
+                "PR & Partnerships",
+
+            prSmall:
+                "Build meaningful connections",
+
+            hr:
+                "HR",
+
+            hrSmall:
+                "Build and support the team",
+
+            miniChallenge:
+                "MINI CHALLENGE",
+
+            challengeDescription:
+                "There is no perfect answer. We just want to see how you approach problems.",
+
+            lastStep:
+                "LAST STEP",
+
+            lastTitle:
+                "Tell us about you 💜",
+
+            lastDescription:
+                "Be honest. We care more about your mindset than having the perfect answer.",
+
+            whyTofu:
+                "Why do you want to join TOFU Media?",
+
+            contribution:
+                "What can you add to TOFU Media?",
+
+            hours:
+                "How much time can you commit weekly?",
+
+            choose:
+                "Choose",
+
+            submit:
+                "Submit Application",
+
+            successTitle:
+                "Application<br><span>received! 🎉</span>",
+
+            successText:
+                "Thank you for applying to TOFU Media. Our team will review your application and contact you soon.",
+
+            nextTitle:
+                "What happens next?",
+
+            nextText:
+                "Keep an eye on your email and WhatsApp. Our team may contact you during the selection process."
+
+        },
 
 
-        "Marketing": [
+        ar: {
 
-            "TOFU found a fully funded opportunity for high school students. Give us 3 ideas to reach the students who need it.",
+            season:
+                "توفو ميديا — السيزون الثاني",
 
-            "How would you promote TOFU inside a Facebook group without making your post look like spam?",
+            welcomeTitle:
+                "خلينا نخلي<br><span>الفرص توصل لمستحقيها.</span>",
 
-            "Which is more important for an opportunity campaign: reaching a huge number of people or reaching the right people? Explain why.",
+            welcomeText:
+                "ساعدنا نوصل الشباب بالمنح والكورسات المجانية والمسابقات والإيفنتات والفرص المختلفة.",
 
-            "Give us one creative marketing idea that could make more young people know about TOFU."
+            start:
+                "ابدأ التقديم",
 
-        ],
+            hint:
+                "التقديم مش هياخد غير كام دقيقة.",
 
+            getToKnow:
+                "خلينا نتعرف عليك",
 
-        "Graphic Design": [
+            nameTitle:
+                "اسمك إيه؟ 👋",
 
-            "What design tools do you use?",
+            nameDescription:
+                "اكتب اسمك بالكامل.",
 
-            "Imagine you have to design a post about a scholarship. What information would you make visually stand out?",
+            fullName:
+                "الاسم بالكامل",
 
-            "What makes a social media design look professional?",
+            aboutYou:
+                "عن نفسك",
 
-            "Send us a link to your portfolio or previous work if you have one."
+            aboutTitle:
+                "قولنا شوية عن نفسك 🎓",
 
-        ],
+            aboutDescription:
+                "المعلومات دي بتساعدنا نفهم المتقدمين بشكل أفضل.",
 
+            age:
+                "السن",
 
-        "Community": [
+            governorate:
+                "المحافظة",
 
-            "A student asks about an opportunity and you don't know the answer. What would you do?",
+            email:
+                "الإيميل",
 
-            "How would you make students feel comfortable asking questions inside the TOFU community?",
+            whatsapp:
+                "رقم الواتساب",
 
-            "What type of content or activities could make students stay active in the community?",
+            chooseDepartment:
+                "اختار التيم",
 
-            "How would you deal with someone who repeatedly breaks the community rules?"
+            departmentTitle:
+                "شايف نفسك فين؟ 🎯",
 
-        ],
+            departmentDescription:
+                "اختار المجال اللي أقرب لمهاراتك واهتماماتك.",
 
+            research:
+                "Research",
 
-        "PR & Partnerships": [
+            researchSmall:
+                "البحث عن الفرص المفيدة",
 
-            "Imagine you want to contact an organization and propose a collaboration with TOFU. How would you approach them?",
+            content:
+                "Content",
 
-            "Write a short message introducing TOFU Media to another youth organization.",
+            contentSmall:
+                "تحويل الفرص لمحتوى",
 
-            "What do you think makes an organization interested in partnering with another organization?",
+            marketing:
+                "Marketing",
 
-            "How would you maintain a good relationship with a partner after finishing a collaboration?"
+            marketingSmall:
+                "الوصول للجمهور المناسب",
 
-        ],
+            design:
+                "Graphic Design",
 
+            designSmall:
+                "تحويل الأفكار لتصميمات",
 
-        "HR": [
+            community:
+                "Community",
 
-            "A volunteer suddenly stops responding to the team. What would you do first?",
+            communitySmall:
+                "بناء مجتمع مفيد",
 
-            "A team member repeatedly misses deadlines. How would you handle the situation?",
+            pr:
+                "PR & Partnerships",
 
-            "What qualities do you think a good volunteer should have?",
+            prSmall:
+                "بناء العلاقات والشراكات",
 
-            "How would you make a new volunteer feel welcomed inside the TOFU team?"
+            hr:
+                "HR",
 
-        ]
+            hrSmall:
+                "دعم وبناء التيم",
+
+            miniChallenge:
+                "تحدي بسيط",
+
+            challengeDescription:
+                "مفيش إجابة مثالية. إحنا بس عايزين نشوف طريقة تفكيرك وتعاملَك مع المواقف.",
+
+            lastStep:
+                "آخر خطوة",
+
+            lastTitle:
+                "قولنا أكتر عنك 💜",
+
+            lastDescription:
+                "خليك صريح. إحنا مهتمين بطريقة تفكيرك أكتر من إن إجابتك تكون مثالية.",
+
+            whyTofu:
+                "ليه عايز تنضم لـ TOFU Media؟",
+
+            contribution:
+                "إيه اللي تقدر تضيفه لـ TOFU Media؟",
+
+            hours:
+                "تقدر تلتزم بكام ساعة أسبوعيًا؟",
+
+            choose:
+                "اختار",
+
+            submit:
+                "إرسال التقديم",
+
+            successTitle:
+                "تم استلام<br><span>التقديم! 🎉</span>",
+
+            successText:
+                "شكرًا لتقديمك في TOFU Media. التيم هيقوم بمراجعة التقديم والتواصل معاك قريبًا.",
+
+            nextTitle:
+                "إيه اللي هيحصل بعد كده؟",
+
+            nextText:
+                "تابع الإيميل والواتساب بتوعك، ممكن التيم يتواصل معاك أثناء مرحلة الاختيار."
+
+        }
 
     };
 
 
-    // ==========================================
-    // START
-    // ==========================================
+    /* ==========================================
+       DEPARTMENT QUESTIONS
+    ========================================== */
 
-    startBtn.addEventListener("click", () => {
+    const questions = {
 
-        welcomeScreen.classList.remove("active");
+        "Research & Opportunities": {
 
-        applicationScreen.classList.add("active");
+            en: [
+                "You found a scholarship online. What would you check before sharing it with TOFU students?",
+                "Where would you search for reliable scholarships, free courses, competitions and youth opportunities?",
+                "An opportunity has complicated requirements. How would you make the information easier for students to understand?",
+                "What are the most important details that should always be included in an opportunity post?"
+            ],
 
-        currentStep = 1;
+            ar: [
+                "لقيت منحة أونلاين، إيه الحاجات اللي هتتأكد منها قبل ما تنشرها لطلاب TOFU؟",
+                "هتدور فين على منح وكورسات مجانية ومسابقات وفرص للشباب تكون موثوقة؟",
+                "لو الفرصة شروطها معقدة، هتشرحها للطلاب بطريقة بسيطة إزاي؟",
+                "إيه أهم المعلومات اللي لازم تكون موجودة في أي بوست عن فرصة؟"
+            ]
+
+        },
+
+
+        "Content Writing": {
+
+            en: [
+                "Write a short hook that would make a student stop scrolling when they see a post about a free opportunity.",
+                "How would you explain a complicated scholarship to a student in a simple way?",
+                "What makes social media content interesting and useful at the same time?",
+                "Imagine you have to write a post about a free course. What information would you include?"
+            ],
+
+            ar: [
+                "اكتب Hook قصير يخلي الطالب يوقف الـ scrolling لما يشوف بوست عن فرصة مجانية.",
+                "هتشرح منحة معقدة لطالب بطريقة بسيطة إزاي؟",
+                "إيه اللي بيخلي محتوى السوشيال ميديا interesting ومفيد في نفس الوقت؟",
+                "لو مطلوب منك تعمل بوست عن كورس مجاني، إيه المعلومات اللي هتحطها؟"
+            ]
+
+        },
+
+
+        "Marketing": {
+
+            en: [
+                "TOFU found a fully funded opportunity for high school students. Give us 3 ideas to reach the students who need it.",
+                "How would you promote TOFU inside a Facebook group without making your post look like spam?",
+                "Which is more important: reaching a huge number of people or reaching the right people? Explain why.",
+                "Give us one creative marketing idea that could make more young people know about TOFU."
+            ],
+
+            ar: [
+                "TOFU لقت فرصة ممولة بالكامل لطلاب الثانوية. ادينا 3 أفكار توصل بيها للطلاب اللي محتاجينها.",
+                "هتعمل Marketing لـ TOFU في جروب فيسبوك من غير ما البوست يبان Spam إزاي؟",
+                "إيه الأهم: توصل لعدد كبير جدًا ولا توصل للناس الصح؟ وليه؟",
+                "ادينا فكرة Marketing Creative تخلي شباب أكتر يعرفوا TOFU."
+            ]
+
+        },
+
+
+        "Graphic Design": {
+
+            en: [
+                "What design tools do you use and how comfortable are you with them?",
+                "Imagine you have to design a post about a scholarship. What information would you make visually stand out?",
+                "What makes a social media design look professional?",
+                "Send us a link to your portfolio or previous work if you have one."
+            ],
+
+            ar: [
+                "إيه أدوات التصميم اللي بتستخدمها ومستواك فيها عامل إزاي؟",
+                "لو هتعمل Design عن منحة، إيه المعلومات اللي هتخليها أوضح بصريًا؟",
+                "إيه اللي بيخلي تصميم السوشيال ميديا شكله Professional؟",
+                "ابعتلنا لينك الـ Portfolio أو أي شغل سابق لو عندك."
+            ]
+
+        },
+
+
+        "Community": {
+
+            en: [
+                "A student asks about an opportunity and you don't know the answer. What would you do?",
+                "How would you make students feel comfortable asking questions inside the TOFU community?",
+                "What type of content or activities could make students stay active in the community?",
+                "How would you deal with someone who repeatedly breaks the community rules?"
+            ],
+
+            ar: [
+                "طالب سأل عن فرصة وإنت مش عارف الإجابة، هتعمل إيه؟",
+                "إزاي تخلي الطلاب مرتاحين في إنهم يسألوا جوه Community بتاعة TOFU؟",
+                "إيه نوع المحتوى أو الأنشطة اللي ممكن تخلي الطلاب Active في الـ Community؟",
+                "هتتعامل إزاي مع شخص بيكرر مخالفة قواعد الـ Community؟"
+            ]
+
+        },
+
+
+        "PR & Partnerships": {
+
+            en: [
+                "Imagine you want to contact an organization and propose a collaboration with TOFU. How would you approach them?",
+                "Write a short message introducing TOFU Media to another youth organization.",
+                "What makes an organization interested in partnering with another organization?",
+                "How would you maintain a good relationship with a partner after finishing a collaboration?"
+            ],
+
+            ar: [
+                "لو عايز تتواصل مع Organization وتقترح Collaboration مع TOFU، هتبدأ معاهم إزاي؟",
+                "اكتب Message قصيرة تعرف فيها TOFU Media لـ Youth Organization تانية.",
+                "إيه اللي ممكن يخلي Organization تهتم إنها تعمل Partnership مع Organization تانية؟",
+                "إزاي تحافظ على علاقة كويسة مع Partner بعد انتهاء الـ Collaboration؟"
+            ]
+
+        },
+
+
+        "HR": {
+
+            en: [
+                "A volunteer suddenly stops responding to the team. What would you do first?",
+                "A team member repeatedly misses deadlines. How would you handle the situation?",
+                "What qualities do you think a good volunteer should have?",
+                "How would you make a new volunteer feel welcomed inside the TOFU team?"
+            ],
+
+            ar: [
+                "Volunteer فجأة بطل يرد على التيم، أول حاجة هتعملها إيه؟",
+                "Team Member بيكرر إنه يتأخر عن الـ Deadlines، هتتعامل مع الموضوع إزاي؟",
+                "إيه الصفات اللي شايف إنها مهمة في أي Volunteer كويس؟",
+                "إزاي تخلي Volunteer جديد يحس إنه مرحب بيه جوه TOFU؟"
+            ]
+
+        }
+
+    };
+
+
+    /* ==========================================
+       LANGUAGE
+    ========================================== */
+
+    function changeLanguage(lang) {
+
+        currentLanguage = lang;
+
+        document.documentElement.lang = lang;
+
+        document.documentElement.dir =
+            lang === "ar" ? "rtl" : "ltr";
+
+
+        document
+            .querySelectorAll("[data-i18n]")
+            .forEach(element => {
+
+                const key =
+                    element.dataset.i18n;
+
+                if (translations[lang][key]) {
+
+                    element.innerHTML =
+                        translations[lang][key];
+
+                }
+
+            });
+
+
+        document
+            .querySelectorAll("[data-placeholder]")
+            .forEach(input => {
+
+                const key =
+                    input.dataset.placeholder;
+
+                if (translations[lang][key]) {
+
+                    input.placeholder =
+                        translations[lang][key];
+
+                }
+
+            });
+
+
+        const newLanguage =
+            lang === "en"
+                ? "العربية"
+                : "English";
+
+
+        languageBtn.textContent =
+            newLanguage;
+
+        languageBtn2.textContent =
+            newLanguage;
+
+
+        renderQuestions();
+
 
         updateProgress();
 
-        setTimeout(() => {
-
-            document.getElementById("name").focus();
-
-        }, 300);
-
-    });
+    }
 
 
-    // ==========================================
-    // NEXT BUTTONS
-    // ==========================================
+    languageBtn.addEventListener(
+        "click",
+        () => {
 
-    const nextButtons =
-        document.querySelectorAll(".next-btn");
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
 
-
-    nextButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const currentStepElement =
-                document.querySelector(
-                    `.step[data-step="${currentStep}"]`
-                );
+        }
+    );
 
 
-            if (!validateStep(currentStepElement)) {
-                return;
-            }
+    languageBtn2.addEventListener(
+        "click",
+        () => {
+
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
+
+        }
+    );
 
 
-            if (currentStep < totalSteps) {
+    /* ==========================================
+       START
+    ========================================== */
 
-                currentStep++;
+    startBtn.addEventListener(
+        "click",
+        () => {
 
-                showStep(currentStep);
+            welcomeScreen.classList.remove(
+                "active"
+            );
 
-                updateProgress();
+            applicationScreen.classList.add(
+                "active"
+            );
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+            currentStep = 1;
 
-            }
+            updateProgress();
+
+        }
+    );
+
+
+    /* ==========================================
+       NEXT
+    ========================================== */
+
+    document
+        .querySelectorAll(".next-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const step =
+                        document.querySelector(
+                            `.step[data-step="${currentStep}"]`
+                        );
+
+
+                    if (!validateStep(step)) {
+                        return;
+                    }
+
+
+                    if (
+                        currentStep <
+                        TOTAL_STEPS
+                    ) {
+
+                        currentStep++;
+
+                        showStep(currentStep);
+
+                        updateProgress();
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+
+                    }
+
+                }
+            );
 
         });
 
-    });
 
+    /* ==========================================
+       SHOW STEP
+    ========================================== */
 
-    // ==========================================
-    // SHOW STEP
-    // ==========================================
-
-    function showStep(stepNumber) {
+    function showStep(number) {
 
         steps.forEach(step => {
 
-            step.classList.remove("active-step");
+            step.classList.remove(
+                "active"
+            );
 
         });
 
 
-        const selectedStep =
+        const selected =
             document.querySelector(
-                `.step[data-step="${stepNumber}"]`
+                `.step[data-step="${number}"]`
             );
 
 
-        if (selectedStep) {
+        if (selected) {
 
-            selectedStep.classList.add("active-step");
+            selected.classList.add(
+                "active"
+            );
 
         }
 
     }
 
 
-    // ==========================================
-    // PROGRESS
-    // ==========================================
+    /* ==========================================
+       PROGRESS
+    ========================================== */
 
     function updateProgress() {
 
         const percentage =
-            (currentStep / totalSteps) * 100;
+            (currentStep / TOTAL_STEPS) * 100;
 
 
         progressBar.style.width =
             `${percentage}%`;
 
 
-        stepText.textContent =
-            `Step ${currentStep} of ${totalSteps}`;
+        if (currentLanguage === "ar") {
+
+            stepText.textContent =
+                `الخطوة ${currentStep} من ${TOTAL_STEPS}`;
+
+        } else {
+
+            stepText.textContent =
+                `Step ${currentStep} of ${TOTAL_STEPS}`;
+
+        }
 
 
-        progressPercent.textContent =
+        percentText.textContent =
             `${Math.round(percentage)}%`;
 
     }
 
 
-    // ==========================================
-    // BACK BUTTON
-    // ==========================================
+    /* ==========================================
+       BACK
+    ========================================== */
 
-    backBtn.addEventListener("click", () => {
+    backBtn.addEventListener(
+        "click",
+        () => {
 
-        if (currentStep > 1) {
+            if (currentStep > 1) {
 
-            currentStep--;
+                currentStep--;
 
-            showStep(currentStep);
+                showStep(currentStep);
 
-            updateProgress();
+                updateProgress();
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            } else {
 
-        } else {
+                applicationScreen.classList.remove(
+                    "active"
+                );
 
-            applicationScreen.classList.remove("active");
+                welcomeScreen.classList.add(
+                    "active"
+                );
 
-            welcomeScreen.classList.add("active");
+            }
 
         }
+    );
 
-    });
 
-
-    // ==========================================
-    // DEPARTMENT SELECTION
-    // ==========================================
+    /* ==========================================
+       DEPARTMENT
+    ========================================== */
 
     departmentCards.forEach(card => {
 
-        card.addEventListener("click", () => {
+        card.addEventListener(
+            "click",
+            () => {
 
-            departmentCards.forEach(item => {
+                departmentCards.forEach(item => {
 
-                item.classList.remove("selected");
+                    item.classList.remove(
+                        "selected"
+                    );
 
-            });
-
-
-            card.classList.add("selected");
-
-
-            selectedDepartment =
-                card.dataset.department;
+                });
 
 
-            departmentInput.value =
-                selectedDepartment;
+                card.classList.add(
+                    "selected"
+                );
 
 
-            departmentNext.disabled = false;
+                selectedDepartment =
+                    card.dataset.department;
 
 
-            generateQuestions(selectedDepartment);
+                departmentInput.value =
+                    selectedDepartment;
 
-        });
+
+                departmentNext.disabled =
+                    false;
+
+
+                renderQuestions();
+
+            }
+        );
 
     });
 
 
-    // ==========================================
-    // GENERATE QUESTIONS
-    // ==========================================
+    /* ==========================================
+       RENDER QUESTIONS
+    ========================================== */
 
-    function generateQuestions(department) {
+    function renderQuestions() {
 
-        dynamicQuestions.innerHTML = "";
-
-
-        const questions =
-            departmentQuestions[department];
-
-
-        if (!questions) {
+        if (!selectedDepartment) {
             return;
         }
 
 
+        const department =
+            questions[selectedDepartment];
+
+
+        if (!department) {
+            return;
+        }
+
+
+        const currentQuestions =
+            department[currentLanguage];
+
+
+        questionsContainer.innerHTML = "";
+
+
         challengeTitle.textContent =
-            `${department} Challenge 🧠`;
+            currentLanguage === "ar"
+                ? `${getArabicDepartmentName(selectedDepartment)} Challenge 🧠`
+                : `${selectedDepartment} Challenge 🧠`;
 
 
-        questions.forEach((question, index) => {
+        currentQuestions.forEach(
+            (question, index) => {
 
-            const wrapper =
-                document.createElement("div");
-
-            wrapper.classList.add(
-                "dynamic-question"
-            );
+                const wrapper =
+                    document.createElement("div");
 
 
-            const label =
-                document.createElement("label");
+                wrapper.className =
+                    "question";
 
 
-            label.innerHTML = `
-                <span class="question-number">
-                    ${index + 1}
-                </span>
-
-                ${question}
-            `;
+                const label =
+                    document.createElement("label");
 
 
-            const textarea =
-                document.createElement("textarea");
+                label.className =
+                    "question-title";
 
 
-            textarea.name =
-                `department_question_${index + 1}`;
+                label.innerHTML = `
+                    <span class="question-number">
+                        ${index + 1}
+                    </span>
+                    ${question}
+                `;
 
 
-            textarea.required = true;
+                const textarea =
+                    document.createElement("textarea");
 
 
-            textarea.placeholder =
-                "Write your answer here...";
+                textarea.required = true;
+
+                textarea.name =
+                    `challenge_${index + 1}`;
+
+                textarea.placeholder =
+                    currentLanguage === "ar"
+                        ? "اكتب إجابتك هنا..."
+                        : "Write your answer here...";
 
 
-            wrapper.appendChild(label);
+                wrapper.appendChild(label);
 
-            wrapper.appendChild(textarea);
+                wrapper.appendChild(textarea);
 
-            dynamicQuestions.appendChild(wrapper);
+                questionsContainer.appendChild(
+                    wrapper
+                );
 
-        });
+            }
+        );
 
     }
 
 
-    // ==========================================
-    // VALIDATION
-    // ==========================================
+    function getArabicDepartmentName(department) {
 
-    function validateStep(stepElement) {
+        const names = {
+
+            "Research & Opportunities":
+                "Research & Opportunities",
+
+            "Content Writing":
+                "Content Writing",
+
+            "Marketing":
+                "Marketing",
+
+            "Graphic Design":
+                "Graphic Design",
+
+            "Community":
+                "Community",
+
+            "PR & Partnerships":
+                "PR & Partnerships",
+
+            "HR":
+                "HR"
+
+        };
+
+
+        return names[department] || department;
+
+    }
+
+
+    /* ==========================================
+       VALIDATION
+    ========================================== */
+
+    function validateStep(step) {
+
+        if (!step) {
+            return false;
+        }
+
 
         const fields =
-            stepElement.querySelectorAll(
+            step.querySelectorAll(
                 "input, textarea, select"
             );
 
@@ -441,246 +980,323 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // ==========================================
-    // PHONE VALIDATION
-    // ==========================================
+    /* ==========================================
+       PHONE
+    ========================================== */
 
-    function validatePhone(phone) {
+    function validPhone(phone) {
 
-        // Egyptian mobile numbers
-        const phoneRegex =
-            /^01[0125][0-9]{8}$/;
-
-        return phoneRegex.test(phone);
+        return /^01[0125][0-9]{8}$/.test(
+            phone
+        );
 
     }
 
 
-    // ==========================================
-    // FORM SUBMISSION
-    // ==========================================
+    /* ==========================================
+       SUBMIT
+    ========================================== */
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener(
+        "submit",
+        async event => {
 
-        e.preventDefault();
-
-
-        // --------------------------------------
-        // Validate final step
-        // --------------------------------------
-
-        const lastStep =
-            document.querySelector(
-                `.step[data-step="${totalSteps}"]`
-            );
+            event.preventDefault();
 
 
-        if (!validateStep(lastStep)) {
-            return;
-        }
-
-
-        // --------------------------------------
-        // Validate phone
-        // --------------------------------------
-
-        const phone =
-            document.getElementById("phone")
-                .value
-                .trim();
-
-
-        if (!validatePhone(phone)) {
-
-            alert(
-                "برجاء إدخال رقم هاتف مصري صحيح مكون من 11 رقم."
-            );
-
-            document.getElementById("phone").focus();
-
-            return;
-
-        }
-
-
-        // --------------------------------------
-        // Get submit button
-        // --------------------------------------
-
-        const submitBtn =
-            form.querySelector(".submit-btn");
-
-
-        const originalText =
-            submitBtn.innerText;
-
-
-        submitBtn.disabled = true;
-
-        submitBtn.innerText =
-            "Sending Application...";
-
-
-        // --------------------------------------
-        // Prepare data
-        // --------------------------------------
-
-        const formData =
-            new FormData(form);
-
-
-        // Web3Forms Access Key
-
-        formData.append(
-            "access_key",
-            WEB3FORMS_ACCESS_KEY
-        );
-
-
-        // Email subject
-
-        formData.append(
-            "subject",
-            `New TOFU Media Application - ${selectedDepartment}`
-        );
-
-
-        // From name
-
-        formData.append(
-            "from_name",
-            "TOFU Media Application"
-        );
-
-
-        // --------------------------------------
-        // Send to Web3Forms
-        // --------------------------------------
-
-        try {
-
-            const response =
-                await fetch(
-                    "https://api.web3forms.com/submit",
-                    {
-                        method: "POST",
-                        body: formData
-                    }
+            const finalStep =
+                document.querySelector(
+                    `.step[data-step="${TOTAL_STEPS}"]`
                 );
 
 
-            const data =
-                await response.json();
-
-
-            // ----------------------------------
-            // SUCCESS
-            // ----------------------------------
-
-            if (data.success) {
-
-                applicationScreen.classList.remove(
-                    "active"
-                );
-
-
-                successScreen.classList.add(
-                    "active"
-                );
-
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-
-                form.reset();
-
+            if (!validateStep(finalStep)) {
+                return;
             }
 
 
-            // ----------------------------------
-            // ERROR
-            // ----------------------------------
-
-            else {
+            if (!selectedDepartment) {
 
                 alert(
-                    "حدث خطأ أثناء الإرسال:\n" +
-                    (data.message || "Unknown error")
+                    currentLanguage === "ar"
+                        ? "اختاري التيم الأول."
+                        : "Please choose a department first."
                 );
 
-
-                submitBtn.disabled = false;
-
-                submitBtn.innerText =
-                    originalText;
+                return;
 
             }
 
-        }
+
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
 
 
-        // --------------------------------------
-        // NETWORK ERROR
-        // --------------------------------------
+            if (!validPhone(phone)) {
 
-        catch (error) {
+                alert(
+                    currentLanguage === "ar"
+                        ? "اكتبي رقم واتساب مصري صحيح مكون من 11 رقم."
+                        : "Please enter a valid 11-digit Egyptian WhatsApp number."
+                );
 
-            console.error(error);
+                currentStep = 2;
+
+                showStep(2);
+
+                updateProgress();
+
+                return;
+
+            }
 
 
-            alert(
-                "تعذر الاتصال بالخدمة. تأكدي من اتصال الإنترنت وحاولي مرة أخرى."
+            const submitButton =
+                form.querySelector(
+                    ".submit-btn"
+                );
+
+
+            const oldText =
+                submitButton.innerHTML;
+
+
+            submitButton.disabled = true;
+
+            submitButton.innerHTML =
+                currentLanguage === "ar"
+                    ? "جاري الإرسال..."
+                    : "Sending...";
+
+
+            /* ================================
+               CREATE APPLICATION
+            ================================= */
+
+            const data =
+                new FormData();
+
+
+            data.append(
+                "access_key",
+                ACCESS_KEY
             );
 
 
-            submitBtn.disabled = false;
-
-            submitBtn.innerText =
-                originalText;
-
-        }
-
-    });
+            data.append(
+                "subject",
+                `TOFU Media Application - ${selectedDepartment}`
+            );
 
 
-    // ==========================================
-    // ENTER KEY
-    // ==========================================
+            data.append(
+                "from_name",
+                "TOFU Media Recruitment"
+            );
 
-    document.addEventListener(
-        "keydown",
-        (event) => {
 
-            if (
-                event.key === "Enter" &&
-                event.target.tagName !== "TEXTAREA"
-            ) {
+            data.append(
+                "Full Name",
+                document
+                    .getElementById("name")
+                    .value
+                    .trim()
+            );
 
-                const activeStep =
-                    document.querySelector(
-                        ".active-step"
+
+            data.append(
+                "Age",
+                document
+                    .getElementById("age")
+                    .value
+                    .trim()
+            );
+
+
+            data.append(
+                "Governorate",
+                document
+                    .getElementById("governorate")
+                    .value
+                    .trim()
+            );
+
+
+            data.append(
+                "Email",
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+            );
+
+
+            data.append(
+                "WhatsApp",
+                phone
+            );
+
+
+            data.append(
+                "Department",
+                selectedDepartment
+            );
+
+
+            /* =================================
+               QUESTIONS
+            ================================= */
+
+            const answers =
+                questionsContainer.querySelectorAll(
+                    "textarea"
+                );
+
+
+            const originalQuestions =
+                questions[
+                    selectedDepartment
+                ].en;
+
+
+            answers.forEach(
+                (answer, index) => {
+
+                    data.append(
+                        `Question ${index + 1}`,
+                        answer.value.trim()
                     );
 
 
-                const nextButton =
-                    activeStep?.querySelector(
-                        ".next-btn"
+                    data.append(
+                        `Question ${index + 1} Text`,
+                        originalQuestions[index]
                     );
-
-
-                if (
-                    nextButton &&
-                    !nextButton.disabled
-                ) {
-
-                    event.preventDefault();
-
-                    nextButton.click();
 
                 }
+            );
+
+
+            /* =================================
+               GENERAL QUESTIONS
+            ================================= */
+
+            data.append(
+                "Why TOFU?",
+                document
+                    .getElementById("whyTofu")
+                    .value
+                    .trim()
+            );
+
+
+            data.append(
+                "What can you add?",
+                document
+                    .getElementById("contribution")
+                    .value
+                    .trim()
+            );
+
+
+            data.append(
+                "Weekly Commitment",
+                document
+                    .getElementById("hours")
+                    .value
+            );
+
+
+            /* =================================
+               SEND
+            ================================= */
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://api.web3forms.com/submit",
+                        {
+                            method: "POST",
+                            body: data
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (result.success) {
+
+                    form.reset();
+
+                    selectedDepartment = "";
+
+                    departmentCards.forEach(
+                        card => {
+                            card.classList.remove(
+                                "selected"
+                            );
+                        }
+                    );
+
+
+                    departmentNext.disabled =
+                        true;
+
+
+                    questionsContainer.innerHTML =
+                        "";
+
+
+                    currentStep = 1;
+
+
+                    applicationScreen
+                        .classList
+                        .remove("active");
+
+
+                    successScreen
+                        .classList
+                        .add("active");
+
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+                } else {
+
+                    throw new Error(
+                        result.message ||
+                        "Submission failed"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "حصلت مشكلة أثناء الإرسال، جربي تاني."
+                        : "Something went wrong while submitting. Please try again."
+                );
+
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.innerHTML =
+                    oldText;
 
             }
 
@@ -688,12 +1304,11 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    // ==========================================
-    // INITIAL STATE
-    // ==========================================
+    /* ==========================================
+       INITIAL
+    ========================================== */
 
-    updateProgress();
+    changeLanguage("en");
 
 });
-```
 
