@@ -22,14 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const languageBtn = document.getElementById("languageBtn");
     const languageBtn2 = document.getElementById("languageBtn2");
 
-    const departmentCards =
-        document.querySelectorAll(".department");
-
-    const departmentInput =
-        document.getElementById("department");
-
-    const departmentNext =
-        document.getElementById("departmentNext");
+    const departmentCards = document.querySelectorAll(".department");
+    const departmentInput = document.getElementById("department");
+    const departmentNext = document.getElementById("departmentNext");
 
     const questionsContainer =
         document.getElementById("questionsContainer");
@@ -179,6 +174,9 @@ document.addEventListener("DOMContentLoaded", function () {
             choose:
                 "Choose",
 
+            continue:
+                "Continue",
+
             submit:
                 "Submit Application",
 
@@ -323,6 +321,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             choose:
                 "اختاري",
+
+            continue:
+                "كملي",
 
             submit:
                 "إرسال التقديم",
@@ -476,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       LANGUAGE
+       CHANGE LANGUAGE
     ===================================================== */
 
     function changeLanguage(lang) {
@@ -501,9 +502,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     element.innerHTML =
                         translations[lang][key];
-
                 }
-
             });
 
 
@@ -519,9 +518,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     element.placeholder =
                         translations[lang][key];
-
                 }
-
             });
 
 
@@ -552,35 +549,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (languageBtn) {
 
-        languageBtn.addEventListener(
-            "click",
-            function () {
+        languageBtn.addEventListener("click", function () {
 
-                changeLanguage(
-                    currentLanguage === "en"
-                        ? "ar"
-                        : "en"
-                );
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
 
-            }
-        );
+        });
     }
 
 
     if (languageBtn2) {
 
-        languageBtn2.addEventListener(
-            "click",
-            function () {
+        languageBtn2.addEventListener("click", function () {
 
-                changeLanguage(
-                    currentLanguage === "en"
-                        ? "ar"
-                        : "en"
-                );
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
 
-            }
-        );
+        });
     }
 
 
@@ -590,31 +581,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (startBtn) {
 
-        startBtn.addEventListener(
-            "click",
-            function () {
+        startBtn.addEventListener("click", function () {
 
-                if (welcomeScreen) {
-                    welcomeScreen.classList.remove("active");
-                }
-
-                if (applicationScreen) {
-                    applicationScreen.classList.add("active");
-                }
-
-                currentStep = 1;
-
-                showStep(1);
-
-                updateProgress();
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
+            if (welcomeScreen) {
+                welcomeScreen.classList.remove("active");
             }
-        );
+
+            if (applicationScreen) {
+                applicationScreen.classList.add("active");
+            }
+
+            currentStep = 1;
+
+            showStep(1);
+            updateProgress();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
     }
 
 
@@ -653,12 +640,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (progressBar) {
+
             progressBar.style.width =
                 percentage + "%";
         }
 
 
         if (percentText) {
+
             percentText.textContent =
                 Math.round(percentage) + "%";
         }
@@ -670,13 +659,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 currentLanguage === "ar"
                     ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
                     : `Step ${currentStep} of ${TOTAL_STEPS}`;
-
         }
     }
 
 
     /* =====================================================
-       VALIDATION
+       VALIDATE STEP
     ===================================================== */
 
     function validateStep(step) {
@@ -714,71 +702,37 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".next-btn")
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                function () {
+            button.addEventListener("click", function () {
 
-                    const current =
-                        document.querySelector(
-                            `.step[data-step="${currentStep}"]`
-                        );
+                const current =
+                    document.querySelector(
+                        `.step[data-step="${currentStep}"]`
+                    );
 
 
-                    if (!validateStep(current)) {
-                        return;
-                    }
-
-
-                    /*
-                       Department must be selected
-                    */
-
-                    if (
-                        currentStep === 3 &&
-                        !selectedDepartment
-                    ) {
-
-                        alert(
-                            currentLanguage === "ar"
-                                ? "من فضلك اختاري التيم الأول."
-                                : "Please choose a department first."
-                        );
-
-                        return;
-                    }
-
-
-                    if (currentStep < TOTAL_STEPS) {
-
-                        currentStep++;
-
-                        showStep(currentStep);
-
-                        updateProgress();
-
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "smooth"
-                        });
-                    }
+                if (!validateStep(current)) {
+                    return;
                 }
-            );
-        });
 
 
-    /* =====================================================
-       BACK BUTTON
-    ===================================================== */
+                if (
+                    currentStep === 3 &&
+                    !selectedDepartment
+                ) {
 
-    if (backBtn) {
+                    alert(
+                        currentLanguage === "ar"
+                            ? "من فضلك اختاري التيم الأول."
+                            : "Please choose a department first."
+                    );
 
-        backBtn.addEventListener(
-            "click",
-            function () {
+                    return;
+                }
 
-                if (currentStep > 1) {
 
-                    currentStep--;
+                if (currentStep < TOTAL_STEPS) {
+
+                    currentStep++;
 
                     showStep(currentStep);
 
@@ -788,65 +742,87 @@ document.addEventListener("DOMContentLoaded", function () {
                         top: 0,
                         behavior: "smooth"
                     });
+                }
 
-                } else {
+            });
+        });
 
-                    if (applicationScreen) {
-                        applicationScreen.classList.remove("active");
-                    }
 
-                    if (welcomeScreen) {
-                        welcomeScreen.classList.add("active");
-                    }
+    /* =====================================================
+       BACK BUTTON
+    ===================================================== */
+
+    if (backBtn) {
+
+        backBtn.addEventListener("click", function () {
+
+            if (currentStep > 1) {
+
+                currentStep--;
+
+                showStep(currentStep);
+
+                updateProgress();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            } else {
+
+                if (applicationScreen) {
+                    applicationScreen.classList.remove("active");
+                }
+
+                if (welcomeScreen) {
+                    welcomeScreen.classList.add("active");
                 }
             }
-        );
+        });
     }
 
 
     /* =====================================================
-       DEPARTMENTS
+       DEPARTMENT SELECTION
     ===================================================== */
 
     departmentCards.forEach(card => {
 
-        card.addEventListener(
-            "click",
-            function () {
+        card.addEventListener("click", function () {
 
-                departmentCards.forEach(item => {
-                    item.classList.remove("selected");
-                });
+            departmentCards.forEach(item => {
+                item.classList.remove("selected");
+            });
 
 
-                card.classList.add("selected");
+            card.classList.add("selected");
 
 
-                selectedDepartment =
-                    card.dataset.department;
+            selectedDepartment =
+                card.dataset.department;
 
 
-                if (departmentInput) {
+            if (departmentInput) {
 
-                    departmentInput.value =
-                        selectedDepartment;
-                }
-
-
-                if (departmentNext) {
-
-                    departmentNext.disabled = false;
-                }
-
-
-                renderQuestions();
+                departmentInput.value =
+                    selectedDepartment;
             }
-        );
+
+
+            if (departmentNext) {
+
+                departmentNext.disabled = false;
+            }
+
+
+            renderQuestions();
+        });
     });
 
 
     /* =====================================================
-       QUESTIONS
+       RENDER QUESTIONS
     ===================================================== */
 
     function renderQuestions() {
@@ -877,88 +853,84 @@ document.addEventListener("DOMContentLoaded", function () {
         questionsContainer.innerHTML = "";
 
 
-        currentQuestions.forEach(
-            function (question, index) {
+        currentQuestions.forEach(function (question, index) {
 
-                const wrapper =
-                    document.createElement("div");
+            const wrapper =
+                document.createElement("div");
 
-                wrapper.className = "question";
-
-
-                const label =
-                    document.createElement("label");
-
-                label.className =
-                    "question-title";
+            wrapper.className = "question";
 
 
-                label.innerHTML = `
-                    <span class="question-number">
-                        ${index + 1}
-                    </span>
-                    ${question}
-                `;
+            const label =
+                document.createElement("label");
+
+            label.className =
+                "question-title";
 
 
-                const textarea =
-                    document.createElement("textarea");
-
-                textarea.required = true;
-
-                textarea.name =
-                    "challenge_" + (index + 1);
-
-                textarea.placeholder =
-                    currentLanguage === "ar"
-                        ? "اكتبي إجابتك هنا..."
-                        : "Write your answer here...";
+            label.innerHTML = `
+                <span class="question-number">
+                    ${index + 1}
+                </span>
+                ${question}
+            `;
 
 
-                wrapper.appendChild(label);
+            const textarea =
+                document.createElement("textarea");
 
-                wrapper.appendChild(textarea);
+            textarea.required = true;
 
-                questionsContainer.appendChild(wrapper);
-            }
-        );
+            textarea.name =
+                `challenge_${index + 1}`;
+
+            textarea.dataset.question =
+                question;
+
+            textarea.placeholder =
+                currentLanguage === "ar"
+                    ? "اكتبي إجابتك هنا..."
+                    : "Write your answer here...";
+
+
+            wrapper.appendChild(label);
+
+            wrapper.appendChild(textarea);
+
+            questionsContainer.appendChild(wrapper);
+
+        });
     }
 
 
     /* =====================================================
-       PHONE NORMALIZATION
+       NORMALIZE EGYPTIAN PHONE
     ===================================================== */
 
     function normalizeEgyptianPhone(value) {
 
-        let phone = value.trim();
+        let phone =
+            value.trim();
 
-        /*
-           Remove spaces, dashes and brackets
-        */
 
         phone =
-            phone.replace(/[\s\-()]/g, "");
+            phone.replace(
+                /[\s\-()]/g,
+                ""
+            );
 
 
-        /*
-           +201012345678
-           ↓
-           01012345678
-        */
+        /* +201012345678 */
 
         if (phone.startsWith("+20")) {
 
             phone =
-                "0" + phone.substring(3);
+                "0" +
+                phone.substring(3);
         }
 
 
-        /*
-           201012345678
-           ↓
-           01012345678
-        */
+        /* 201012345678 */
 
         else if (
             phone.startsWith("20") &&
@@ -966,19 +938,27 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
 
             phone =
-                "0" + phone.substring(2);
+                "0" +
+                phone.substring(2);
         }
 
 
         /*
-           Check Egyptian mobile number
+           Egyptian mobile numbers:
+           010
+           011
+           012
+           015
         */
 
         const egyptianPhoneRegex =
             /^01[0125][0-9]{8}$/;
 
 
-        if (!egyptianPhoneRegex.test(phone)) {
+        if (
+            !egyptianPhoneRegex.test(phone)
+        ) {
+
             return null;
         }
 
@@ -993,397 +973,356 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
 
-        form.addEventListener(
-            "submit",
-            async function (event) {
+        form.addEventListener("submit", async function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
 
-                /*
-                   Validate last step
-                */
+            /* =========================
+               VALIDATE FINAL STEP
+            ========================= */
 
-                const lastStep =
-                    document.querySelector(
-                        `.step[data-step="${TOTAL_STEPS}"]`
+            const lastStep =
+                document.querySelector(
+                    `.step[data-step="${TOTAL_STEPS}"]`
+                );
+
+
+            if (!validateStep(lastStep)) {
+                return;
+            }
+
+
+            /* =========================
+               CHECK DEPARTMENT
+            ========================= */
+
+            if (!selectedDepartment) {
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "من فضلك اختاري التيم."
+                        : "Please choose a department."
+                );
+
+                return;
+            }
+
+
+            /* =========================
+               PHONE
+            ========================= */
+
+            const phoneInput =
+                document.getElementById("phone");
+
+
+            const phone =
+                normalizeEgyptianPhone(
+                    phoneInput.value
+                );
+
+
+            if (!phone) {
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "من فضلك اكتبي رقم موبايل مصري صحيح، مثال: 01012345678"
+                        : "Please enter a valid Egyptian phone number, e.g. 01012345678"
+                );
+
+
+                phoneInput.focus();
+
+                return;
+            }
+
+
+            /* =========================
+               SUBMIT BUTTON
+            ========================= */
+
+            const submitButton =
+                form.querySelector(
+                    ".submit-btn"
+                );
+
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.innerHTML =
+                    currentLanguage === "ar"
+                        ? "جاري إرسال التقديم... ⏳"
+                        : "Sending application... ⏳";
+            }
+
+
+            /* =================================================
+               FORM DATA
+            ================================================= */
+
+            const formData =
+                new FormData();
+
+
+            /* =================================================
+               WEB3FORMS
+            ================================================= */
+
+            formData.append(
+                "access_key",
+                "4579e504-4006-4d59-99fb-ff7ff12f1fc1"
+            );
+
+
+            formData.append(
+                "subject",
+                `TOFU Media — New ${selectedDepartment} Application`
+            );
+
+
+            /* =================================================
+               APPLICANT INFORMATION
+            ================================================= */
+
+            formData.append(
+                "Full Name",
+                document
+                    .getElementById("name")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Age",
+                document
+                    .getElementById("age")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Governorate",
+                document
+                    .getElementById("governorate")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Email",
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "WhatsApp",
+                phone
+            );
+
+
+            formData.append(
+                "Department",
+                selectedDepartment
+            );
+
+
+            /* =================================================
+               MINI CHALLENGE
+            ================================================= */
+
+            const answerInputs =
+                questionsContainer
+                    ? questionsContainer
+                        .querySelectorAll("textarea")
+                    : [];
+
+
+            const departmentQuestions =
+                questions[selectedDepartment];
+
+
+            if (departmentQuestions) {
+
+                const displayedQuestions =
+                    departmentQuestions[
+                        currentLanguage
+                    ];
+
+
+                answerInputs.forEach(
+                    function (input, index) {
+
+                        const questionText =
+                            input.dataset.question ||
+                            displayedQuestions[index];
+
+
+                        const answerText =
+                            input.value.trim();
+
+
+                        formData.append(
+                            `Question ${index + 1}`,
+                            questionText
+                        );
+
+
+                        formData.append(
+                            `Answer ${index + 1}`,
+                            answerText
+                        );
+
+                    }
+                );
+            }
+
+
+            /* =================================================
+               FINAL QUESTIONS
+            ================================================= */
+
+            formData.append(
+                "Why do you want to join TOFU?",
+                document
+                    .getElementById("whyTofu")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "What can you add to TOFU?",
+                document
+                    .getElementById("contribution")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Weekly Commitment",
+                document
+                    .getElementById("hours")
+                    .value
+            );
+
+
+            /* =================================================
+               EXTRA INFORMATION
+            ================================================= */
+
+            formData.append(
+                "Application Language",
+                currentLanguage === "ar"
+                    ? "Arabic"
+                    : "English"
+            );
+
+
+            /* =================================================
+               SEND TO WEB3FORMS
+            ================================================= */
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://api.web3forms.com/submit",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
                     );
 
 
-                if (!validateStep(lastStep)) {
-                    return;
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "TOFU APPLICATION:",
+                    data
+                );
+
+
+                if (data.success) {
+
+                    /* =========================
+                       SUCCESS
+                    ========================= */
+
+                    if (applicationScreen) {
+
+                        applicationScreen.classList.remove(
+                            "active"
+                        );
+                    }
+
+
+                    if (successScreen) {
+
+                        successScreen.classList.add(
+                            "active"
+                        );
+                    }
+
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+
+
+                } else {
+
+                    throw new Error(
+                        data.message ||
+                        "Submission failed"
+                    );
                 }
 
 
-                /*
-                   Department check
-                */
+            } catch (error) {
 
-                if (!selectedDepartment) {
-
-                    alert(
-                        currentLanguage === "ar"
-                            ? "من فضلك اختاري التيم."
-                            : "Please choose a department."
-                    );
-
-                    return;
-                }
+                console.error(
+                    "Submission Error:",
+                    error
+                );
 
 
-                /*
-                   PHONE
-                */
-
-                const phoneInput =
-                    document.getElementById("phone");
-
-
-                if (!phoneInput) {
-
-                    alert(
-                        "Phone input not found."
-                    );
-
-                    return;
-                }
-
-
-                const phone =
-                    normalizeEgyptianPhone(
-                        phoneInput.value
-                    );
-
-
-                /*
-                   Invalid phone
-                */
-
-                if (!phone) {
-
-                    alert(
-                        currentLanguage === "ar"
-                            ? "من فضلك اكتبي رقم واتساب مصري صحيح، مثال: 01012345678"
-                            : "Please enter a valid Egyptian WhatsApp number, e.g. 01012345678"
-                    );
-
-
-                    /*
-                       IMPORTANT:
-                       Stay on current step.
-                       Don't send applicant back.
-                    */
-
-                    phoneInput.focus();
-
-                    return;
-                }
-
-
-                /*
-                   Submit button
-                */
-
-                const submitButton =
-                    form.querySelector(
-                        ".submit-btn"
-                    );
+                alert(
+                    currentLanguage === "ar"
+                        ? "حصل خطأ أثناء إرسال التقديم. اتأكدي من الإنترنت وجربي تاني."
+                        : "Something went wrong while submitting. Please try again."
+                );
 
 
                 if (submitButton) {
 
-                    submitButton.disabled = true;
+                    submitButton.disabled = false;
 
                     submitButton.innerHTML =
                         currentLanguage === "ar"
-                            ? "جاري إرسال التقديم..."
-                            : "Sending...";
-                }
-
-
-                /* =================================================
-                   WEB3FORMS DATA
-                ================================================= */
-
-                const formData =
-                    new FormData();
-
-
-                /*
-                   Web3Forms Access Key
-                */
-
-                formData.append(
-                    "access_key",
-                    "4579e504-4006-4d59-99fb-ff7ff12f1fc1"
-                );
-
-
-                /*
-                   Email subject
-                */
-
-                formData.append(
-                    "subject",
-                    "TOFU Media Application - " +
-                    selectedDepartment
-                );
-
-
-                /*
-                   Applicant information
-                */
-
-                const name =
-                    document.getElementById("name");
-
-                const age =
-                    document.getElementById("age");
-
-                const governorate =
-                    document.getElementById("governorate");
-
-                const email =
-                    document.getElementById("email");
-
-
-                if (name) {
-
-                    formData.append(
-                        "Full Name",
-                        name.value
-                    );
-                }
-
-
-                if (age) {
-
-                    formData.append(
-                        "Age",
-                        age.value
-                    );
-                }
-
-
-                if (governorate) {
-
-                    formData.append(
-                        "Governorate",
-                        governorate.value
-                    );
-                }
-
-
-                if (email) {
-
-                    formData.append(
-                        "Email",
-                        email.value
-                    );
-                }
-
-
-                /*
-                   Clean phone number
-                */
-
-                formData.append(
-                    "WhatsApp",
-                    phone
-                );
-
-
-                /*
-                   Department
-                */
-
-                formData.append(
-                    "Department",
-                    selectedDepartment
-                );
-
-
-                /* =================================================
-                   DEPARTMENT QUESTIONS
-                ================================================= */
-
-                if (questionsContainer) {
-
-                    const answerInputs =
-                        questionsContainer.querySelectorAll(
-                            "textarea"
-                        );
-
-
-                    answerInputs.forEach(
-                        function (input, index) {
-
-                            formData.append(
-                                "Challenge " +
-                                (index + 1),
-                                input.value
-                            );
-
-                        }
-                    );
-                }
-
-
-                /* =================================================
-                   FINAL QUESTIONS
-                ================================================= */
-
-                const whyTofu =
-                    document.getElementById("whyTofu");
-
-                const contribution =
-                    document.getElementById("contribution");
-
-                const hours =
-                    document.getElementById("hours");
-
-
-                if (whyTofu) {
-
-                    formData.append(
-                        "Why do you want to join TOFU?",
-                        whyTofu.value
-                    );
-                }
-
-
-                if (contribution) {
-
-                    formData.append(
-                        "What can you add to TOFU?",
-                        contribution.value
-                    );
-                }
-
-
-                if (hours) {
-
-                    formData.append(
-                        "Weekly Commitment",
-                        hours.value
-                    );
-                }
-
-
-                /*
-                   Language used
-                */
-
-                formData.append(
-                    "Application Language",
-                    currentLanguage
-                );
-
-
-                /* =================================================
-                   SEND TO WEB3FORMS
-                ================================================= */
-
-                try {
-
-                    const response =
-                        await fetch(
-                            "https://api.web3forms.com/submit",
-                            {
-                                method: "POST",
-                                body: formData
-                            }
-                        );
-
-
-                    const result =
-                        await response.json();
-
-
-                    console.log(
-                        "Web3Forms response:",
-                        result
-                    );
-
-
-                    if (result.success) {
-
-                        /*
-                           Hide application
-                        */
-
-                        if (applicationScreen) {
-
-                            applicationScreen.classList.remove(
-                                "active"
-                            );
-                        }
-
-
-                        /*
-                           Show success
-                        */
-
-                        if (successScreen) {
-
-                            successScreen.classList.add(
-                                "active"
-                            );
-                        }
-
-
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "smooth"
-                        });
-
-
-                    } else {
-
-                        throw new Error(
-                            result.message ||
-                            "Submission failed"
-                        );
-                    }
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Submission error:",
-                        error
-                    );
-
-
-                    alert(
-                        currentLanguage === "ar"
-                            ? "حصل خطأ أثناء إرسال التقديم. اتأكدي من الإنترنت وجربي تاني."
-                            : "Something went wrong while submitting. Please check your internet connection and try again."
-                    );
-
-
-                    /*
-                       Enable button again
-                    */
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            false;
-
-                        submitButton.innerHTML =
-                            currentLanguage === "ar"
-                                ? "إرسال التقديم 🚀"
-                                : "Submit Application 🚀";
-                    }
+                            ? "إرسال التقديم 🚀"
+                            : "Submit Application 🚀";
                 }
             }
-        );
+
+        });
     }
 
 
     /* =====================================================
-       INITIAL STATE
+       INITIALIZE
     ===================================================== */
 
     changeLanguage("en");
