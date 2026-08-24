@@ -1,3 +1,7 @@
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +17,6 @@
 
     --purple: #6c4ccf;
     --dark-purple: #4b3298;
-
     --light-purple: #f0ecff;
 
     --text: #211b2d;
@@ -35,8 +38,8 @@
 
     --progress-bg: #e8e4ed;
 
-    --shadow: rgba(0, 0, 0, 0.08);
-
+    --shadow:
+        0 10px 35px rgba(40, 25, 70, 0.08);
 }
 
 
@@ -46,26 +49,27 @@
 
 body.dark {
 
-    --text: #f3f0fa;
+    --purple: #9b7cff;
+    --dark-purple: #8064e8;
+    --light-purple: #29213d;
 
-    --muted: #aaa3b5;
+    --text: #f5f2ff;
+    --muted: #aaa3b8;
 
-    --border: #393341;
+    --border: #3b3547;
 
     --background: #121016;
 
-    --white: #1c1821;
+    --white: #18151d;
 
-    --input-bg: #1d1922;
+    --input-bg: #1d1924;
 
-    --card-bg: #1d1922;
+    --card-bg: #1b1821;
 
-    --progress-bg: #34303a;
+    --progress-bg: #302b37;
 
-    --light-purple: #29223d;
-
-    --shadow: rgba(0, 0, 0, 0.35);
-
+    --shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -76,7 +80,6 @@ body.dark {
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
 
@@ -96,9 +99,8 @@ body {
     overflow-x: hidden;
 
     transition:
-        background .3s ease,
+        background-color .3s ease,
         color .3s ease;
-
 }
 
 
@@ -125,6 +127,8 @@ body::before {
 
     z-index: -2;
 
+    transition:
+        background .3s ease;
 }
 
 
@@ -146,7 +150,20 @@ body::after {
     left: -200px;
 
     z-index: -2;
+}
 
+
+body.dark::before {
+
+    background:
+        rgba(155, 124, 255, 0.08);
+}
+
+
+body.dark::after {
+
+    background:
+        rgba(155, 124, 255, 0.05);
 }
 
 
@@ -159,7 +176,6 @@ body::after {
     pointer-events: none;
 
     z-index: -1;
-
 }
 
 
@@ -174,7 +190,6 @@ body::after {
 
     left: 8%;
     top: 20%;
-
 }
 
 
@@ -188,7 +203,6 @@ body::after {
 
     right: 8%;
     bottom: 20%;
-
 }
 
 
@@ -198,18 +212,23 @@ body::after {
 
 .container {
 
-    width: min(100%, 900px);
+    width:
+        min(100%, 900px);
 
-    min-height: 100vh;
+    min-height:
+        100vh;
 
-    margin: auto;
+    margin:
+        auto;
 
-    padding: 35px 24px;
+    padding:
+        35px 24px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-
+    align-items:
+        center;
 }
 
 
@@ -225,7 +244,6 @@ body::after {
 
     animation:
         fadeIn .4s ease;
-
 }
 
 
@@ -242,7 +260,6 @@ body::after {
 
         transform:
             translateY(15px);
-
     }
 
     to {
@@ -251,31 +268,43 @@ body::after {
 
         transform:
             translateY(0);
-
     }
-
 }
 
 
 /* =====================================================
-   TOP CONTROLS
+   TOP ACTIONS
 ===================================================== */
 
-.top-controls {
+.top-actions {
 
     position: absolute;
 
-    top: 0;
-    right: 0;
+    top: 25px;
+    right: 25px;
 
     display: flex;
 
     gap: 8px;
 
+    z-index: 10;
 }
 
 
-.theme-btn,
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* =====================================================
+   LANGUAGE BUTTON
+===================================================== */
+
 .language-btn {
 
     border:
@@ -289,7 +318,7 @@ body::after {
         var(--purple);
 
     padding:
-        9px 13px;
+        9px 15px;
 
     border-radius:
         10px;
@@ -302,21 +331,62 @@ body::after {
 
     transition:
         .2s;
-
 }
 
+
+.language-btn:hover {
+
+    background:
+        var(--light-purple);
+
+    border-color:
+        var(--purple);
+}
+
+
+/* =====================================================
+   THEME BUTTON
+===================================================== */
 
 .theme-btn {
 
-    min-width: 42px;
+    width: 42px;
+    height: 42px;
 
-    font-size: 17px;
+    border:
+        1px solid
+        var(--border);
 
+    border-radius:
+        10px;
+
+    background:
+        var(--card-bg);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    font-size:
+        18px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    transition:
+        .25s;
 }
 
 
-.theme-btn:hover,
-.language-btn:hover {
+.theme-btn:hover {
 
     background:
         var(--light-purple);
@@ -325,8 +395,7 @@ body::after {
         var(--purple);
 
     transform:
-        translateY(-1px);
-
+        translateY(-2px);
 }
 
 
@@ -336,53 +405,74 @@ body::after {
 
 #welcomeScreen {
 
-    text-align: center;
+    text-align:
+        center;
 
-    position: relative;
+    position:
+        relative;
+}
 
+
+#welcomeScreen > .top-actions {
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    right:
+        0;
 }
 
 
 .welcome {
 
-    max-width: 680px;
+    max-width:
+        680px;
 
-    margin: auto;
-
+    margin:
+        auto;
 }
 
 
 .logo {
 
-    display: inline-block;
+    display:
+        inline-block;
 
-    font-size: 25px;
+    font-size:
+        25px;
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    letter-spacing: -1px;
+    letter-spacing:
+        -1px;
 
-    margin-bottom: 25px;
-
+    margin-bottom:
+        25px;
 }
 
 
 .logo span {
-    color: var(--purple);
+    color:
+        var(--purple);
 }
 
 
 .emoji {
 
-    font-size: 55px;
+    font-size:
+        55px;
 
-    margin-bottom: 18px;
+    margin-bottom:
+        18px;
 
     animation:
         float 2.5s
         ease-in-out
         infinite;
-
 }
 
 
@@ -390,13 +480,16 @@ body::after {
 
     0%,
     100% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(-10px);
-    }
 
+        transform:
+            translateY(-10px);
+    }
 }
 
 
@@ -416,7 +509,6 @@ body::after {
 
     margin-bottom:
         15px;
-
 }
 
 
@@ -433,12 +525,12 @@ body::after {
 
     margin-bottom:
         22px;
-
 }
 
 
 .welcome h1 span {
-    color: var(--purple);
+    color:
+        var(--purple);
 }
 
 
@@ -458,7 +550,6 @@ body::after {
 
     line-height:
         1.7;
-
 }
 
 
@@ -472,7 +563,6 @@ body::after {
 
     font-size:
         13px;
-
 }
 
 
@@ -481,7 +571,8 @@ body::after {
 ===================================================== */
 
 button {
-    font-family: inherit;
+    font-family:
+        inherit;
 }
 
 
@@ -506,7 +597,6 @@ button {
 
     transition:
         .25s;
-
 }
 
 
@@ -523,7 +613,6 @@ button {
 
     font-size:
         16px;
-
 }
 
 
@@ -536,7 +625,6 @@ button {
 
     transform:
         translateY(-2px);
-
 }
 
 
@@ -557,7 +645,6 @@ button {
 
     font-size:
         16px;
-
 }
 
 
@@ -571,7 +658,6 @@ button {
 
     transform:
         none;
-
 }
 
 
@@ -592,7 +678,6 @@ button {
 
     margin-bottom:
         35px;
-
 }
 
 
@@ -626,6 +711,8 @@ button {
     font-size:
         19px;
 
+    transition:
+        .2s;
 }
 
 
@@ -639,7 +726,6 @@ button {
 
     background:
         var(--light-purple);
-
 }
 
 
@@ -664,7 +750,6 @@ button {
 
     font-size:
         13px;
-
 }
 
 
@@ -681,7 +766,6 @@ button {
 
     overflow:
         hidden;
-
 }
 
 
@@ -701,18 +785,6 @@ button {
 
     transition:
         width .4s ease;
-
-}
-
-
-.header-controls {
-
-    display:
-        flex;
-
-    gap:
-        7px;
-
 }
 
 
@@ -727,12 +799,12 @@ button {
 
     animation:
         slideIn .4s ease;
-
 }
 
 
 .step.active {
-    display: block;
+    display:
+        block;
 }
 
 
@@ -745,7 +817,6 @@ button {
 
         transform:
             translateX(20px);
-
     }
 
     to {
@@ -755,9 +826,7 @@ button {
 
         transform:
             translateX(0);
-
     }
-
 }
 
 
@@ -777,7 +846,6 @@ button {
 
     margin-bottom:
         12px;
-
 }
 
 
@@ -794,7 +862,6 @@ button {
 
     margin-bottom:
         12px;
-
 }
 
 
@@ -808,7 +875,6 @@ button {
 
     margin-bottom:
         28px;
-
 }
 
 
@@ -829,7 +895,6 @@ label {
 
     font-weight:
         700;
-
 }
 
 
@@ -867,7 +932,6 @@ select {
 
     transition:
         .2s;
-
 }
 
 
@@ -876,7 +940,6 @@ textarea::placeholder {
 
     color:
         var(--muted);
-
 }
 
 
@@ -890,7 +953,6 @@ select:focus {
     box-shadow:
         0 0 0 4px
         rgba(108, 76, 207, .08);
-
 }
 
 
@@ -904,7 +966,6 @@ textarea {
 
     line-height:
         1.6;
-
 }
 
 
@@ -918,56 +979,76 @@ textarea {
 
     gap:
         18px;
-
-}
-
-
-.field-hint {
-
-    display:
-        block;
-
-    margin-top:
-        6px;
-
-    color:
-        var(--muted);
-
-    font-size:
-        11px;
-
-    line-height:
-        1.5;
-
 }
 
 
 /* =====================================================
-   PHONE
+   ERROR
+===================================================== */
+
+.phone-error,
+.field-error {
+
+    display:
+        block;
+
+    color:
+        var(--red);
+
+    font-size:
+        12px;
+
+    margin-top:
+        7px;
+
+    min-height:
+        16px;
+}
+
+
+.phone-invalid,
+.invalid-field {
+
+    border-color:
+        var(--red) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(220, 53, 69, .08) !important;
+}
+
+
+/* =====================================================
+   INTERNATIONAL PHONE
 ===================================================== */
 
 .iti {
-    width: 100%;
+    width:
+        100%;
 }
 
 
 .iti__tel-input {
-    width: 100%;
+    width:
+        100%;
 }
 
 
 .iti__country-container {
-    z-index: 5;
+    z-index:
+        5;
 }
 
 
 .iti__selected-country {
+
     border-radius:
         12px 0 0 12px;
 }
 
 
 [dir="rtl"] .iti__selected-country {
+
     border-radius:
         0 12px 12px 0;
 }
@@ -986,50 +1067,32 @@ textarea {
 
     box-shadow:
         0 10px 35px
-        var(--shadow);
+        rgba(0, 0, 0, .15);
 
     border:
         1px solid
         var(--border);
-
 }
 
 
-.iti__country:hover {
+body.dark .iti__country-list {
+
     background:
-        var(--light-purple);
+        #211d27;
 }
 
 
-.phone-error {
-
-    display:
-        block;
+body.dark .iti__country {
 
     color:
-        var(--red);
-
-    font-size:
-        12px;
-
-    margin-top:
-        7px;
-
-    min-height:
-        16px;
-
+        #f5f2ff;
 }
 
 
-.phone-invalid {
+body.dark .iti__country:hover {
 
-    border-color:
-        var(--red) !important;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(220, 53, 69, .08) !important;
-
+    background:
+        #30293a;
 }
 
 
@@ -1047,7 +1110,6 @@ textarea {
 
     gap:
         14px;
-
 }
 
 
@@ -1089,12 +1151,12 @@ textarea {
 
     transition:
         .25s;
-
 }
 
 
 .department > span {
-    font-size: 28px;
+    font-size:
+        28px;
 }
 
 
@@ -1108,7 +1170,6 @@ textarea {
 
     font-size:
         15px;
-
 }
 
 
@@ -1122,7 +1183,6 @@ textarea {
 
     line-height:
         1.4;
-
 }
 
 
@@ -1135,9 +1195,7 @@ textarea {
         translateY(-3px);
 
     box-shadow:
-        0 8px 25px
-        rgba(108, 76, 207, .1);
-
+        var(--shadow);
 }
 
 
@@ -1152,7 +1210,6 @@ textarea {
     box-shadow:
         0 0 0 3px
         rgba(108, 76, 207, .08);
-
 }
 
 
@@ -1161,7 +1218,8 @@ textarea {
 ===================================================== */
 
 .question {
-    margin-bottom: 25px;
+    margin-bottom:
+        25px;
 }
 
 
@@ -1181,7 +1239,6 @@ textarea {
 
     line-height:
         1.6;
-
 }
 
 
@@ -1216,7 +1273,6 @@ textarea {
 
     font-size:
         12px;
-
 }
 
 
@@ -1227,7 +1283,6 @@ textarea {
 
     margin-left:
         7px;
-
 }
 
 
@@ -1236,7 +1291,8 @@ textarea {
 ===================================================== */
 
 #successScreen {
-    text-align: center;
+    text-align:
+        center;
 }
 
 
@@ -1247,7 +1303,6 @@ textarea {
 
     margin:
         auto;
-
 }
 
 
@@ -1285,7 +1340,6 @@ textarea {
 
     font-weight:
         bold;
-
 }
 
 
@@ -1299,7 +1353,6 @@ textarea {
 
     margin-bottom:
         20px;
-
 }
 
 
@@ -1316,7 +1369,6 @@ textarea {
 
     line-height:
         1.7;
-
 }
 
 
@@ -1341,6 +1393,8 @@ textarea {
     text-align:
         start;
 
+    box-shadow:
+        var(--shadow);
 }
 
 
@@ -1351,7 +1405,6 @@ textarea {
 
     margin-bottom:
         8px;
-
 }
 
 
@@ -1365,7 +1418,6 @@ textarea {
 
     font-size:
         14px;
-
 }
 
 
@@ -1379,17 +1431,18 @@ textarea {
         Arial,
         Tahoma,
         sans-serif;
-
 }
 
 
 [dir="rtl"] .application-header {
-    direction: rtl;
+    direction:
+        rtl;
 }
 
 
 [dir="rtl"] .department {
-    text-align: right;
+    text-align:
+        right;
 }
 
 
@@ -1400,23 +1453,22 @@ textarea {
 
     transform:
         rotate(180deg);
-
 }
 
 
 [dir="rtl"] .next-btn {
-    direction: rtl;
+    direction:
+        rtl;
 }
 
 
-[dir="rtl"] .top-controls {
+[dir="rtl"] #welcomeScreen > .top-actions {
 
     right:
         auto;
 
     left:
         0;
-
 }
 
 
@@ -1433,7 +1485,6 @@ textarea {
 
         padding:
             30px 20px;
-
     }
 
 
@@ -1441,9 +1492,7 @@ textarea {
 
         font-size:
             52px;
-
     }
-
 }
 
 
@@ -1463,7 +1512,6 @@ textarea {
 
         align-items:
             flex-start;
-
     }
 
 
@@ -1471,15 +1519,26 @@ textarea {
 
         padding-top:
             70px;
-
     }
 
 
-    .top-controls {
+    #welcomeScreen > .top-actions {
 
         top:
             5px;
 
+        right:
+            0;
+    }
+
+
+    [dir="rtl"] #welcomeScreen > .top-actions {
+
+        right:
+            auto;
+
+        left:
+            0;
     }
 
 
@@ -1490,7 +1549,6 @@ textarea {
 
         letter-spacing:
             -1.5px;
-
     }
 
 
@@ -1498,7 +1556,6 @@ textarea {
 
         font-size:
             15px;
-
     }
 
 
@@ -1506,41 +1563,39 @@ textarea {
 
         width:
             100%;
-
     }
 
 
     .application-header {
 
         gap:
-            8px;
+            9px;
 
         margin-bottom:
             28px;
-
     }
 
 
-    .application-header
-    .language-btn {
+    .application-header .language-btn {
 
         padding:
-            8px 9px;
+            8px 10px;
 
         font-size:
-            11px;
-
+            12px;
     }
 
 
-    .theme-btn {
+    .application-header .theme-btn {
 
-        min-width:
+        width:
             36px;
 
-        padding:
-            7px 9px;
+        height:
+            36px;
 
+        font-size:
+            15px;
     }
 
 
@@ -1551,7 +1606,6 @@ textarea {
 
         gap:
             0;
-
     }
 
 
@@ -1559,7 +1613,6 @@ textarea {
 
         grid-template-columns:
             1fr;
-
     }
 
 
@@ -1567,7 +1620,6 @@ textarea {
 
         font-size:
             30px;
-
     }
 
 
@@ -1575,7 +1627,6 @@ textarea {
 
         padding:
             16px;
-
     }
 
 
@@ -1583,7 +1634,6 @@ textarea {
 
         font-size:
             13px;
-
     }
 
 
@@ -1591,9 +1641,7 @@ textarea {
 
         max-width:
             280px;
-
     }
-
 }
 
 
@@ -1607,7 +1655,6 @@ textarea {
 
         padding:
             15px 12px;
-
     }
 
 
@@ -1615,7 +1662,6 @@ textarea {
 
         font-size:
             34px;
-
     }
 
 
@@ -1623,7 +1669,6 @@ textarea {
 
         font-size:
             27px;
-
     }
 
 
@@ -1631,7 +1676,5 @@ textarea {
 
         font-size:
             22px;
-
     }
-
 }
