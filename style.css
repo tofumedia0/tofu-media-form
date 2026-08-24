@@ -4,37 +4,24 @@
     box-sizing: border-box;
 }
 
-
 :root {
-
     --purple: #6c4ccf;
-
     --dark-purple: #4b3298;
-
     --light-purple: #f0ecff;
-
     --text: #211b2d;
-
     --muted: #77717f;
-
     --border: #e5e1eb;
-
     --background: #f8f6fb;
-
     --white: #ffffff;
-
     --green: #4caf78;
-
+    --red: #dc3545;
 }
-
 
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
-
     min-height: 100vh;
 
     font-family:
@@ -49,22 +36,19 @@ body {
         var(--text);
 
     overflow-x: hidden;
-
 }
 
 
-/* =====================================================
+/* ==========================================
    BACKGROUND
-===================================================== */
+========================================== */
 
 body::before {
-
     content: "";
 
     position: fixed;
 
     width: 500px;
-
     height: 500px;
 
     border-radius: 50%;
@@ -73,22 +57,17 @@ body::before {
         rgba(108, 76, 207, 0.08);
 
     top: -250px;
-
     right: -180px;
 
     z-index: -2;
-
 }
 
-
 body::after {
-
     content: "";
 
     position: fixed;
 
     width: 450px;
-
     height: 450px;
 
     border-radius: 50%;
@@ -97,16 +76,12 @@ body::after {
         rgba(108, 76, 207, 0.06);
 
     bottom: -250px;
-
     left: -200px;
 
     z-index: -2;
-
 }
 
-
 .blob {
-
     position: fixed;
 
     border-radius: 50%;
@@ -114,14 +89,10 @@ body::after {
     pointer-events: none;
 
     z-index: -1;
-
 }
 
-
 .blob-1 {
-
     width: 90px;
-
     height: 90px;
 
     border:
@@ -129,107 +100,78 @@ body::after {
         rgba(108, 76, 207, 0.12);
 
     left: 8%;
-
     top: 20%;
-
 }
 
-
 .blob-2 {
-
     width: 55px;
-
     height: 55px;
 
     background:
         rgba(108, 76, 207, 0.08);
 
     right: 8%;
-
     bottom: 20%;
-
 }
 
 
-/* =====================================================
+/* ==========================================
    CONTAINER
-===================================================== */
+========================================== */
 
 .container {
+    width: min(100%, 900px);
 
-    width:
-        min(100%, 900px);
+    min-height: 100vh;
 
-    min-height:
-        100vh;
+    margin: auto;
 
-    margin:
-        auto;
+    padding: 35px 24px;
 
-    padding:
-        35px 24px;
+    display: flex;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
+    align-items: center;
 }
 
 
-/* =====================================================
+/* ==========================================
    SCREENS
-===================================================== */
+========================================== */
 
 .screen {
-
     width: 100%;
 
     display: none;
 
     animation:
         fadeIn .4s ease;
-
 }
-
 
 .screen.active {
-
     display: block;
-
 }
-
 
 @keyframes fadeIn {
 
     from {
-
         opacity: 0;
-
         transform:
             translateY(15px);
-
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0);
-
     }
-
 }
 
 
-/* =====================================================
+/* ==========================================
    LANGUAGE
-===================================================== */
+========================================== */
 
 .language-btn {
-
     border:
         1px solid
         var(--border);
@@ -254,245 +196,164 @@ body::after {
 
     transition:
         .2s;
-
 }
 
-
 .language-btn:hover {
-
     background:
         var(--light-purple);
 
     border-color:
         var(--purple);
-
 }
 
 
-/* =====================================================
+/* ==========================================
    WELCOME
-===================================================== */
+========================================== */
 
 #welcomeScreen {
+    text-align: center;
 
-    text-align:
-        center;
-
-    position:
-        relative;
-
+    position: relative;
 }
 
+#welcomeScreen >
+.language-btn {
+    position: absolute;
 
-#welcomeScreen > .language-btn {
-
-    position:
-        absolute;
-
-    top:
-        0;
-
-    right:
-        0;
-
+    top: 0;
+    right: 0;
 }
-
 
 .welcome {
+    max-width: 680px;
 
-    max-width:
-        680px;
-
-    margin:
-        auto;
-
+    margin: auto;
 }
-
 
 .logo {
+    display: inline-block;
 
-    display:
-        inline-block;
+    font-size: 25px;
 
-    font-size:
-        25px;
+    font-weight: 800;
 
-    font-weight:
-        800;
+    letter-spacing: -1px;
 
-    letter-spacing:
-        -1px;
-
-    margin-bottom:
-        25px;
-
+    margin-bottom: 25px;
 }
-
 
 .logo span {
-
     color:
         var(--purple);
-
 }
 
-
 .emoji {
+    font-size: 55px;
 
-    font-size:
-        55px;
-
-    margin-bottom:
-        18px;
+    margin-bottom: 18px;
 
     animation:
         float 2.5s
         ease-in-out
         infinite;
-
 }
-
 
 @keyframes float {
 
     0%,
     100% {
-
         transform:
             translateY(0);
-
     }
 
     50% {
-
         transform:
             translateY(-10px);
-
     }
-
 }
 
-
 .small-title {
-
     color:
         var(--purple);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 
-    margin-bottom:
-        15px;
-
+    margin-bottom: 15px;
 }
 
-
 .welcome h1 {
-
     font-size:
         clamp(40px, 7vw, 68px);
 
-    line-height:
-        1.03;
+    line-height: 1.03;
 
-    letter-spacing:
-        -2.5px;
+    letter-spacing: -2.5px;
 
-    margin-bottom:
-        22px;
-
+    margin-bottom: 22px;
 }
-
 
 .welcome h1 span {
-
     color:
         var(--purple);
-
 }
-
 
 .intro {
+    max-width: 600px;
 
-    max-width:
-        600px;
-
-    margin:
-        auto;
+    margin: auto;
 
     color:
         var(--muted);
 
-    font-size:
-        17px;
+    font-size: 17px;
 
-    line-height:
-        1.7;
-
+    line-height: 1.7;
 }
-
 
 .hint {
-
-    margin-top:
-        15px;
+    margin-top: 15px;
 
     color:
         var(--muted);
 
-    font-size:
-        13px;
-
+    font-size: 13px;
 }
 
 
-/* =====================================================
+/* ==========================================
    BUTTONS
-===================================================== */
+========================================== */
 
 button {
-
     font-family:
         inherit;
-
 }
-
 
 .main-btn,
 .next-btn,
 .submit-btn {
-
-    border:
-        none;
+    border: none;
 
     background:
         var(--purple);
 
-    color:
-        white;
+    color: white;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
         .25s;
-
 }
 
-
 .main-btn {
-
-    margin-top:
-        30px;
+    margin-top: 30px;
 
     padding:
         17px 28px;
@@ -500,98 +361,69 @@ button {
     border-radius:
         14px;
 
-    font-size:
-        16px;
-
+    font-size: 16px;
 }
-
 
 .main-btn:hover,
 .next-btn:hover,
 .submit-btn:hover {
-
     background:
         var(--dark-purple);
 
     transform:
         translateY(-2px);
-
 }
-
 
 .next-btn,
 .submit-btn {
+    width: 100%;
 
-    width:
-        100%;
+    margin-top: 28px;
 
-    margin-top:
-        28px;
-
-    padding:
-        16px;
+    padding: 16px;
 
     border-radius:
         12px;
 
-    font-size:
-        16px;
-
+    font-size: 16px;
 }
 
-
 .next-btn:disabled {
-
-    opacity:
-        .4;
+    opacity: .4;
 
     cursor:
         not-allowed;
 
     transform:
         none;
-
 }
 
 
-/* =====================================================
+/* ==========================================
    HEADER
-===================================================== */
+========================================== */
 
 .application-header {
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 15px;
 
-    gap:
-        15px;
-
-    margin-bottom:
-        35px;
-
+    margin-bottom: 35px;
 }
 
-
 .back-btn {
+    width: 43px;
+    height: 43px;
 
-    width:
-        43px;
-
-    height:
-        43px;
-
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
     border:
         1px solid
         var(--border);
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
         white;
@@ -602,14 +434,10 @@ button {
     cursor:
         pointer;
 
-    font-size:
-        19px;
-
+    font-size: 19px;
 }
 
-
 .back-btn:hover {
-
     border-color:
         var(--purple);
 
@@ -618,42 +446,28 @@ button {
 
     background:
         var(--light-purple);
-
 }
-
 
 .progress-wrapper {
-
-    flex:
-        1;
-
+    flex: 1;
 }
 
-
 .progress-text {
-
-    display:
-        flex;
+    display: flex;
 
     justify-content:
         space-between;
 
-    margin-bottom:
-        8px;
+    margin-bottom: 8px;
 
     color:
         var(--muted);
 
-    font-size:
-        13px;
-
+    font-size: 13px;
 }
 
-
 .progress {
-
-    height:
-        7px;
+    height: 7px;
 
     background:
         #e8e4ed;
@@ -661,19 +475,13 @@ button {
     border-radius:
         20px;
 
-    overflow:
-        hidden;
-
+    overflow: hidden;
 }
 
-
 #progressBar {
+    width: 0%;
 
-    width:
-        0%;
-
-    height:
-        100%;
+    height: 100%;
 
     background:
         var(--purple);
@@ -683,139 +491,96 @@ button {
 
     transition:
         width .4s ease;
-
 }
 
 
-/* =====================================================
+/* ==========================================
    STEPS
-===================================================== */
+========================================== */
 
 .step {
-
-    display:
-        none;
+    display: none;
 
     animation:
         slideIn .4s ease;
-
 }
-
 
 .step.active {
-
-    display:
-        block;
-
+    display: block;
 }
-
 
 @keyframes slideIn {
 
     from {
-
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
             translateX(20px);
-
     }
 
     to {
-
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
             translateX(0);
-
     }
-
 }
 
-
 .section-label {
-
     color:
         var(--purple);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
-    letter-spacing:
-        1.5px;
+    letter-spacing: 1.5px;
 
-    margin-bottom:
-        12px;
-
+    margin-bottom: 12px;
 }
 
-
 .step h2 {
-
     font-size:
         clamp(30px, 5vw, 43px);
 
-    line-height:
-        1.12;
+    line-height: 1.12;
 
-    letter-spacing:
-        -1px;
+    letter-spacing: -1px;
 
-    margin-bottom:
-        12px;
-
+    margin-bottom: 12px;
 }
 
-
 .description {
-
     color:
         var(--muted);
 
-    line-height:
-        1.65;
+    line-height: 1.65;
 
-    margin-bottom:
-        28px;
-
+    margin-bottom: 28px;
 }
 
 
-/* =====================================================
+/* ==========================================
    FORM
-===================================================== */
+========================================== */
 
 label {
-
-    display:
-        block;
+    display: block;
 
     margin:
         20px 0 9px;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    font-weight:
-        700;
-
+    font-weight: 700;
 }
-
 
 input,
 textarea,
 select {
+    width: 100%;
 
-    width:
-        100%;
-
-    padding:
-        15px;
+    padding: 15px;
 
     border:
         1.5px solid
@@ -833,34 +598,26 @@ select {
     font-family:
         inherit;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
-    outline:
-        none;
+    outline: none;
 
     transition:
         .2s;
-
 }
-
 
 input:focus,
 textarea:focus,
 select:focus {
-
     border-color:
         var(--purple);
 
     box-shadow:
         0 0 0 4px
         rgba(108, 76, 207, .08);
-
 }
 
-
 textarea {
-
     min-height:
         130px;
 
@@ -869,184 +626,106 @@ textarea {
 
     line-height:
         1.6;
-
 }
 
-
 .grid {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:
-        18px;
-
+    gap: 18px;
 }
 
 
-/* =====================================================
+/* ==========================================
    INTERNATIONAL PHONE
-===================================================== */
-
-.phone-wrapper {
-
-    width:
-        100%;
-
-}
-
+========================================== */
 
 .iti {
-
-    width:
-        100%;
-
+    width: 100%;
 }
 
-
-.iti input[type="tel"] {
-
-    width:
-        100%;
-
-    padding-top:
-        15px;
-
-    padding-bottom:
-        15px;
-
+.iti__tel-input {
+    width: 100%;
 }
 
+.iti__country-container {
+    z-index: 5;
+}
 
 .iti__selected-country {
-
     border-radius:
-        10px 0 0 10px;
-
+        12px 0 0 12px;
 }
 
-
-.iti__dropdown-content {
-
-    border:
-        1px solid
-        var(--border);
-
+[dir="rtl"] .iti__selected-country {
     border-radius:
-        12px;
+        0 12px 12px 0;
+}
+
+.iti__country-list {
+    max-width:
+        350px;
 
     box-shadow:
-        0 10px 30px
-        rgba(33, 27, 45, 0.12);
-
-    overflow:
-        hidden;
-
-}
-
-
-.iti__search-input {
+        0 10px 35px
+        rgba(0, 0, 0, .12);
 
     border:
         1px solid
         var(--border);
-
-    border-radius:
-        8px;
-
-    margin:
-        8px;
-
-    width:
-        calc(100% - 16px);
-
-    padding:
-        10px;
-
 }
-
-
-.iti__country {
-
-    padding:
-        9px 12px;
-
-}
-
-
-.iti__country:hover {
-
-    background:
-        var(--light-purple);
-
-}
-
-
-.iti__country.iti__highlight {
-
-    background:
-        var(--light-purple);
-
-}
-
 
 .phone-error {
-
-    display:
-        none;
-
-    margin-top:
-        8px;
+    display: block;
 
     color:
-        #d64545;
+        var(--red);
 
     font-size:
-        13px;
+        12px;
 
-    line-height:
-        1.5;
+    margin-top:
+        7px;
 
+    min-height:
+        16px;
+}
+
+.phone-invalid {
+    border-color:
+        var(--red) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(220, 53, 69, .08) !important;
 }
 
 
-/* =====================================================
+/* ==========================================
    DEPARTMENTS
-===================================================== */
+========================================== */
 
 .departments {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap:
-        14px;
-
+    gap: 14px;
 }
 
-
 .department {
+    width: 100%;
 
-    width:
-        100%;
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 15px;
 
-    gap:
-        15px;
-
-    padding:
-        19px;
+    padding: 19px;
 
     border:
         1.5px solid
@@ -1069,48 +748,30 @@ textarea {
 
     transition:
         .25s;
-
 }
-
 
 .department > span {
-
-    font-size:
-        28px;
-
+    font-size: 28px;
 }
-
 
 .department strong {
+    display: block;
 
-    display:
-        block;
+    margin-bottom: 5px;
 
-    margin-bottom:
-        5px;
-
-    font-size:
-        15px;
-
+    font-size: 15px;
 }
 
-
 .department small {
-
     color:
         var(--muted);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    line-height:
-        1.4;
-
+    line-height: 1.4;
 }
 
-
 .department:hover {
-
     border-color:
         var(--purple);
 
@@ -1120,12 +781,9 @@ textarea {
     box-shadow:
         0 8px 25px
         rgba(108, 76, 207, .1);
-
 }
 
-
 .department.selected {
-
     border-color:
         var(--purple);
 
@@ -1135,64 +793,43 @@ textarea {
     box-shadow:
         0 0 0 3px
         rgba(108, 76, 207, .08);
-
 }
 
 
-/* =====================================================
+/* ==========================================
    QUESTIONS
-===================================================== */
+========================================== */
 
 .question {
-
-    margin-bottom:
-        25px;
-
+    margin-bottom: 25px;
 }
 
-
 .question-title {
-
-    display:
-        block;
+    display: block;
 
     margin:
         0 0 10px;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    line-height:
-        1.6;
-
+    line-height: 1.6;
 }
 
-
 .question-number {
+    display: inline-flex;
 
-    display:
-        inline-flex;
+    width: 28px;
+    height: 28px;
 
-    width:
-        28px;
+    align-items: center;
 
-    height:
-        28px;
+    justify-content: center;
 
-    align-items:
-        center;
+    margin-right: 7px;
 
-    justify-content:
-        center;
-
-    margin-right:
-        7px;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
         var(--light-purple);
@@ -1200,57 +837,47 @@ textarea {
     color:
         var(--purple);
 
-    font-size:
-        12px;
+    font-size: 12px;
+}
 
+[dir="rtl"] .question-number {
+    margin-right: 0;
+
+    margin-left: 7px;
 }
 
 
-/* =====================================================
+/* ==========================================
    SUCCESS
-===================================================== */
+========================================== */
 
 #successScreen {
-
     text-align:
         center;
-
 }
 
-
 .success {
-
     max-width:
         600px;
 
     margin:
         auto;
-
 }
 
-
 .check {
+    width: 82px;
+    height: 82px;
 
-    width:
-        82px;
+    display: flex;
 
-    height:
-        82px;
+    align-items: center;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
+    justify-content: center;
 
     margin:
         0 auto 25px;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
         #e5f6ec;
@@ -1258,55 +885,37 @@ textarea {
     color:
         var(--green);
 
-    font-size:
-        40px;
+    font-size: 40px;
 
-    font-weight:
-        bold;
-
+    font-weight: bold;
 }
 
-
 .success h1 {
-
     font-size:
         clamp(40px, 7vw, 60px);
 
-    line-height:
-        1.05;
+    line-height: 1.05;
 
-    margin-bottom:
-        20px;
-
+    margin-bottom: 20px;
 }
-
 
 .success h1 span {
-
     color:
         var(--purple);
-
 }
 
-
 .success > p {
-
     color:
         var(--muted);
 
     line-height:
         1.7;
-
 }
 
-
 .next-info {
+    margin-top: 30px;
 
-    margin-top:
-        30px;
-
-    padding:
-        22px;
+    padding: 22px;
 
     background:
         white;
@@ -1320,155 +929,87 @@ textarea {
 
     text-align:
         start;
-
 }
-
 
 .next-info strong {
+    display: block;
 
-    display:
-        block;
-
-    margin-bottom:
-        8px;
-
+    margin-bottom: 8px;
 }
 
-
 .next-info p {
-
     color:
         var(--muted);
 
     line-height:
         1.6;
 
-    font-size:
-        14px;
-
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* ==========================================
    RTL
-===================================================== */
+========================================== */
 
 [dir="rtl"] {
-
     font-family:
         Arial,
         Tahoma,
         sans-serif;
-
 }
-
 
 [dir="rtl"] .application-header {
-
-    direction:
-        rtl;
-
+    direction: rtl;
 }
-
 
 [dir="rtl"] .department {
-
     text-align:
         right;
-
 }
-
-
-[dir="rtl"] .question-number {
-
-    margin-right:
-        0;
-
-    margin-left:
-        7px;
-
-}
-
 
 [dir="rtl"] .main-btn b {
-
-    display:
-        inline-block;
+    display: inline-block;
 
     transform:
         rotate(180deg);
-
 }
-
 
 [dir="rtl"] .next-btn {
-
     direction:
         rtl;
-
 }
 
 
-/*
-   Phone itself stays LTR because
-   international phone numbers are
-   written left-to-right.
-*/
-
-[dir="rtl"] .iti {
-
-    direction:
-        ltr;
-
-}
-
-
-[dir="rtl"] .phone-error {
-
-    direction:
-        rtl;
-
-    text-align:
-        right;
-
-}
-
-
-/* =====================================================
+/* ==========================================
    TABLET
-===================================================== */
+========================================== */
 
 @media (max-width: 800px) {
 
     .container {
-
         max-width:
             720px;
 
         padding:
             30px 20px;
-
     }
 
-
     .welcome h1 {
-
         font-size:
             52px;
-
     }
 
 }
 
 
-/* =====================================================
+/* ==========================================
    PHONE
-===================================================== */
+========================================== */
 
 @media (max-width: 600px) {
 
     .container {
-
         min-height:
             100svh;
 
@@ -1477,158 +1018,113 @@ textarea {
 
         align-items:
             flex-start;
-
     }
-
 
     .welcome {
-
         padding-top:
             70px;
-
     }
 
-
-    #welcomeScreen > .language-btn {
-
-        top:
-            5px;
-
-        right:
-            0;
-
+    #welcomeScreen >
+    .language-btn {
+        top: 5px;
+        right: 0;
     }
-
 
     .welcome h1 {
-
         font-size:
             39px;
 
         letter-spacing:
             -1.5px;
-
     }
-
 
     .intro {
-
         font-size:
             15px;
-
     }
-
 
     .main-btn {
-
         width:
             100%;
-
     }
 
-
     .application-header {
-
         gap:
             9px;
 
         margin-bottom:
             28px;
-
     }
 
-
-    .application-header .language-btn {
-
+    .application-header
+    .language-btn {
         padding:
             8px 10px;
 
         font-size:
             12px;
-
     }
-
 
     .grid {
-
         grid-template-columns:
             1fr;
 
-        gap:
-            0;
-
+        gap: 0;
     }
-
 
     .departments {
-
         grid-template-columns:
             1fr;
-
     }
-
 
     .step h2 {
-
         font-size:
             30px;
-
     }
-
 
     .department {
-
         padding:
             16px;
-
     }
 
-
     .question-title {
-
         font-size:
             13px;
+    }
 
+    .iti__country-list {
+        max-width:
+            280px;
     }
 
 }
 
 
-/* =====================================================
+/* ==========================================
    SMALL PHONE
-===================================================== */
+========================================== */
 
 @media (max-width: 380px) {
 
     .container {
-
         padding:
             15px 12px;
-
     }
-
 
     .welcome h1 {
-
         font-size:
             34px;
-
     }
-
 
     .step h2 {
-
         font-size:
             27px;
-
     }
 
-
     .logo {
-
         font-size:
             22px;
-
     }
 
 }
