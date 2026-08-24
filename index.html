@@ -8,6 +8,12 @@
     <title>TOFU Media | Volunteer Application</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- International Phone Input -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/css/intlTelInput.css"
+    >
 </head>
 
 <body>
@@ -76,13 +82,15 @@
                 <div class="progress-wrapper">
 
                     <div class="progress-text">
+
                         <span id="stepText">
                             Step 1 of 5
                         </span>
 
                         <span id="percentText">
-                            20%
+                            0%
                         </span>
+
                     </div>
 
                     <div class="progress">
@@ -205,6 +213,8 @@
                     >
 
 
+                    <!-- ================= PHONE ================= -->
+
                     <label for="phone" data-i18n="whatsapp">
                         WhatsApp Number
                     </label>
@@ -213,9 +223,18 @@
                         type="tel"
                         id="phone"
                         name="phone"
-                        placeholder="01xxxxxxxxx"
+                        autocomplete="tel"
+                        inputmode="tel"
                         required
                     >
+
+                    <p
+                        class="phone-error"
+                        id="phoneError"
+                        data-i18n="phoneError"
+                    >
+                        Please enter a valid phone number.
+                    </p>
 
 
                     <button type="button" class="next-btn">
@@ -316,7 +335,7 @@
 
                             <div>
                                 <strong data-i18n="design">
-                                    Design
+                                    Graphic Design
                                 </strong>
 
                                 <small data-i18n="designSmall">
@@ -453,7 +472,7 @@
                     </p>
 
                     <h2 data-i18n="lastTitle">
-                        Tell us about you 💜
+                        Tell us about yourself 💜
                     </h2>
 
                     <p class="description" data-i18n="lastDescription">
@@ -574,6 +593,11 @@
 
     </main>
 
-  <script src="script.js?v=5"></script>
+
+    <!-- International Phone Input -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/js/intlTelInput.min.js"></script>
+
+    <script src="script.js?v=6"></script>
+
 </body>
 </html>
