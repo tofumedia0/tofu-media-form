@@ -2,9 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TOFU Media | Volunteer Application</title>
@@ -13,7 +11,6 @@
         href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/css/intlTelInput.css">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -27,17 +24,15 @@
 
         <section class="screen active" id="welcomeScreen">
 
-            <div class="top-controls">
+            <div class="top-actions">
 
-                <button
-                    type="button"
+                <button type="button"
                     class="language-btn"
                     id="languageBtn">
                     العربية
                 </button>
 
-                <button
-                    type="button"
+                <button type="button"
                     class="theme-btn"
                     id="themeBtn"
                     aria-label="Toggle dark mode">
@@ -52,13 +47,9 @@
                     TOFU <span>Media</span>
                 </div>
 
-                <div class="emoji">
-                    🚀
-                </div>
+                <div class="emoji">🚀</div>
 
-                <p
-                    class="small-title"
-                    data-i18n="season">
+                <p class="small-title" data-i18n="season">
                     TOFU MEDIA — SEASON 2
                 </p>
 
@@ -67,15 +58,12 @@
                     <span>opportunities happen.</span>
                 </h1>
 
-                <p
-                    class="intro"
-                    data-i18n="welcomeText">
+                <p class="intro" data-i18n="welcomeText">
                     Help us connect young people with scholarships,
                     free courses, competitions, events and opportunities.
                 </p>
 
-                <button
-                    type="button"
+                <button type="button"
                     class="main-btn"
                     id="startBtn">
 
@@ -87,9 +75,7 @@
 
                 </button>
 
-                <p
-                    class="hint"
-                    data-i18n="hint">
+                <p class="hint" data-i18n="hint">
                     It only takes a few minutes.
                 </p>
 
@@ -100,14 +86,11 @@
 
         <!-- ================= APPLICATION ================= -->
 
-        <section
-            class="screen"
-            id="applicationScreen">
+        <section class="screen" id="applicationScreen">
 
             <div class="application-header">
 
-                <button
-                    type="button"
+                <button type="button"
                     class="back-btn"
                     id="backBtn">
                     ←
@@ -128,24 +111,20 @@
                     </div>
 
                     <div class="progress">
-
                         <div id="progressBar"></div>
-
                     </div>
 
                 </div>
 
-                <div class="header-controls">
+                <div class="header-actions">
 
-                    <button
-                        type="button"
+                    <button type="button"
                         class="language-btn"
                         id="languageBtn2">
                         العربية
                     </button>
 
-                    <button
-                        type="button"
+                    <button type="button"
                         class="theme-btn"
                         id="themeBtn2">
                         🌙
@@ -160,13 +139,9 @@
 
                 <!-- ================= STEP 1 ================= -->
 
-                <div
-                    class="step active"
-                    data-step="1">
+                <div class="step active" data-step="1">
 
-                    <p
-                        class="section-label"
-                        data-i18n="getToKnow">
+                    <p class="section-label" data-i18n="getToKnow">
                         GET TO KNOW YOU
                     </p>
 
@@ -174,25 +149,18 @@
                         What's your name? 👋
                     </h2>
 
-                    <p
-                        class="description"
-                        data-i18n="nameDescription">
+                    <p class="description" data-i18n="nameDescription">
                         Tell us your full name.
                     </p>
 
-                    <input
-                        type="text"
+                    <input type="text"
                         id="name"
                         name="name"
                         data-placeholder="fullName"
                         placeholder="Your full name"
-                        autocomplete="name"
-                        required
-                    >
+                        required>
 
-                    <button
-                        type="button"
-                        class="next-btn">
+                    <button type="button" class="next-btn">
 
                         <span data-i18n="continue">
                             Continue
@@ -207,13 +175,9 @@
 
                 <!-- ================= STEP 2 ================= -->
 
-                <div
-                    class="step"
-                    data-step="2">
+                <div class="step" data-step="2">
 
-                    <p
-                        class="section-label"
-                        data-i18n="aboutYou">
+                    <p class="section-label" data-i18n="aboutYou">
                         ABOUT YOU
                     </p>
 
@@ -221,9 +185,7 @@
                         Tell us about yourself 🎓
                     </h2>
 
-                    <p
-                        class="description"
-                        data-i18n="aboutDescription">
+                    <p class="description" data-i18n="aboutDescription">
                         These details help us understand our applicants better.
                     </p>
 
@@ -232,94 +194,68 @@
 
                         <div>
 
-                            <label
-                                for="age"
-                                data-i18n="age">
+                            <label for="age" data-i18n="age">
                                 Age
                             </label>
 
-                            <input
-                                type="number"
+                            <input type="number"
                                 id="age"
                                 name="age"
                                 min="11"
                                 max="30"
-                                step="1"
-                                placeholder="11 - 30"
-                                required
-                            >
+                                placeholder="Your age"
+                                required>
 
-                            <small
-                                class="field-hint"
-                                data-i18n="ageHint">
-                                Applicants must be between 11 and 30 years old.
-                            </small>
+                            <small class="field-error"
+                                id="ageError"></small>
 
                         </div>
 
 
                         <div>
 
-                            <label
-                                for="governorate"
-                                data-i18n="governorate">
+                            <label for="governorate" data-i18n="governorate">
                                 Governorate
                             </label>
 
-                            <input
-                                type="text"
+                            <input type="text"
                                 id="governorate"
                                 name="governorate"
-                                data-placeholder="governoratePlaceholder"
                                 placeholder="Cairo, Giza..."
-                                required
-                            >
+                                required>
 
                         </div>
 
                     </div>
 
 
-                    <label
-                        for="email"
-                        data-i18n="email">
+                    <label for="email" data-i18n="email">
                         Email
                     </label>
 
-                    <input
-                        type="email"
+                    <input type="email"
                         id="email"
                         name="email"
-                        data-placeholder="emailPlaceholder"
                         placeholder="example@email.com"
-                        autocomplete="email"
-                        required
-                    >
+                        required>
 
 
-                    <label
-                        for="phone"
-                        data-i18n="whatsapp">
+                    <label for="phone" data-i18n="whatsapp">
                         WhatsApp Number
                     </label>
 
-                    <input
-                        type="tel"
+                    <input type="tel"
                         id="phone"
                         name="phone"
                         autocomplete="tel"
-                        required
-                    >
+                        required>
 
-                    <small
-                        id="phoneError"
+                    <small id="phoneError"
                         class="phone-error">
                     </small>
 
 
-                    <button
-                        type="button"
-                        class="next-btn">
+                    <button type="button" class="next-btn">
 
                         <span data-i18n="continue">
                             Continue
@@ -334,13 +270,9 @@
 
                 <!-- ================= STEP 3 ================= -->
 
-                <div
-                    class="step"
-                    data-step="3">
+                <div class="step" data-step="3">
 
-                    <p
-                        class="section-label"
-                        data-i18n="chooseDepartment">
+                    <p class="section-label" data-i18n="chooseDepartment">
                         CHOOSE YOUR DEPARTMENT
                     </p>
 
@@ -348,24 +280,20 @@
                         Where do you see yourself? 🎯
                     </h2>
 
-                    <p
-                        class="description"
-                        data-i18n="departmentDescription">
+                    <p class="description" data-i18n="departmentDescription">
                         Choose the field that best matches your skills and interests.
                     </p>
 
 
                     <div class="departments">
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="Research & Opportunities">
 
                             <span>🔎</span>
 
                             <div>
-
                                 <strong data-i18n="research">
                                     Research
                                 </strong>
@@ -373,21 +301,18 @@
                                 <small data-i18n="researchSmall">
                                     Find useful opportunities
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="Content Writing">
 
                             <span>✍️</span>
 
                             <div>
-
                                 <strong data-i18n="content">
                                     Content
                                 </strong>
@@ -395,21 +320,18 @@
                                 <small data-i18n="contentSmall">
                                     Turn opportunities into content
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="Marketing">
 
                             <span>📣</span>
 
                             <div>
-
                                 <strong data-i18n="marketing">
                                     Marketing
                                 </strong>
@@ -417,21 +339,18 @@
                                 <small data-i18n="marketingSmall">
                                     Reach the right audience
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="Graphic Design">
 
                             <span>🎨</span>
 
                             <div>
-
                                 <strong data-i18n="design">
                                     Graphic Design
                                 </strong>
@@ -439,21 +358,18 @@
                                 <small data-i18n="designSmall">
                                     Make ideas visual
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="Community">
 
                             <span>👥</span>
 
                             <div>
-
                                 <strong data-i18n="community">
                                     Community
                                 </strong>
@@ -461,21 +377,18 @@
                                 <small data-i18n="communitySmall">
                                     Build a helpful community
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="PR & Partnerships">
 
                             <span>🤝</span>
 
                             <div>
-
                                 <strong data-i18n="pr">
                                     PR & Partnerships
                                 </strong>
@@ -483,21 +396,18 @@
                                 <small data-i18n="prSmall">
                                     Build meaningful connections
                                 </small>
-
                             </div>
 
                         </button>
 
 
-                        <button
-                            type="button"
+                        <button type="button"
                             class="department"
                             data-department="HR">
 
                             <span>🧑‍💼</span>
 
                             <div>
-
                                 <strong data-i18n="hr">
                                     HR
                                 </strong>
@@ -505,7 +415,6 @@
                                 <small data-i18n="hrSmall">
                                     Build and support the team
                                 </small>
-
                             </div>
 
                         </button>
@@ -513,16 +422,13 @@
                     </div>
 
 
-                    <input
-                        type="hidden"
+                    <input type="hidden"
                         id="department"
                         name="department"
-                        required
-                    >
+                        required>
 
 
-                    <button
-                        type="button"
+                    <button type="button"
                         class="next-btn"
                         id="departmentNext"
                         disabled>
@@ -540,13 +446,9 @@
 
                 <!-- ================= STEP 4 ================= -->
 
-                <div
-                    class="step"
-                    data-step="4">
+                <div class="step" data-step="4">
 
-                    <p
-                        class="section-label"
-                        data-i18n="miniChallenge">
+                    <p class="section-label" data-i18n="miniChallenge">
                         MINI CHALLENGE
                     </p>
 
@@ -554,9 +456,7 @@
                         Show us how you think 🧠
                     </h2>
 
-                    <p
-                        class="description"
-                        data-i18n="challengeDescription">
+                    <p class="description" data-i18n="challengeDescription">
                         There is no perfect answer.
                         We just want to see how you approach problems.
                     </p>
@@ -564,9 +464,7 @@
                     <div id="questionsContainer"></div>
 
 
-                    <button
-                        type="button"
-                        class="next-btn">
+                    <button type="button" class="next-btn">
 
                         <span data-i18n="continue">
                             Continue
@@ -581,68 +479,50 @@
 
                 <!-- ================= STEP 5 ================= -->
 
-                <div
-                    class="step"
-                    data-step="5">
+                <div class="step" data-step="5">
 
-                    <p
-                        class="section-label"
-                        data-i18n="lastStep">
+                    <p class="section-label" data-i18n="lastStep">
                         LAST STEP
                     </p>
 
                     <h2 data-i18n="lastTitle">
-                        Tell us about you 💜
+                        Tell us about yourself 💜
                     </h2>
 
-                    <p
-                        class="description"
-                        data-i18n="lastDescription">
+                    <p class="description" data-i18n="lastDescription">
                         Be honest. We care more about your mindset than having the perfect answer.
                     </p>
 
 
-                    <label
-                        for="whyTofu"
-                        data-i18n="whyTofu">
+                    <label for="whyTofu" data-i18n="whyTofu">
                         Why do you want to join TOFU Media?
                     </label>
 
-                    <textarea
-                        id="whyTofu"
+                    <textarea id="whyTofu"
                         name="whyTofu"
-                        data-placeholder="whyPlaceholder"
                         placeholder="Tell us why..."
                         required></textarea>
 
 
-                    <label
-                        for="contribution"
-                        data-i18n="contribution">
+                    <label for="contribution" data-i18n="contribution">
                         What can you add to TOFU Media?
                     </label>
 
-                    <textarea
-                        id="contribution"
+                    <textarea id="contribution"
                         name="contribution"
-                        data-placeholder="contributionPlaceholder"
                         placeholder="Skills, ideas, experience..."
                         required></textarea>
 
 
-                    <label
-                        for="hours"
-                        data-i18n="hours">
+                    <label for="hours" data-i18n="hours">
                         How much time can you commit weekly?
                     </label>
 
-                    <select
-                        id="hours"
+                    <select id="hours"
                         name="hours"
                         required>
 
-                        <option
-                            value=""
+                        <option value=""
                             data-i18n="choose">
                             Choose
                         </option>
@@ -666,8 +546,7 @@
                     </select>
 
 
-                    <button
-                        type="submit"
+                    <button type="submit"
                         class="submit-btn">
 
                         <span data-i18n="submit">
@@ -687,9 +566,7 @@
 
         <!-- ================= SUCCESS ================= -->
 
-        <section
-            class="screen"
-            id="successScreen">
+        <section class="screen" id="successScreen">
 
             <div class="success">
 
@@ -736,4 +613,5 @@
     <script src="script.js?v=20"></script>
 
 </body>
+
 </html>
