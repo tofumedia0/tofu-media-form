@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("phoneError");
 
 
-
     /* =====================================================
        VARIABLES
     ===================================================== */
@@ -74,55 +72,42 @@ document.addEventListener("DOMContentLoaded", function () {
     const TOTAL_STEPS = 5;
 
 
-
     /* =====================================================
-       INTERNATIONAL PHONE
+       PHONE - INTERNATIONAL
     ===================================================== */
 
     let iti = null;
 
-
-    if (phoneInput) {
+    if (phoneInput && window.intlTelInput) {
 
         iti = window.intlTelInput(
             phoneInput,
             {
-
                 initialCountry: "eg",
 
                 separateDialCode: true,
 
-                countrySelectorMode: "dropdown",
-
-                countryNameLocale: "en",
+                nationalMode: true,
 
                 preferredCountries: [
                     "eg",
                     "sa",
                     "ae",
+                    "jo",
+                    "kw",
+                    "qa",
                     "gb",
-                    "us",
-                    "ca",
-                    "de",
-                    "fr",
-                    "it",
-                    "tr",
-                    "kr"
+                    "us"
                 ],
 
-                loadUtils: function () {
-
-                    return import(
-                        "https://cdn.jsdelivr.net/npm/intl-tel-input@26.8.0/dist/js/utils.js"
-                    );
-
-                }
-
+                loadUtils:
+                    () =>
+                    import(
+                        "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/utils.js"
+                    )
             }
         );
-
     }
-
 
 
     /* =====================================================
@@ -130,11 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const translations = {
-
-
-        /* =================================================
-           ENGLISH
-        ================================================= */
 
         en: {
 
@@ -185,9 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             whatsapp:
                 "WhatsApp Number",
-
-            phoneError:
-                "Please enter a valid phone number.",
 
             chooseDepartment:
                 "CHOOSE YOUR DEPARTMENT",
@@ -243,6 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
             miniChallenge:
                 "MINI CHALLENGE",
 
+            challengeTitle:
+                "Show us how you think 🧠",
+
             challengeDescription:
                 "There is no perfect answer. We just want to see how you approach problems.",
 
@@ -283,7 +263,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What happens next?",
 
             nextText:
-                "Keep an eye on your email and WhatsApp. Our team may contact you during the selection process."
+                "Keep an eye on your email and WhatsApp. Our team may contact you during the selection process.",
+
+            phoneError:
+                "Please enter a valid phone number."
 
         },
 
@@ -342,9 +325,6 @@ document.addEventListener("DOMContentLoaded", function () {
             whatsapp:
                 "رقم الواتساب",
 
-            phoneError:
-                "من فضلك اكتب رقم واتساب صحيح للدولة المختارة.",
-
             chooseDepartment:
                 "اختار التيم",
 
@@ -399,6 +379,9 @@ document.addEventListener("DOMContentLoaded", function () {
             miniChallenge:
                 "تحدي بسيط",
 
+            challengeTitle:
+                "ورينا طريقة تفكيرك 🧠",
+
             challengeDescription:
                 "مفيش إجابة مثالية. إحنا بس عايزين نشوف طريقة تفكيرك وتعاملك مع المواقف.",
 
@@ -439,12 +422,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي هيحصل بعد كده؟",
 
             nextText:
-                "تابع الإيميل والواتساب بتوعك، ممكن التيم يتواصل معاك أثناء مرحلة الاختيار."
+                "تابع الإيميل والواتساب بتوعك، ممكن التيم يتواصل معاك أثناء مرحلة الاختيار.",
 
+            phoneError:
+                "من فضلك اكتب رقم هاتف صحيح."
         }
 
     };
-
 
 
     /* =====================================================
@@ -453,211 +437,132 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const questions = {
 
-
         "Research & Opportunities": {
 
             en: [
-
                 "You found a scholarship online. What would you check before sharing it?",
-
                 "Where would you search for reliable opportunities?",
-
                 "How would you explain complicated requirements to students?",
-
                 "What information should every opportunity post include?"
-
             ],
 
             ar: [
-
                 "لقيت منحة أونلاين، إيه اللي هتتأكد منه قبل ما تنشرها؟",
-
                 "هتدور فين على فرص موثوقة؟",
-
                 "هتشرح شروط فرصة معقدة للطلاب إزاي؟",
-
                 "إيه المعلومات اللي لازم تكون موجودة في أي بوست عن فرصة؟"
-
             ]
-
         },
 
 
         "Content Writing": {
 
             en: [
-
                 "Write a short hook that would make a student stop scrolling.",
-
                 "How would you explain a complicated scholarship simply?",
-
                 "What makes social media content interesting and useful?",
-
                 "What information would you include in a post about a free course?"
-
             ],
 
             ar: [
-
                 "اكتب Hook يخلي الطالب يوقف الـ scrolling.",
-
                 "هتشرح منحة معقدة بطريقة بسيطة إزاي؟",
-
                 "إيه اللي بيخلي محتوى السوشيال interesting ومفيد؟",
-
                 "إيه المعلومات اللي هتحطها في بوست عن كورس مجاني؟"
-
             ]
-
         },
 
 
         "Marketing": {
 
             en: [
-
                 "Give us 3 ideas to promote a fully funded opportunity to students.",
-
                 "How would you promote TOFU in a Facebook group without looking like spam?",
-
                 "Which is more important: reaching many people or the right people?",
-
                 "Give us one creative marketing idea for TOFU."
-
             ],
 
             ar: [
-
                 "ادينا 3 أفكار تروّج بيها لفرصة ممولة بالكامل للطلاب.",
-
                 "هتعمل Marketing لـ TOFU في جروب فيسبوك من غير Spam إزاي؟",
-
                 "إيه الأهم: عدد كبير من الناس ولا الناس الصح؟",
-
                 "ادينا فكرة Marketing Creative لـ TOFU."
-
             ]
-
         },
 
 
         "Graphic Design": {
 
             en: [
-
                 "What design tools do you use?",
-
                 "What information should stand out in a scholarship design?",
-
                 "What makes a social media design professional?",
-
                 "Do you have a portfolio or previous work?"
-
             ],
 
             ar: [
-
                 "إيه أدوات التصميم اللي بتستخدمها؟",
-
                 "إيه المعلومات اللي لازم تبان بوضوح في تصميم منحة؟",
-
                 "إيه اللي بيخلي تصميم السوشيال Professional؟",
-
                 "عندك Portfolio أو شغل سابق؟"
-
             ]
-
         },
 
 
         "Community": {
 
             en: [
-
                 "A student asks a question and you don't know the answer. What would you do?",
-
                 "How would you make students comfortable asking questions?",
-
                 "What activities could keep the community active?",
-
                 "How would you handle someone repeatedly breaking the rules?"
-
             ],
 
             ar: [
-
                 "طالب سأل سؤال وإنت مش عارف الإجابة، هتعمل إيه؟",
-
                 "إزاي تخلي الطلاب مرتاحين في السؤال؟",
-
                 "إيه الأنشطة اللي ممكن تخلي الـ Community Active؟",
-
                 "هتتعامل إزاي مع حد بيكرر مخالفة القواعد؟"
-
             ]
-
         },
 
 
         "PR & Partnerships": {
 
             en: [
-
                 "How would you approach an organization for a collaboration?",
-
                 "Write a short message introducing TOFU Media.",
-
                 "What makes an organization interested in a partnership?",
-
                 "How would you maintain a good relationship with a partner?"
-
             ],
 
             ar: [
-
                 "هتتواصل مع Organization عشان Collaboration إزاي؟",
-
                 "اكتب Message قصيرة تعرف فيها TOFU Media.",
-
                 "إيه اللي يخلي Organization تهتم بـ Partnership؟",
-
                 "إزاي تحافظ على علاقة كويسة مع Partner؟"
-
             ]
-
         },
 
 
         "HR": {
 
             en: [
-
                 "A volunteer suddenly stops responding. What would you do?",
-
                 "A team member repeatedly misses deadlines. What would you do?",
-
                 "What qualities should a good volunteer have?",
-
                 "How would you welcome a new volunteer?"
-
             ],
 
             ar: [
-
                 "Volunteer فجأة بطل يرد، هتعمل إيه؟",
-
                 "Team Member بيكرر التأخير عن الـ Deadline، هتعمل إيه؟",
-
                 "إيه صفات الـ Volunteer الكويس؟",
-
                 "إزاي ترحب بـ Volunteer جديد؟"
-
             ]
-
         }
 
     };
-
 
 
     /* =====================================================
@@ -666,18 +571,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function changeLanguage(lang) {
 
+        if (!translations[lang]) {
+            return;
+        }
+
         currentLanguage = lang;
 
-
-        document.documentElement.lang =
-            lang;
-
+        document.documentElement.lang = lang;
 
         document.documentElement.dir =
             lang === "ar"
                 ? "rtl"
                 : "ltr";
-
 
 
         /* TEXT */
@@ -690,7 +595,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     element.dataset.i18n;
 
                 if (
-                    translations[lang] &&
                     translations[lang][key]
                 ) {
 
@@ -700,7 +604,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
             });
-
 
 
         /* PLACEHOLDERS */
@@ -713,7 +616,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     element.dataset.placeholder;
 
                 if (
-                    translations[lang] &&
                     translations[lang][key]
                 ) {
 
@@ -725,7 +627,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
 
-
         /* LANGUAGE BUTTON */
 
         const buttonText =
@@ -735,31 +636,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (languageBtn) {
-
             languageBtn.textContent =
                 buttonText;
-
         }
-
 
         if (languageBtn2) {
-
             languageBtn2.textContent =
                 buttonText;
-
         }
-
 
 
         /* PHONE ERROR */
 
         if (phoneError) {
 
-            phoneError.textContent =
-                translations[lang].phoneError;
+            if (
+                phoneError.textContent
+            ) {
+
+                phoneError.textContent =
+                    translations[lang].phoneError;
+
+            }
 
         }
-
 
 
         /* QUESTIONS */
@@ -767,9 +667,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderQuestions();
 
         updateProgress();
-
     }
-
 
 
     /* =====================================================
@@ -780,7 +678,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         languageBtn.addEventListener(
             "click",
-            function () {
+            function (event) {
+
+                event.preventDefault();
 
                 changeLanguage(
                     currentLanguage === "en"
@@ -798,7 +698,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         languageBtn2.addEventListener(
             "click",
-            function () {
+            function (event) {
+
+                event.preventDefault();
 
                 changeLanguage(
                     currentLanguage === "en"
@@ -812,9 +714,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       START APPLICATION
+       START
     ===================================================== */
 
     if (startBtn) {
@@ -831,27 +732,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     "active"
                 );
 
-
                 currentStep = 1;
 
                 showStep(1);
 
                 updateProgress();
 
-
                 window.scrollTo({
-
                     top: 0,
-
                     behavior: "smooth"
-
                 });
 
             }
         );
 
     }
-
 
 
     /* =====================================================
@@ -886,7 +781,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        PROGRESS
     ===================================================== */
@@ -895,38 +789,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const percentage =
             ((currentStep - 1) /
-            (TOTAL_STEPS - 1)) * 100;
+                (TOTAL_STEPS - 1)) * 100;
 
 
-        if (progressBar) {
-
-            progressBar.style.width =
-                percentage + "%";
-
-        }
+        progressBar.style.width =
+            percentage + "%";
 
 
-        if (percentText) {
-
-            percentText.textContent =
-                Math.round(percentage) + "%";
-
-        }
+        percentText.textContent =
+            Math.round(percentage) + "%";
 
 
-        if (stepText) {
+        stepText.textContent =
+            currentLanguage === "ar"
 
-            stepText.textContent =
-                currentLanguage === "ar"
+                ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
 
-                    ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
-
-                    : `Step ${currentStep} of ${TOTAL_STEPS}`;
-
-        }
+                : `Step ${currentStep} of ${TOTAL_STEPS}`;
 
     }
 
+
+    /* =====================================================
+       PHONE VALIDATION
+    ===================================================== */
+
+    function validatePhone() {
+
+        if (!iti) {
+            return true;
+        }
+
+
+        if (!phoneInput.value.trim()) {
+
+            phoneError.textContent =
+                translations[currentLanguage].phoneError;
+
+            phoneInput.classList.add(
+                "phone-invalid"
+            );
+
+            return false;
+        }
+
+
+        if (!iti.isValidNumber()) {
+
+            phoneError.textContent =
+                translations[currentLanguage].phoneError;
+
+            phoneInput.classList.add(
+                "phone-invalid"
+            );
+
+            return false;
+        }
+
+
+        phoneError.textContent = "";
+
+        phoneInput.classList.remove(
+            "phone-invalid"
+        );
+
+        return true;
+    }
+
+
+    if (phoneInput) {
+
+        phoneInput.addEventListener(
+            "input",
+            function () {
+
+                if (phoneError) {
+                    phoneError.textContent = "";
+                }
+
+                phoneInput.classList.remove(
+                    "phone-invalid"
+                );
+
+            }
+        );
+
+    }
 
 
     /* =====================================================
@@ -936,9 +884,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateStep(step) {
 
         if (!step) {
-
             return false;
-
         }
 
 
@@ -949,6 +895,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         for (const field of fields) {
+
+            if (
+                field.id === "phone"
+            ) {
+
+                if (!validatePhone()) {
+                    return false;
+                }
+
+                continue;
+            }
+
 
             if (!field.checkValidity()) {
 
@@ -961,48 +919,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* PHONE VALIDATION */
-
-        if (
-            step.dataset.step === "2" &&
-            iti
-        ) {
-
-            if (!iti.isValidNumber()) {
-
-                if (phoneError) {
-
-                    phoneError.style.display =
-                        "block";
-
-                    phoneError.textContent =
-                        translations[
-                            currentLanguage
-                        ].phoneError;
-
-                }
-
-                phoneInput.focus();
-
-                return false;
-
-            }
-
-
-            if (phoneError) {
-
-                phoneError.style.display =
-                    "none";
-
-            }
-
-        }
-
-
         return true;
 
     }
-
 
 
     /* =====================================================
@@ -1017,19 +936,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 "click",
                 function () {
 
-
                     const current =
                         document.querySelector(
                             `.step[data-step="${currentStep}"]`
                         );
 
 
-                    if (!validateStep(current)) {
-
+                    if (
+                        !validateStep(current)
+                    ) {
                         return;
-
                     }
-
 
 
                     if (
@@ -1038,43 +955,30 @@ document.addEventListener("DOMContentLoaded", function () {
                     ) {
 
                         alert(
-
                             currentLanguage === "ar"
-
                                 ? "من فضلك اختار التيم الأول."
-
                                 : "Please choose a department first."
-
                         );
 
                         return;
-
                     }
 
 
-
                     if (
-                        currentStep <
-                        TOTAL_STEPS
+                        currentStep < TOTAL_STEPS
                     ) {
 
                         currentStep++;
-
 
                         showStep(
                             currentStep
                         );
 
-
                         updateProgress();
 
-
                         window.scrollTo({
-
                             top: 0,
-
                             behavior: "smooth"
-
                         });
 
                     }
@@ -1085,9 +989,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-
     /* =====================================================
-       BACK BUTTON
+       BACK
     ===================================================== */
 
     if (backBtn) {
@@ -1096,30 +999,22 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-
                 if (currentStep > 1) {
 
                     currentStep--;
-
 
                     showStep(
                         currentStep
                     );
 
-
                     updateProgress();
 
-
                     window.scrollTo({
-
                         top: 0,
-
                         behavior: "smooth"
-
                     });
 
                 }
-
 
                 else {
 
@@ -1139,9 +1034,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       DEPARTMENT SELECTION
+       DEPARTMENT
     ===================================================== */
 
     departmentCards.forEach(
@@ -1150,7 +1044,6 @@ document.addEventListener("DOMContentLoaded", function () {
             card.addEventListener(
                 "click",
                 function () {
-
 
                     departmentCards.forEach(
                         function (item) {
@@ -1172,20 +1065,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         card.dataset.department;
 
 
-                    if (departmentInput) {
-
-                        departmentInput.value =
-                            selectedDepartment;
-
-                    }
+                    departmentInput.value =
+                        selectedDepartment;
 
 
-                    if (departmentNext) {
-
-                        departmentNext.disabled =
-                            false;
-
-                    }
+                    departmentNext.disabled =
+                        false;
 
 
                     renderQuestions();
@@ -1197,37 +1082,28 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
-       RENDER QUESTIONS
+       QUESTIONS
     ===================================================== */
 
     function renderQuestions() {
 
         if (!questionsContainer) {
-
             return;
-
         }
 
 
         if (!selectedDepartment) {
-
             return;
-
         }
 
 
         const departmentQuestions =
-            questions[
-                selectedDepartment
-            ];
+            questions[selectedDepartment];
 
 
         if (!departmentQuestions) {
-
             return;
-
         }
 
 
@@ -1244,12 +1120,10 @@ document.addEventListener("DOMContentLoaded", function () {
         currentQuestions.forEach(
             function (question, index) {
 
-
                 const wrapper =
                     document.createElement(
                         "div"
                     );
-
 
                 wrapper.className =
                     "question";
@@ -1260,19 +1134,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         "label"
                     );
 
-
                 label.className =
                     "question-title";
 
 
                 label.innerHTML = `
-
                     <span class="question-number">
                         ${index + 1}
                     </span>
-
                     ${question}
-
                 `;
 
 
@@ -1296,9 +1166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 textarea.placeholder =
                     currentLanguage === "ar"
-
                         ? "اكتب إجابتك هنا..."
-
                         : "Write your answer here...";
 
 
@@ -1306,11 +1174,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     label
                 );
 
-
                 wrapper.appendChild(
                     textarea
                 );
-
 
                 questionsContainer.appendChild(
                     wrapper
@@ -1322,49 +1188,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
-       PHONE INPUT EVENTS
-    ===================================================== */
-
-    if (phoneInput && iti) {
-
-
-        phoneInput.addEventListener(
-            "input",
-            function () {
-
-                if (phoneError) {
-
-                    phoneError.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        phoneInput.addEventListener(
-            "countrychange",
-            function () {
-
-                if (phoneError) {
-
-                    phoneError.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       FORM SUBMIT
+       SUBMIT
     ===================================================== */
 
     if (form) {
@@ -1376,9 +1201,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-
-                /* FINAL STEP */
-
                 const lastStep =
                     document.querySelector(
                         `.step[data-step="${TOTAL_STEPS}"]`
@@ -1386,77 +1208,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 if (!validateStep(lastStep)) {
-
                     return;
-
                 }
 
-
-
-                /* DEPARTMENT */
 
                 if (!selectedDepartment) {
 
                     alert(
-
                         currentLanguage === "ar"
-
                             ? "من فضلك اختار التيم."
-
                             : "Please choose a department."
-
                     );
 
                     return;
-
                 }
-
 
 
                 /* PHONE */
 
-                if (!iti) {
-
-                    alert(
-                        "Phone input failed to load."
-                    );
-
-                    return;
-
-                }
-
-
-                try {
-
-                    await iti.promise;
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Phone library error:",
-                        error
-                    );
-
-                }
-
-
-
-                if (!iti.isValidNumber()) {
-
-                    if (phoneError) {
-
-                        phoneError.style.display =
-                            "block";
-
-                        phoneError.textContent =
-                            translations[
-                                currentLanguage
-                            ].phoneError;
-
-                    }
-
+                if (!validatePhone()) {
 
                     phoneInput.focus();
 
@@ -1465,33 +1235,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                if (phoneError) {
-
-                    phoneError.style.display =
-                        "none";
-
-                }
+                const internationalPhone =
+                    iti
+                        ? iti.getNumber()
+                        : phoneInput.value.trim();
 
 
-
-                /*
-                    Get international number.
-
-                    Example:
-
-                    +201012345678
-
-                    +447700900123
-
-                    +12025550123
-                */
-
-                const phone =
-                    iti.getNumber();
-
-
-
-                /* SUBMIT BUTTON */
+                /* BUTTON */
 
                 const submitButton =
                     form.querySelector(
@@ -1504,29 +1254,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     submitButton.disabled =
                         true;
 
-
                     submitButton.innerHTML =
-
                         currentLanguage === "ar"
-
                             ? "جاري إرسال التقديم... ⏳"
-
                             : "Sending application... ⏳";
 
                 }
 
 
-
-                /* =================================================
-                   FORM DATA
-                ================================================= */
+                /* FORM DATA */
 
                 const formData =
                     new FormData();
 
-
-
-                /* ACCESS KEY */
 
                 formData.append(
                     "access_key",
@@ -1534,17 +1274,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-
-                /* SUBJECT */
-
                 formData.append(
                     "subject",
                     `TOFU Media — New ${selectedDepartment} Application`
                 );
 
-
-
-                /* BASIC INFORMATION */
 
                 formData.append(
                     "Full Name",
@@ -1582,35 +1316,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+                /* INTERNATIONAL PHONE */
+
                 formData.append(
                     "WhatsApp",
-                    phone
+                    internationalPhone
                 );
 
 
-                /* COUNTRY */
+                formData.append(
+                    "Country",
+                    iti
+                        ? iti.getSelectedCountryData().name
+                        : ""
+                );
 
-                const countryData =
-                    iti.getSelectedCountryData();
-
-
-                if (countryData) {
-
-                    formData.append(
-                        "Phone Country",
-                        countryData.name
-                    );
-
-
-                    formData.append(
-                        "Phone Country Code",
-                        countryData.iso2
-                    );
-
-                }
-
-
-                /* DEPARTMENT */
 
                 formData.append(
                     "Department",
@@ -1618,26 +1338,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-
-                /* =================================================
-                   MINI CHALLENGE
-                ================================================= */
+                /* QUESTIONS */
 
                 const answerInputs =
                     questionsContainer
-
-                        ? questionsContainer
-                            .querySelectorAll(
-                                "textarea"
-                            )
-
+                        ? questionsContainer.querySelectorAll(
+                            "textarea"
+                        )
                         : [];
 
 
                 const departmentQuestions =
-                    questions[
-                        selectedDepartment
-                    ];
+                    questions[selectedDepartment];
 
 
                 if (departmentQuestions) {
@@ -1654,18 +1366,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             index
                         ) {
 
-
                             const questionText =
                                 input.dataset.question ||
-
-                                displayedQuestions[
-                                    index
-                                ];
-
-
-                            const answerText =
-                                input.value.trim();
-
+                                displayedQuestions[index];
 
 
                             formData.append(
@@ -1676,7 +1379,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             formData.append(
                                 `Answer ${index + 1}`,
-                                answerText
+                                input.value.trim()
                             );
 
                         }
@@ -1685,17 +1388,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-
-                /* =================================================
-                   FINAL QUESTIONS
-                ================================================= */
+                /* FINAL */
 
                 formData.append(
                     "Why do you want to join TOFU?",
                     document
-                        .getElementById(
-                            "whyTofu"
-                        )
+                        .getElementById("whyTofu")
                         .value
                         .trim()
                 );
@@ -1704,9 +1402,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 formData.append(
                     "What can you add to TOFU?",
                     document
-                        .getElementById(
-                            "contribution"
-                        )
+                        .getElementById("contribution")
                         .value
                         .trim()
                 );
@@ -1715,14 +1411,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 formData.append(
                     "Weekly Commitment",
                     document
-                        .getElementById(
-                            "hours"
-                        )
+                        .getElementById("hours")
                         .value
                 );
 
-
-                /* APPLICATION LANGUAGE */
 
                 formData.append(
                     "Application Language",
@@ -1732,23 +1424,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-
-                /* =================================================
-                   SEND
-                ================================================= */
+                /* SEND */
 
                 try {
-
 
                     const response =
                         await fetch(
                             "https://api.web3forms.com/submit",
                             {
-
                                 method: "POST",
-
                                 body: formData
-
                             }
                         );
 
@@ -1757,17 +1442,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         await response.json();
 
 
-                    console.log(
-                        "TOFU APPLICATION:",
-                        data
-                    );
-
-
-
-                    /* SUCCESS */
-
                     if (data.success) {
-
 
                         applicationScreen.classList.remove(
                             "active"
@@ -1780,18 +1455,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                         window.scrollTo({
-
                             top: 0,
-
                             behavior: "smooth"
-
                         });
 
                     }
-
-
-
-                    /* ERROR */
 
                     else {
 
@@ -1802,12 +1470,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     }
 
-
                 }
 
-
                 catch (error) {
-
 
                     console.error(
                         "TOFU APPLICATION ERROR:",
@@ -1816,13 +1481,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     alert(
-
                         currentLanguage === "ar"
 
                             ? "حصل خطأ أثناء إرسال التقديم. اتأكد من الإنترنت وجرب تاني."
 
                             : "Something went wrong while submitting. Please try again."
-
                     );
 
 
@@ -1833,7 +1496,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                         submitButton.innerHTML =
-
                             currentLanguage === "ar"
 
                                 ? "إرسال التقديم 🚀"
@@ -1848,7 +1510,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
