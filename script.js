@@ -52,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionsContainer =
         document.getElementById("questionsContainer");
 
+    const phoneInput =
+        document.getElementById("phone");
+
+    const phoneError =
+        document.getElementById("phoneError");
+
 
     /* =====================================================
        VARIABLES
@@ -67,12 +73,127 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       INTERNATIONAL PHONE INPUT
+    ===================================================== */
+
+    const iti = window.intlTelInput(phoneInput, {
+
+        initialCountry: "eg",
+
+        preferredCountries: [
+            "eg",
+            "sa",
+            "ae",
+            "us",
+            "gb",
+            "de",
+            "tr",
+            "kr"
+        ],
+
+        separateDialCode: true,
+
+        nationalMode: true,
+
+        autoPlaceholder: "polite",
+
+        formatOnDisplay: true,
+
+        strictMode: true,
+
+        utilsScript:
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/js/utils.js"
+
+    });
+
+
+    /* =====================================================
+       PHONE VALIDATION
+    ===================================================== */
+
+    function validatePhone(showMessage = true) {
+
+        if (!phoneInput.value.trim()) {
+
+            if (showMessage) {
+                showPhoneError();
+            }
+
+            return false;
+        }
+
+
+        const valid =
+            iti.isValidNumber();
+
+
+        if (!valid) {
+
+            if (showMessage) {
+                showPhoneError();
+            }
+
+            return false;
+        }
+
+
+        hidePhoneError();
+
+        return true;
+    }
+
+
+    function showPhoneError() {
+
+        phoneInput.classList.add(
+            "phone-invalid"
+        );
+
+        phoneError.classList.add(
+            "show"
+        );
+
+    }
+
+
+    function hidePhoneError() {
+
+        phoneInput.classList.remove(
+            "phone-invalid"
+        );
+
+        phoneError.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    phoneInput.addEventListener(
+        "input",
+        function () {
+
+            hidePhoneError();
+
+        }
+    );
+
+
+    phoneInput.addEventListener(
+        "countrychange",
+        function () {
+
+            hidePhoneError();
+
+        }
+    );
+
+
+    /* =====================================================
        TRANSLATIONS
     ===================================================== */
 
     const translations = {
-
-        /* ================= ENGLISH ================= */
 
         en: {
 
@@ -123,6 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             whatsapp:
                 "WhatsApp Number",
+
+            phoneError:
+                "Please enter a valid phone number.",
 
             chooseDepartment:
                 "CHOOSE YOUR DEPARTMENT",
@@ -219,10 +343,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             nextText:
                 "Keep an eye on your email and WhatsApp. Our team may contact you during the selection process."
+
         },
 
-
-        /* ================= ARABIC ================= */
 
         ar: {
 
@@ -273,6 +396,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             whatsapp:
                 "رقم الواتساب",
+
+            phoneError:
+                "من فضلك اكتب رقم واتساب صحيح.",
 
             chooseDepartment:
                 "اختار التيم",
@@ -369,6 +495,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             nextText:
                 "تابع الإيميل والواتساب بتوعك، ممكن التيم يتواصل معاك أثناء مرحلة الاختيار."
+
         }
 
     };
@@ -379,8 +506,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const questions = {
-
-        /* ================= RESEARCH ================= */
 
         "Research & Opportunities": {
 
@@ -393,6 +518,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "How would you explain complicated requirements to students?",
 
                 "What information should every opportunity post include?"
+
             ],
 
             ar: [
@@ -404,11 +530,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "هتشرح شروط فرصة معقدة للطلاب إزاي؟",
 
                 "إيه المعلومات اللي لازم تكون موجودة في أي بوست عن فرصة؟"
+
             ]
+
         },
 
-
-        /* ================= CONTENT ================= */
 
         "Content Writing": {
 
@@ -421,6 +547,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What makes social media content interesting and useful?",
 
                 "What information would you include in a post about a free course?"
+
             ],
 
             ar: [
@@ -432,11 +559,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي بيخلي محتوى السوشيال interesting ومفيد؟",
 
                 "إيه المعلومات اللي هتحطها في بوست عن كورس مجاني؟"
+
             ]
+
         },
 
-
-        /* ================= MARKETING ================= */
 
         "Marketing": {
 
@@ -449,6 +576,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Which is more important: reaching many people or the right people?",
 
                 "Give us one creative marketing idea for TOFU."
+
             ],
 
             ar: [
@@ -460,11 +588,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه الأهم: عدد كبير من الناس ولا الناس الصح؟",
 
                 "ادينا فكرة Marketing Creative لـ TOFU."
+
             ]
+
         },
 
-
-        /* ================= DESIGN ================= */
 
         "Graphic Design": {
 
@@ -477,6 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What makes a social media design professional?",
 
                 "Do you have a portfolio or previous work?"
+
             ],
 
             ar: [
@@ -488,11 +617,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي بيخلي تصميم السوشيال Professional؟",
 
                 "عندك Portfolio أو شغل سابق؟"
+
             ]
+
         },
 
-
-        /* ================= COMMUNITY ================= */
 
         "Community": {
 
@@ -505,6 +634,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What activities could keep the community active?",
 
                 "How would you handle someone repeatedly breaking the rules?"
+
             ],
 
             ar: [
@@ -516,11 +646,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه الأنشطة اللي ممكن تخلي الـ Community Active؟",
 
                 "هتتعامل إزاي مع حد بيكرر مخالفة القواعد؟"
+
             ]
+
         },
 
-
-        /* ================= PR ================= */
 
         "PR & Partnerships": {
 
@@ -533,6 +663,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What makes an organization interested in a partnership?",
 
                 "How would you maintain a good relationship with a partner?"
+
             ],
 
             ar: [
@@ -544,11 +675,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي يخلي Organization تهتم بـ Partnership؟",
 
                 "إزاي تحافظ على علاقة كويسة مع Partner؟"
+
             ]
+
         },
 
-
-        /* ================= HR ================= */
 
         "HR": {
 
@@ -561,6 +692,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "What qualities should a good volunteer have?",
 
                 "How would you welcome a new volunteer?"
+
             ],
 
             ar: [
@@ -572,7 +704,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه صفات الـ Volunteer الكويس؟",
 
                 "إزاي ترحب بـ Volunteer جديد؟"
+
             ]
+
         }
 
     };
@@ -594,9 +728,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 : "ltr";
 
 
-        /* =========================
-           TEXT
-        ========================= */
+        /* ================= TEXT ================= */
 
         document
             .querySelectorAll("[data-i18n]")
@@ -612,14 +744,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     element.innerHTML =
                         translations[lang][key];
+
                 }
 
             });
 
 
-        /* =========================
-           PLACEHOLDERS
-        ========================= */
+        /* ================= PLACEHOLDERS ================= */
 
         document
             .querySelectorAll("[data-placeholder]")
@@ -635,14 +766,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     element.placeholder =
                         translations[lang][key];
+
                 }
 
             });
 
 
-        /* =========================
-           LANGUAGE BUTTON
-        ========================= */
+        /* ================= PHONE ERROR ================= */
+
+        if (phoneError) {
+
+            phoneError.textContent =
+                translations[lang].phoneError;
+
+        }
+
+
+        /* ================= LANGUAGE BUTTON ================= */
 
         const buttonText =
             lang === "en"
@@ -655,20 +795,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 buttonText;
         }
 
-
         if (languageBtn2) {
             languageBtn2.textContent =
                 buttonText;
         }
 
 
-        /* =========================
-           QUESTIONS
-        ========================= */
-
         renderQuestions();
 
         updateProgress();
+
     }
 
 
@@ -690,6 +826,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
     }
 
 
@@ -707,6 +844,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
     }
 
 
@@ -720,28 +858,19 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                if (welcomeScreen) {
+                welcomeScreen.classList.remove(
+                    "active"
+                );
 
-                    welcomeScreen.classList.remove(
-                        "active"
-                    );
-                }
-
-
-                if (applicationScreen) {
-
-                    applicationScreen.classList.add(
-                        "active"
-                    );
-                }
-
+                applicationScreen.classList.add(
+                    "active"
+                );
 
                 currentStep = 1;
 
                 showStep(1);
 
                 updateProgress();
-
 
                 window.scrollTo({
                     top: 0,
@@ -750,6 +879,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
     }
 
 
@@ -779,7 +909,9 @@ document.addEventListener("DOMContentLoaded", function () {
             target.classList.add(
                 "active"
             );
+
         }
+
     }
 
 
@@ -794,29 +926,21 @@ document.addEventListener("DOMContentLoaded", function () {
             (TOTAL_STEPS - 1)) * 100;
 
 
-        if (progressBar) {
-
-            progressBar.style.width =
-                percentage + "%";
-        }
+        progressBar.style.width =
+            percentage + "%";
 
 
-        if (percentText) {
-
-            percentText.textContent =
-                Math.round(percentage) + "%";
-        }
+        percentText.textContent =
+            Math.round(percentage) + "%";
 
 
-        if (stepText) {
+        stepText.textContent =
+            currentLanguage === "ar"
 
-            stepText.textContent =
-                currentLanguage === "ar"
+                ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
 
-                    ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
+                : `Step ${currentStep} of ${TOTAL_STEPS}`;
 
-                    : `Step ${currentStep} of ${TOTAL_STEPS}`;
-        }
     }
 
 
@@ -844,11 +968,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 field.reportValidity();
 
                 return false;
+
             }
+
+        }
+
+
+        /* PHONE SPECIAL VALIDATION */
+
+        if (
+            step.dataset.step === "2"
+        ) {
+
+            if (!validatePhone(true)) {
+
+                phoneInput.focus();
+
+                return false;
+
+            }
+
         }
 
 
         return true;
+
     }
 
 
@@ -889,6 +1033,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
                         return;
+
                     }
 
 
@@ -905,11 +1050,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         updateProgress();
 
-
                         window.scrollTo({
                             top: 0,
                             behavior: "smooth"
                         });
+
                     }
 
                 }
@@ -938,7 +1083,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     updateProgress();
 
-
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
@@ -946,24 +1090,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 } else {
 
-                    if (applicationScreen) {
+                    applicationScreen.classList.remove(
+                        "active"
+                    );
 
-                        applicationScreen.classList.remove(
-                            "active"
-                        );
-                    }
+                    welcomeScreen.classList.add(
+                        "active"
+                    );
 
-
-                    if (welcomeScreen) {
-
-                        welcomeScreen.classList.add(
-                            "active"
-                        );
-                    }
                 }
 
             }
         );
+
     }
 
 
@@ -998,23 +1137,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         card.dataset.department;
 
 
-                    if (departmentInput) {
-
-                        departmentInput.value =
-                            selectedDepartment;
-                    }
+                    departmentInput.value =
+                        selectedDepartment;
 
 
-                    if (departmentNext) {
-
-                        departmentNext.disabled =
-                            false;
-                    }
+                    departmentNext.disabled =
+                        false;
 
 
                     renderQuestions();
+
                 }
             );
+
         }
     );
 
@@ -1097,16 +1232,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     `challenge_${index + 1}`;
 
 
-                /*
-                   مهم جدًا:
-
-                   بنخزن السؤال نفسه داخل
-                   data-question
-
-                   عشان لما الفورم يتبعت
-                   نقدر نبعت السؤال + الإجابة.
-                */
-
                 textarea.dataset.question =
                     question;
 
@@ -1135,83 +1260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
-    }
 
-
-    /* =====================================================
-       EGYPTIAN PHONE VALIDATION
-    ===================================================== */
-
-    function normalizeEgyptianPhone(value) {
-
-        let phone =
-            value.trim();
-
-
-        /* Remove spaces and symbols */
-
-        phone =
-            phone.replace(
-                /[\s\-()]/g,
-                ""
-            );
-
-
-        /*
-           +201012345678
-           ↓
-           01012345678
-        */
-
-        if (phone.startsWith("+20")) {
-
-            phone =
-                "0" +
-                phone.substring(3);
-        }
-
-
-        /*
-           201012345678
-           ↓
-           01012345678
-        */
-
-        else if (
-            phone.startsWith("20") &&
-            phone.length === 12
-        ) {
-
-            phone =
-                "0" +
-                phone.substring(2);
-        }
-
-
-        /*
-           Egyptian mobile numbers:
-
-           010
-           011
-           012
-           015
-        */
-
-        const egyptianPhoneRegex =
-            /^01[0125][0-9]{8}$/;
-
-
-        if (
-            !egyptianPhoneRegex.test(
-                phone
-            )
-        ) {
-
-            return null;
-        }
-
-
-        return phone;
     }
 
 
@@ -1258,6 +1307,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     return;
+
                 }
 
 
@@ -1265,33 +1315,33 @@ document.addEventListener("DOMContentLoaded", function () {
                    PHONE CHECK
                 ========================= */
 
-                const phoneInput =
-                    document.getElementById(
-                        "phone"
-                    );
+                if (!validatePhone(true)) {
 
+                    currentStep = 2;
 
-                const phone =
-                    normalizeEgyptianPhone(
-                        phoneInput.value
-                    );
+                    showStep(2);
 
-
-                if (!phone) {
-
-                    alert(
-                        currentLanguage === "ar"
-
-                            ? "من فضلك اكتب رقم موبايل مصري صحيح، مثال: 01012345678"
-
-                            : "Please enter a valid Egyptian phone number, e.g. 01012345678"
-                    );
-
+                    updateProgress();
 
                     phoneInput.focus();
 
                     return;
+
                 }
+
+
+                /*
+                   Get full international number
+
+                   Example:
+
+                   +201012345678
+
+                   +966501234567
+                */
+
+                const fullPhoneNumber =
+                    iti.getNumber();
 
 
                 /* =========================
@@ -1317,20 +1367,21 @@ document.addEventListener("DOMContentLoaded", function () {
                             ? "جاري إرسال التقديم... ⏳"
 
                             : "Sending application... ⏳";
+
                 }
 
 
-                /* =================================================
+                /* =========================
                    FORM DATA
-                ================================================= */
+                ========================= */
 
                 const formData =
                     new FormData();
 
 
-                /* =================================================
-                   WEB3FORMS ACCESS KEY
-                ================================================= */
+                /* =========================
+                   WEB3FORMS
+                ========================= */
 
                 formData.append(
                     "access_key",
@@ -1338,9 +1389,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =================================================
+                /* =========================
                    EMAIL SUBJECT
-                ================================================= */
+                ========================= */
 
                 formData.append(
                     "subject",
@@ -1348,9 +1399,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =================================================
+                /* =========================
                    BASIC INFORMATION
-                ================================================= */
+                ========================= */
 
                 formData.append(
                     "Full Name",
@@ -1373,9 +1424,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 formData.append(
                     "Governorate",
                     document
-                        .getElementById(
-                            "governorate"
-                        )
+                        .getElementById("governorate")
                         .value
                         .trim()
                 );
@@ -1390,11 +1439,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+                /* =========================
+                   WHATSAPP
+                ========================= */
+
                 formData.append(
                     "WhatsApp",
-                    phone
+                    fullPhoneNumber
                 );
 
+
+                /* =========================
+                   COUNTRY
+                ========================= */
+
+                const countryData =
+                    iti.getSelectedCountryData();
+
+
+                formData.append(
+                    "Country",
+                    countryData.name || ""
+                );
+
+
+                formData.append(
+                    "Country Code",
+                    countryData.dialCode
+                        ? "+" + countryData.dialCode
+                        : ""
+                );
+
+
+                /* =========================
+                   DEPARTMENT
+                ========================= */
 
                 formData.append(
                     "Department",
@@ -1402,18 +1481,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =================================================
+                /* =========================
                    MINI CHALLENGE
-                ================================================= */
+                ========================= */
 
                 const answerInputs =
                     questionsContainer
-
-                        ? questionsContainer
-                            .querySelectorAll(
-                                "textarea"
-                            )
-
+                        ? questionsContainer.querySelectorAll(
+                            "textarea"
+                        )
                         : [];
 
 
@@ -1449,19 +1525,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                 input.value.trim();
 
 
-                            /*
-                               Send question
-                            */
-
                             formData.append(
                                 `Question ${index + 1}`,
                                 questionText
                             );
 
-
-                            /*
-                               Send answer
-                            */
 
                             formData.append(
                                 `Answer ${index + 1}`,
@@ -1470,12 +1538,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         }
                     );
+
                 }
 
 
-                /* =================================================
+                /* =========================
                    FINAL QUESTIONS
-                ================================================= */
+                ========================= */
 
                 formData.append(
                     "Why do you want to join TOFU?",
@@ -1509,9 +1578,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =================================================
+                /* =========================
                    APPLICATION LANGUAGE
-                ================================================= */
+                ========================= */
 
                 formData.append(
                     "Application Language",
@@ -1521,9 +1590,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =================================================
+                /* =========================
                    SEND
-                ================================================= */
+                ========================= */
 
                 try {
 
@@ -1553,20 +1622,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (data.success) {
 
-                        if (applicationScreen) {
-
-                            applicationScreen.classList.remove(
-                                "active"
-                            );
-                        }
+                        applicationScreen.classList.remove(
+                            "active"
+                        );
 
 
-                        if (successScreen) {
-
-                            successScreen.classList.add(
-                                "active"
-                            );
-                        }
+                        successScreen.classList.add(
+                            "active"
+                        );
 
 
                         window.scrollTo({
@@ -1587,6 +1650,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             data.message ||
                             "Submission failed"
                         );
+
                     }
 
 
@@ -1605,6 +1669,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             ? "حصل خطأ أثناء إرسال التقديم. اتأكد من الإنترنت وجرب تاني."
 
                             : "Something went wrong while submitting. Please try again."
+
                     );
 
 
@@ -1621,12 +1686,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                 ? "إرسال التقديم 🚀"
 
                                 : "Submit Application 🚀";
+
                     }
 
                 }
 
             }
         );
+
     }
 
 
