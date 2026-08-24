@@ -25,16 +25,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeBtn = document.getElementById("themeBtn");
     const themeBtn2 = document.getElementById("themeBtn2");
 
-    const departmentCards = document.querySelectorAll(".department");
-    const departmentInput = document.getElementById("department");
-    const departmentNext = document.getElementById("departmentNext");
+    const departmentCards =
+        document.querySelectorAll(".department");
 
-    const questionsContainer = document.getElementById("questionsContainer");
+    const departmentInput =
+        document.getElementById("department");
 
-    const phoneInput = document.getElementById("phone");
-    const phoneError = document.getElementById("phoneError");
+    const departmentNext =
+        document.getElementById("departmentNext");
 
-    const ageInput = document.getElementById("age");
+    const questionsContainer =
+        document.getElementById("questionsContainer");
+
+    const phoneInput =
+        document.getElementById("phone");
+
+    const phoneError =
+        document.getElementById("phoneError");
+
+    const ageInput =
+        document.getElementById("age");
+
+    const ageError =
+        document.getElementById("ageError");
 
 
     /* =====================================================
@@ -46,6 +59,65 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedDepartment = "";
 
     const TOTAL_STEPS = 5;
+
+
+    /* =====================================================
+       DARK MODE
+    ===================================================== */
+
+    function applyTheme(theme) {
+
+        if (theme === "dark") {
+
+            document.body.classList.add("dark");
+
+            if (themeBtn) {
+                themeBtn.textContent = "☀️";
+            }
+
+            if (themeBtn2) {
+                themeBtn2.textContent = "☀️";
+            }
+
+        } else {
+
+            document.body.classList.remove("dark");
+
+            if (themeBtn) {
+                themeBtn.textContent = "🌙";
+            }
+
+            if (themeBtn2) {
+                themeBtn2.textContent = "🌙";
+            }
+        }
+
+        localStorage.setItem("tofuTheme", theme);
+    }
+
+
+    const savedTheme =
+        localStorage.getItem("tofuTheme") || "light";
+
+    applyTheme(savedTheme);
+
+
+    function toggleTheme() {
+
+        const isDark =
+            document.body.classList.contains("dark");
+
+        applyTheme(isDark ? "light" : "dark");
+    }
+
+
+    if (themeBtn) {
+        themeBtn.addEventListener("click", toggleTheme);
+    }
+
+    if (themeBtn2) {
+        themeBtn2.addEventListener("click", toggleTheme);
+    }
 
 
     /* =====================================================
@@ -75,12 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "us"
             ],
 
-            loadUtils: () => import(
-                "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/utils.js"
-            )
-
+            loadUtils: () =>
+                import(
+                    "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/utils.js"
+                )
         });
-
     }
 
 
@@ -92,7 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         en: {
 
-            season: "TOFU MEDIA — SEASON 2",
+            season:
+                "TOFU MEDIA — SEASON 2",
 
             welcomeTitle:
                 `Let's make<br><span>opportunities happen.</span>`,
@@ -130,20 +202,11 @@ document.addEventListener("DOMContentLoaded", function () {
             age:
                 "Age",
 
-            ageHint:
-                "Applicants must be between 11 and 30 years old.",
-
             governorate:
                 "Governorate",
 
-            governoratePlaceholder:
-                "Cairo, Giza...",
-
             email:
                 "Email",
-
-            emailPlaceholder:
-                "example@email.com",
 
             whatsapp:
                 "WhatsApp Number",
@@ -220,14 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
             whyTofu:
                 "Why do you want to join TOFU Media?",
 
-            whyPlaceholder:
-                "Tell us why...",
-
             contribution:
                 "What can you add to TOFU Media?",
-
-            contributionPlaceholder:
-                "Skills, ideas, experience...",
 
             hours:
                 "How much time can you commit weekly?",
@@ -257,20 +314,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Please enter a valid phone number.",
 
             ageError:
-                "Applicants must be between 11 and 30 years old.",
+                "Age must be between 11 and 30.",
 
-            departmentError:
+            chooseDepartmentError:
                 "Please choose a department first.",
+
+            sending:
+                "Sending application... ⏳",
+
+            submitAgain:
+                "Submit Application 🚀",
 
             submitError:
                 "Something went wrong while submitting. Please check your internet connection and try again."
-
         },
 
-
-        /* =================================================
-           ARABIC
-        ================================================= */
 
         ar: {
 
@@ -313,20 +371,11 @@ document.addEventListener("DOMContentLoaded", function () {
             age:
                 "السن",
 
-            ageHint:
-                "التقديم متاح من سن 11 سنة لحد 30 سنة.",
-
             governorate:
                 "المحافظة",
 
-            governoratePlaceholder:
-                "القاهرة، الجيزة...",
-
             email:
                 "الإيميل",
-
-            emailPlaceholder:
-                "example@email.com",
 
             whatsapp:
                 "رقم الواتساب",
@@ -403,14 +452,8 @@ document.addEventListener("DOMContentLoaded", function () {
             whyTofu:
                 "ليه عايز تنضم لـ TOFU Media؟",
 
-            whyPlaceholder:
-                "قولنا ليه...",
-
             contribution:
                 "إيه اللي تقدر تضيفه لـ TOFU Media؟",
-
-            contributionPlaceholder:
-                "مهارات، أفكار، خبرات...",
 
             hours:
                 "تقدر تلتزم بكام ساعة أسبوعيًا؟",
@@ -440,21 +483,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 "من فضلك اكتب رقم هاتف صحيح.",
 
             ageError:
-                "التقديم متاح من سن 11 سنة لحد 30 سنة.",
+                "السن لازم يكون من 11 لـ 30 سنة.",
 
-            departmentError:
+            chooseDepartmentError:
                 "من فضلك اختار التيم الأول.",
+
+            sending:
+                "جاري إرسال التقديم... ⏳",
+
+            submitAgain:
+                "إرسال التقديم 🚀",
 
             submitError:
                 "حصل خطأ أثناء إرسال التقديم. اتأكد من الإنترنت وجرب تاني."
-
         }
 
     };
 
 
     /* =====================================================
-       QUESTIONS
+       DEPARTMENT QUESTIONS
     ===================================================== */
 
     const questions = {
@@ -474,7 +522,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "هتشرح شروط فرصة معقدة للطلاب إزاي؟",
                 "إيه المعلومات اللي لازم تكون موجودة في أي بوست عن فرصة؟"
             ]
-
         },
 
 
@@ -493,7 +540,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي بيخلي محتوى السوشيال interesting ومفيد؟",
                 "إيه المعلومات اللي هتحطها في بوست عن كورس مجاني؟"
             ]
-
         },
 
 
@@ -512,7 +558,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه الأهم: عدد كبير من الناس ولا الناس الصح؟",
                 "ادينا فكرة Marketing Creative لـ TOFU."
             ]
-
         },
 
 
@@ -531,7 +576,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي بيخلي تصميم السوشيال Professional؟",
                 "عندك Portfolio أو شغل سابق؟"
             ]
-
         },
 
 
@@ -550,7 +594,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه الأنشطة اللي ممكن تخلي الـ Community Active؟",
                 "هتتعامل إزاي مع حد بيكرر مخالفة القواعد؟"
             ]
-
         },
 
 
@@ -569,7 +612,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه اللي يخلي Organization تهتم بـ Partnership؟",
                 "إزاي تحافظ على علاقة كويسة مع Partner؟"
             ]
-
         },
 
 
@@ -588,61 +630,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "إيه صفات الـ Volunteer الكويس؟",
                 "إزاي ترحب بـ Volunteer جديد؟"
             ]
-
         }
 
     };
-
-
-    /* =====================================================
-       DARK MODE
-    ===================================================== */
-
-    function applyTheme(theme) {
-
-        if (theme === "dark") {
-
-            document.body.classList.add("dark");
-
-            if (themeBtn) themeBtn.textContent = "☀️";
-            if (themeBtn2) themeBtn2.textContent = "☀️";
-
-        } else {
-
-            document.body.classList.remove("dark");
-
-            if (themeBtn) themeBtn.textContent = "🌙";
-            if (themeBtn2) themeBtn2.textContent = "🌙";
-
-        }
-
-        localStorage.setItem("tofuTheme", theme);
-    }
-
-
-    const savedTheme =
-        localStorage.getItem("tofuTheme") || "light";
-
-    applyTheme(savedTheme);
-
-
-    function toggleTheme() {
-
-        const isDark =
-            document.body.classList.contains("dark");
-
-        applyTheme(isDark ? "light" : "dark");
-
-    }
-
-
-    if (themeBtn) {
-        themeBtn.addEventListener("click", toggleTheme);
-    }
-
-    if (themeBtn2) {
-        themeBtn2.addEventListener("click", toggleTheme);
-    }
 
 
     /* =====================================================
@@ -668,12 +658,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key = element.dataset.i18n;
 
                 if (translations[lang][key]) {
-
                     element.innerHTML =
                         translations[lang][key];
-
                 }
-
             });
 
 
@@ -684,12 +671,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key = element.dataset.placeholder;
 
                 if (translations[lang][key]) {
-
                     element.placeholder =
                         translations[lang][key];
-
                 }
-
             });
 
 
@@ -706,10 +690,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        if (phoneError && phoneError.textContent) {
+            phoneError.textContent =
+                translations[lang].phoneError;
+        }
+
+
+        if (ageError && ageError.textContent) {
+            ageError.textContent =
+                translations[lang].ageError;
+        }
+
+
         renderQuestions();
-
         updateProgress();
-
     }
 
 
@@ -717,13 +711,9 @@ document.addEventListener("DOMContentLoaded", function () {
        LANGUAGE BUTTONS
     ===================================================== */
 
-    [languageBtn, languageBtn2].forEach(function (button) {
+    if (languageBtn) {
 
-        if (!button) return;
-
-        button.addEventListener("click", function (event) {
-
-            event.preventDefault();
+        languageBtn.addEventListener("click", function () {
 
             changeLanguage(
                 currentLanguage === "en"
@@ -732,8 +722,21 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         });
+    }
 
-    });
+
+    if (languageBtn2) {
+
+        languageBtn2.addEventListener("click", function () {
+
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
+
+        });
+    }
 
 
     /* =====================================================
@@ -760,7 +763,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
         });
-
     }
 
 
@@ -784,11 +786,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (target) {
-
             target.classList.add("active");
-
         }
-
     }
 
 
@@ -815,7 +814,6 @@ document.addEventListener("DOMContentLoaded", function () {
             currentLanguage === "ar"
                 ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
                 : `Step ${currentStep} of ${TOTAL_STEPS}`;
-
     }
 
 
@@ -830,26 +828,38 @@ document.addEventListener("DOMContentLoaded", function () {
         const age =
             Number(ageInput.value);
 
-        if (
-            !age ||
-            age < 11 ||
-            age > 30
-        ) {
+        if (!ageInput.value.trim()) {
 
             ageInput.setCustomValidity(
-                translations[currentLanguage].ageError
+                currentLanguage === "ar"
+                    ? "اكتب سنك."
+                    : "Please enter your age."
             );
 
             ageInput.reportValidity();
 
             return false;
-
         }
+
+
+        if (age < 11 || age > 30) {
+
+            ageError.textContent =
+                translations[currentLanguage].ageError;
+
+            ageInput.classList.add("invalid-field");
+
+            return false;
+        }
+
 
         ageInput.setCustomValidity("");
 
-        return true;
+        ageError.textContent = "";
 
+        ageInput.classList.remove("invalid-field");
+
+        return true;
     }
 
 
@@ -857,10 +867,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ageInput.addEventListener("input", function () {
 
+            ageError.textContent = "";
+
+            ageInput.classList.remove("invalid-field");
+
             ageInput.setCustomValidity("");
 
         });
-
     }
 
 
@@ -868,27 +881,9 @@ document.addEventListener("DOMContentLoaded", function () {
        PHONE VALIDATION
     ===================================================== */
 
-    async function validatePhone() {
+    function validatePhone() {
 
-        if (!iti) {
-            return true;
-        }
-
-
-        try {
-
-            if (iti.promise) {
-                await iti.promise;
-            }
-
-        } catch (error) {
-
-            console.warn(
-                "Phone utils could not load:",
-                error
-            );
-
-        }
+        if (!iti) return true;
 
 
         if (!phoneInput.value.trim()) {
@@ -899,7 +894,6 @@ document.addEventListener("DOMContentLoaded", function () {
             phoneInput.classList.add("phone-invalid");
 
             return false;
-
         }
 
 
@@ -911,7 +905,6 @@ document.addEventListener("DOMContentLoaded", function () {
             phoneInput.classList.add("phone-invalid");
 
             return false;
-
         }
 
 
@@ -920,7 +913,6 @@ document.addEventListener("DOMContentLoaded", function () {
         phoneInput.classList.remove("phone-invalid");
 
         return true;
-
     }
 
 
@@ -930,12 +922,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             phoneError.textContent = "";
 
-            phoneInput.classList.remove(
-                "phone-invalid"
-            );
+            phoneInput.classList.remove("phone-invalid");
 
         });
-
     }
 
 
@@ -943,7 +932,7 @@ document.addEventListener("DOMContentLoaded", function () {
        VALIDATE STEP
     ===================================================== */
 
-    async function validateStep(step) {
+    function validateStep(step) {
 
         if (!step) return false;
 
@@ -954,6 +943,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
 
+            if (!validatePhone()) {
+                return false;
+            }
         }
 
 
@@ -966,16 +958,11 @@ document.addEventListener("DOMContentLoaded", function () {
         for (const field of fields) {
 
             if (field.id === "phone") {
-
-                const valid =
-                    await validatePhone();
-
-                if (!valid) {
-                    return false;
-                }
-
                 continue;
+            }
 
+            if (field.id === "age") {
+                continue;
             }
 
 
@@ -984,14 +971,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 field.reportValidity();
 
                 return false;
-
             }
-
         }
 
 
         return true;
-
     }
 
 
@@ -1003,7 +987,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelectorAll(".next-btn")
         .forEach(function (button) {
 
-            button.addEventListener("click", async function () {
+            button.addEventListener("click", function () {
 
                 const current =
                     document.querySelector(
@@ -1011,11 +995,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                const valid =
-                    await validateStep(current);
-
-
-                if (!valid) {
+                if (!validateStep(current)) {
                     return;
                 }
 
@@ -1026,11 +1006,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 ) {
 
                     alert(
-                        translations[currentLanguage].departmentError
+                        translations[currentLanguage]
+                            .chooseDepartmentError
                     );
 
                     return;
-
                 }
 
 
@@ -1046,7 +1026,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         top: 0,
                         behavior: "smooth"
                     });
-
                 }
 
             });
@@ -1080,11 +1059,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 applicationScreen.classList.remove("active");
 
                 welcomeScreen.classList.add("active");
-
             }
 
         });
-
     }
 
 
@@ -1132,7 +1109,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!questionsContainer) return;
 
-        if (!selectedDepartment) return;
+        if (!selectedDepartment) {
+            questionsContainer.innerHTML = "";
+            return;
+        }
 
 
         const departmentQuestions =
@@ -1144,22 +1124,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const currentQuestions =
             departmentQuestions[currentLanguage];
-
-
-        /*
-          Save previous answers before rebuilding.
-        */
-
-        const oldAnswers = {};
-
-        questionsContainer
-            .querySelectorAll("textarea")
-            .forEach(function (textarea) {
-
-                oldAnswers[textarea.name] =
-                    textarea.value;
-
-            });
 
 
         questionsContainer.innerHTML = "";
@@ -1195,27 +1159,13 @@ document.addEventListener("DOMContentLoaded", function () {
             textarea.name =
                 `challenge_${index + 1}`;
 
-
             textarea.dataset.question =
                 question;
-
 
             textarea.placeholder =
                 currentLanguage === "ar"
                     ? "اكتب إجابتك هنا..."
                     : "Write your answer here...";
-
-
-            /*
-              Restore previous answer.
-            */
-
-            if (oldAnswers[textarea.name]) {
-
-                textarea.value =
-                    oldAnswers[textarea.name];
-
-            }
 
 
             wrapper.appendChild(label);
@@ -1225,7 +1175,6 @@ document.addEventListener("DOMContentLoaded", function () {
             questionsContainer.appendChild(wrapper);
 
         });
-
     }
 
 
@@ -1246,11 +1195,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-            const valid =
-                await validateStep(lastStep);
-
-
-            if (!valid) {
+            if (!validateStep(lastStep)) {
                 return;
             }
 
@@ -1258,24 +1203,24 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!selectedDepartment) {
 
                 alert(
-                    translations[currentLanguage].departmentError
+                    translations[currentLanguage]
+                        .chooseDepartmentError
                 );
 
                 return;
-
             }
 
 
-            const phoneValid =
-                await validatePhone();
-
-
-            if (!phoneValid) {
+            if (!validatePhone()) {
 
                 phoneInput.focus();
 
                 return;
+            }
 
+
+            if (!validateAge()) {
+                return;
             }
 
 
@@ -1294,20 +1239,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 submitButton.disabled = true;
 
                 submitButton.innerHTML =
-                    currentLanguage === "ar"
-                        ? "جاري إرسال التقديم... ⏳"
-                        : "Sending application... ⏳";
-
+                    translations[currentLanguage].sending;
             }
 
 
-            const formData =
-                new FormData();
+            const formData = new FormData();
 
 
-            /* =========================
-               WEB3FORMS
-            ========================= */
+            /*
+                IMPORTANT:
+                Keep your Web3Forms access key here.
+            */
 
             formData.append(
                 "access_key",
@@ -1322,42 +1264,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             formData.append(
-                "from_name",
-                "TOFU Media Application Form"
-            );
-
-
-            formData.append(
-                "replyto",
-                document.getElementById("email").value.trim()
-            );
-
-
-            /* =========================
-               PERSONAL DATA
-            ========================= */
-
-            formData.append(
                 "Full Name",
-                document.getElementById("name").value.trim()
+                document
+                    .getElementById("name")
+                    .value
+                    .trim()
             );
 
 
             formData.append(
                 "Age",
-                document.getElementById("age").value.trim()
+                document
+                    .getElementById("age")
+                    .value
+                    .trim()
             );
 
 
             formData.append(
                 "Governorate",
-                document.getElementById("governorate").value.trim()
+                document
+                    .getElementById("governorate")
+                    .value
+                    .trim()
             );
 
 
             formData.append(
                 "Email",
-                document.getElementById("email").value.trim()
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
             );
 
 
@@ -1381,9 +1319,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            /* =========================
-               QUESTIONS
-            ========================= */
+            /* QUESTIONS */
 
             const answerInputs =
                 questionsContainer
@@ -1420,29 +1356,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                 });
-
             }
 
 
-            /* =========================
-               FINAL QUESTIONS
-            ========================= */
+            /* FINAL */
 
             formData.append(
                 "Why do you want to join TOFU?",
-                document.getElementById("whyTofu").value.trim()
+                document
+                    .getElementById("whyTofu")
+                    .value
+                    .trim()
             );
 
 
             formData.append(
                 "What can you add to TOFU?",
-                document.getElementById("contribution").value.trim()
+                document
+                    .getElementById("contribution")
+                    .value
+                    .trim()
             );
 
 
             formData.append(
                 "Weekly Commitment",
-                document.getElementById("hours").value
+                document
+                    .getElementById("hours")
+                    .value
             );
 
 
@@ -1454,9 +1395,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            /* =========================
-               SEND
-            ========================= */
+            /* SEND */
 
             try {
 
@@ -1465,11 +1404,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         "https://api.web3forms.com/submit",
                         {
                             method: "POST",
-
-                            headers: {
-                                "Accept": "application/json"
-                            },
-
                             body: formData
                         }
                     );
@@ -1479,29 +1413,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     await response.json();
 
 
-                console.log(
-                    "Web3Forms response:",
-                    data
-                );
-
-
                 if (data.success) {
 
-                    applicationScreen.classList.remove(
-                        "active"
-                    );
+                    applicationScreen.classList.remove("active");
 
-
-                    successScreen.classList.add(
-                        "active"
-                    );
-
+                    successScreen.classList.add("active");
 
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
                     });
-
 
                 } else {
 
@@ -1509,7 +1430,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         data.message ||
                         "Submission failed"
                     );
-
                 }
 
 
@@ -1531,16 +1451,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     submitButton.disabled = false;
 
                     submitButton.innerHTML =
-                        currentLanguage === "ar"
-                            ? "إرسال التقديم 🚀"
-                            : "Submit Application 🚀";
-
+                        translations[currentLanguage].submitAgain;
                 }
-
             }
 
         });
-
     }
 
 
