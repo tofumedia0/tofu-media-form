@@ -2,34 +2,57 @@
 <html lang="en" dir="ltr">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TOFU Media | Volunteer Application</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        TOFU Media | Volunteer Application
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
     <!-- International Phone Input -->
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/css/intlTelInput.css"
+        href="https://cdn.jsdelivr.net/npm/intl-tel-input@26.8.0/dist/css/intlTelInput.css"
     >
+
 </head>
+
 
 <body>
 
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
 
+
     <main class="container">
 
-        <!-- ================= WELCOME ================= -->
 
-        <section class="screen active" id="welcomeScreen">
+        <!-- =================================================
+             WELCOME
+        ================================================= -->
 
-            <button class="language-btn" id="languageBtn">
+        <section
+            class="screen active"
+            id="welcomeScreen"
+        >
+
+            <button
+                class="language-btn"
+                id="languageBtn"
+            >
                 العربية
             </button>
+
 
             <div class="welcome">
 
@@ -37,30 +60,57 @@
                     TOFU <span>Media</span>
                 </div>
 
-                <div class="emoji">🚀</div>
 
-                <p class="small-title" data-i18n="season">
+                <div class="emoji">
+                    🚀
+                </div>
+
+
+                <p
+                    class="small-title"
+                    data-i18n="season"
+                >
                     TOFU MEDIA — SEASON 2
                 </p>
 
+
                 <h1 data-i18n="welcomeTitle">
                     Let's make<br>
-                    <span>opportunities happen.</span>
+                    <span>
+                        opportunities happen.
+                    </span>
                 </h1>
 
-                <p class="intro" data-i18n="welcomeText">
+
+                <p
+                    class="intro"
+                    data-i18n="welcomeText"
+                >
                     Help us connect young people with scholarships,
                     free courses, competitions, events and opportunities.
                 </p>
 
-                <button class="main-btn" id="startBtn">
+
+                <button
+                    class="main-btn"
+                    id="startBtn"
+                >
+
                     <span data-i18n="start">
                         Start Application
                     </span>
-                    <b>→</b>
+
+                    <b>
+                        →
+                    </b>
+
                 </button>
 
-                <p class="hint" data-i18n="hint">
+
+                <p
+                    class="hint"
+                    data-i18n="hint"
+                >
                     It only takes a few minutes.
                 </p>
 
@@ -69,15 +119,30 @@
         </section>
 
 
-        <!-- ================= APPLICATION ================= -->
 
-        <section class="screen" id="applicationScreen">
+        <!-- =================================================
+             APPLICATION
+        ================================================= -->
+
+        <section
+            class="screen"
+            id="applicationScreen"
+        >
+
+
+            <!-- HEADER -->
 
             <div class="application-header">
 
-                <button class="back-btn" id="backBtn">
+
+                <button
+                    class="back-btn"
+                    id="backBtn"
+                    type="button"
+                >
                     ←
                 </button>
+
 
                 <div class="progress-wrapper">
 
@@ -93,36 +158,64 @@
 
                     </div>
 
+
                     <div class="progress">
-                        <div id="progressBar"></div>
+
+                        <div
+                            id="progressBar"
+                        ></div>
+
                     </div>
 
                 </div>
 
-                <button class="language-btn" id="languageBtn2">
+
+                <button
+                    class="language-btn"
+                    id="languageBtn2"
+                    type="button"
+                >
                     العربية
                 </button>
 
             </div>
 
 
+
+            <!-- FORM -->
+
             <form id="applicationForm">
 
-                <!-- ================= STEP 1 ================= -->
 
-                <div class="step active" data-step="1">
+                <!-- =================================================
+                     STEP 1
+                ================================================= -->
 
-                    <p class="section-label" data-i18n="getToKnow">
+                <div
+                    class="step active"
+                    data-step="1"
+                >
+
+                    <p
+                        class="section-label"
+                        data-i18n="getToKnow"
+                    >
                         GET TO KNOW YOU
                     </p>
+
 
                     <h2 data-i18n="nameTitle">
                         What's your name? 👋
                     </h2>
 
-                    <p class="description" data-i18n="nameDescription">
+
+                    <p
+                        class="description"
+                        data-i18n="nameDescription"
+                    >
                         Tell us your full name.
                     </p>
+
 
                     <input
                         type="text"
@@ -130,43 +223,72 @@
                         name="name"
                         data-placeholder="fullName"
                         placeholder="Your full name"
+                        autocomplete="name"
                         required
                     >
 
-                    <button type="button" class="next-btn">
+
+                    <button
+                        type="button"
+                        class="next-btn"
+                    >
+
                         <span data-i18n="continue">
                             Continue
                         </span>
+
                         →
+
                     </button>
 
                 </div>
 
 
-                <!-- ================= STEP 2 ================= -->
 
-                <div class="step" data-step="2">
+                <!-- =================================================
+                     STEP 2
+                ================================================= -->
 
-                    <p class="section-label" data-i18n="aboutYou">
+                <div
+                    class="step"
+                    data-step="2"
+                >
+
+                    <p
+                        class="section-label"
+                        data-i18n="aboutYou"
+                    >
                         ABOUT YOU
                     </p>
+
 
                     <h2 data-i18n="aboutTitle">
                         Tell us about yourself 🎓
                     </h2>
 
-                    <p class="description" data-i18n="aboutDescription">
-                        These details help us understand our applicants better.
+
+                    <p
+                        class="description"
+                        data-i18n="aboutDescription"
+                    >
+                        These details help us understand
+                        our applicants better.
                     </p>
+
 
 
                     <div class="grid">
 
+
                         <div>
 
-                            <label for="age" data-i18n="age">
+                            <label
+                                for="age"
+                                data-i18n="age"
+                            >
                                 Age
                             </label>
+
 
                             <input
                                 type="number"
@@ -181,11 +303,16 @@
                         </div>
 
 
+
                         <div>
 
-                            <label for="governorate" data-i18n="governorate">
+                            <label
+                                for="governorate"
+                                data-i18n="governorate"
+                            >
                                 Governorate
                             </label>
+
 
                             <input
                                 type="text"
@@ -200,44 +327,62 @@
                     </div>
 
 
-                    <label for="email" data-i18n="email">
+
+                    <label
+                        for="email"
+                        data-i18n="email"
+                    >
                         Email
                     </label>
+
 
                     <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="example@email.com"
+                        autocomplete="email"
                         required
                     >
 
 
-                    <!-- ================= PHONE ================= -->
 
-                    <label for="phone" data-i18n="whatsapp">
+                    <!-- PHONE -->
+
+                    <label
+                        for="phone"
+                        data-i18n="whatsapp"
+                    >
                         WhatsApp Number
                     </label>
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        autocomplete="tel"
-                        inputmode="tel"
-                        required
-                    >
 
-                    <p
-                        class="phone-error"
+                    <div class="phone-wrapper">
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
                         id="phoneError"
-                        data-i18n="phoneError"
+                        class="phone-error"
                     >
                         Please enter a valid phone number.
-                    </p>
+                    </div>
 
 
-                    <button type="button" class="next-btn">
+
+                    <button
+                        type="button"
+                        class="next-btn"
+                    >
 
                         <span data-i18n="continue">
                             Continue
@@ -250,33 +395,54 @@
                 </div>
 
 
-                <!-- ================= STEP 3 ================= -->
 
-                <div class="step" data-step="3">
+                <!-- =================================================
+                     STEP 3
+                ================================================= -->
 
-                    <p class="section-label" data-i18n="chooseDepartment">
+                <div
+                    class="step"
+                    data-step="3"
+                >
+
+                    <p
+                        class="section-label"
+                        data-i18n="chooseDepartment"
+                    >
                         CHOOSE YOUR DEPARTMENT
                     </p>
+
 
                     <h2 data-i18n="departmentTitle">
                         Where do you see yourself? 🎯
                     </h2>
 
-                    <p class="description" data-i18n="departmentDescription">
-                        Choose the field that best matches your skills and interests.
+
+                    <p
+                        class="description"
+                        data-i18n="departmentDescription"
+                    >
+                        Choose the field that best matches
+                        your skills and interests.
                     </p>
 
 
+
                     <div class="departments">
+
 
                         <button
                             type="button"
                             class="department"
                             data-department="Research & Opportunities"
                         >
-                            <span>🔎</span>
+
+                            <span>
+                                🔎
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="research">
                                     Research
                                 </strong>
@@ -284,8 +450,11 @@
                                 <small data-i18n="researchSmall">
                                     Find useful opportunities
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -293,9 +462,13 @@
                             class="department"
                             data-department="Content Writing"
                         >
-                            <span>✍️</span>
+
+                            <span>
+                                ✍️
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="content">
                                     Content
                                 </strong>
@@ -303,8 +476,11 @@
                                 <small data-i18n="contentSmall">
                                     Turn opportunities into content
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -312,9 +488,13 @@
                             class="department"
                             data-department="Marketing"
                         >
-                            <span>📣</span>
+
+                            <span>
+                                📣
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="marketing">
                                     Marketing
                                 </strong>
@@ -322,8 +502,11 @@
                                 <small data-i18n="marketingSmall">
                                     Reach the right audience
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -331,9 +514,13 @@
                             class="department"
                             data-department="Graphic Design"
                         >
-                            <span>🎨</span>
+
+                            <span>
+                                🎨
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="design">
                                     Graphic Design
                                 </strong>
@@ -341,8 +528,11 @@
                                 <small data-i18n="designSmall">
                                     Make ideas visual
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -350,9 +540,13 @@
                             class="department"
                             data-department="Community"
                         >
-                            <span>👥</span>
+
+                            <span>
+                                👥
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="community">
                                     Community
                                 </strong>
@@ -360,8 +554,11 @@
                                 <small data-i18n="communitySmall">
                                     Build a helpful community
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -369,9 +566,13 @@
                             class="department"
                             data-department="PR & Partnerships"
                         >
-                            <span>🤝</span>
+
+                            <span>
+                                🤝
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="pr">
                                     PR & Partnerships
                                 </strong>
@@ -379,8 +580,11 @@
                                 <small data-i18n="prSmall">
                                     Build meaningful connections
                                 </small>
+
                             </div>
+
                         </button>
+
 
 
                         <button
@@ -388,9 +592,13 @@
                             class="department"
                             data-department="HR"
                         >
-                            <span>🧑‍💼</span>
+
+                            <span>
+                                🧑‍💼
+                            </span>
 
                             <div>
+
                                 <strong data-i18n="hr">
                                     HR
                                 </strong>
@@ -398,10 +606,14 @@
                                 <small data-i18n="hrSmall">
                                     Build and support the team
                                 </small>
+
                             </div>
+
                         </button>
 
+
                     </div>
+
 
 
                     <input
@@ -430,27 +642,45 @@
                 </div>
 
 
-                <!-- ================= STEP 4 ================= -->
 
-                <div class="step" data-step="4">
+                <!-- =================================================
+                     STEP 4
+                ================================================= -->
 
-                    <p class="section-label" data-i18n="miniChallenge">
+                <div
+                    class="step"
+                    data-step="4"
+                >
+
+                    <p
+                        class="section-label"
+                        data-i18n="miniChallenge"
+                    >
                         MINI CHALLENGE
                     </p>
 
-                    <h2 id="challengeTitle">
+
+                    <h2>
                         Show us how you think 🧠
                     </h2>
 
-                    <p class="description" data-i18n="challengeDescription">
+
+                    <p
+                        class="description"
+                        data-i18n="challengeDescription"
+                    >
                         There is no perfect answer.
                         We just want to see how you approach problems.
                     </p>
 
+
                     <div id="questionsContainer"></div>
 
 
-                    <button type="button" class="next-btn">
+                    <button
+                        type="button"
+                        class="next-btn"
+                    >
 
                         <span data-i18n="continue">
                             Continue
@@ -463,26 +693,46 @@
                 </div>
 
 
-                <!-- ================= STEP 5 ================= -->
 
-                <div class="step" data-step="5">
+                <!-- =================================================
+                     STEP 5
+                ================================================= -->
 
-                    <p class="section-label" data-i18n="lastStep">
+                <div
+                    class="step"
+                    data-step="5"
+                >
+
+                    <p
+                        class="section-label"
+                        data-i18n="lastStep"
+                    >
                         LAST STEP
                     </p>
+
 
                     <h2 data-i18n="lastTitle">
                         Tell us about yourself 💜
                     </h2>
 
-                    <p class="description" data-i18n="lastDescription">
-                        Be honest. We care more about your mindset than having the perfect answer.
+
+                    <p
+                        class="description"
+                        data-i18n="lastDescription"
+                    >
+                        Be honest. We care more about your
+                        mindset than having the perfect answer.
                     </p>
 
 
-                    <label for="whyTofu" data-i18n="whyTofu">
+
+                    <label
+                        for="whyTofu"
+                        data-i18n="whyTofu"
+                    >
                         Why do you want to join TOFU Media?
                     </label>
+
 
                     <textarea
                         id="whyTofu"
@@ -492,9 +742,14 @@
                     ></textarea>
 
 
-                    <label for="contribution" data-i18n="contribution">
+
+                    <label
+                        for="contribution"
+                        data-i18n="contribution"
+                    >
                         What can you add to TOFU Media?
                     </label>
+
 
                     <textarea
                         id="contribution"
@@ -504,13 +759,25 @@
                     ></textarea>
 
 
-                    <label for="hours" data-i18n="hours">
+
+                    <label
+                        for="hours"
+                        data-i18n="hours"
+                    >
                         How much time can you commit weekly?
                     </label>
 
-                    <select id="hours" name="hours" required>
 
-                        <option value="" data-i18n="choose">
+                    <select
+                        id="hours"
+                        name="hours"
+                        required
+                    >
+
+                        <option
+                            value=""
+                            data-i18n="choose"
+                        >
                             Choose
                         </option>
 
@@ -533,26 +800,37 @@
                     </select>
 
 
+
                     <button
                         type="submit"
                         class="submit-btn"
                     >
+
                         <span data-i18n="submit">
                             Submit Application
                         </span>
+
                         🚀
+
                     </button>
 
                 </div>
+
 
             </form>
 
         </section>
 
 
-        <!-- ================= SUCCESS ================= -->
 
-        <section class="screen" id="successScreen">
+        <!-- =================================================
+             SUCCESS
+        ================================================= -->
+
+        <section
+            class="screen"
+            id="successScreen"
+        >
 
             <div class="success">
 
@@ -560,19 +838,26 @@
                     ✓
                 </div>
 
+
                 <div class="logo">
                     TOFU <span>Media</span>
                 </div>
 
+
                 <h1 data-i18n="successTitle">
                     Application<br>
-                    <span>received! 🎉</span>
+                    <span>
+                        received! 🎉
+                    </span>
                 </h1>
+
 
                 <p data-i18n="successText">
                     Thank you for applying to TOFU Media.
-                    Our team will review your application and contact you soon.
+                    Our team will review your application
+                    and contact you soon.
                 </p>
+
 
                 <div class="next-info">
 
@@ -580,9 +865,11 @@
                         What happens next?
                     </strong>
 
+
                     <p data-i18n="nextText">
                         Keep an eye on your email and WhatsApp.
-                        Our team may contact you during the selection process.
+                        Our team may contact you during the
+                        selection process.
                     </p>
 
                 </div>
@@ -591,13 +878,23 @@
 
         </section>
 
+
     </main>
 
 
-    <!-- International Phone Input -->
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/js/intlTelInput.min.js"></script>
+
+    <!-- PHONE LIBRARY -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.8.0/dist/js/intlTelInput.min.js"
+    ></script>
+
+
+    <!-- YOUR SCRIPT -->
 
     <script src="script.js?v=6"></script>
 
+
 </body>
+
 </html>
