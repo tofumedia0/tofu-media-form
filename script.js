@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
     /* =====================================================
        ELEMENTS
     ===================================================== */
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("phoneError");
 
 
+
     /* =====================================================
        VARIABLES
     ===================================================== */
@@ -72,121 +74,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const TOTAL_STEPS = 5;
 
 
-    /* =====================================================
-       INTERNATIONAL PHONE INPUT
-    ===================================================== */
-
-    const iti = window.intlTelInput(phoneInput, {
-
-        initialCountry: "eg",
-
-        preferredCountries: [
-            "eg",
-            "sa",
-            "ae",
-            "us",
-            "gb",
-            "de",
-            "tr",
-            "kr"
-        ],
-
-        separateDialCode: true,
-
-        nationalMode: true,
-
-        autoPlaceholder: "polite",
-
-        formatOnDisplay: true,
-
-        strictMode: true,
-
-        utilsScript:
-            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.2/build/js/utils.js"
-
-    });
-
 
     /* =====================================================
-       PHONE VALIDATION
+       INTERNATIONAL PHONE
     ===================================================== */
 
-    function validatePhone(showMessage = true) {
+    let iti = null;
 
-        if (!phoneInput.value.trim()) {
 
-            if (showMessage) {
-                showPhoneError();
+    if (phoneInput) {
+
+        iti = window.intlTelInput(
+            phoneInput,
+            {
+
+                initialCountry: "eg",
+
+                separateDialCode: true,
+
+                countrySelectorMode: "dropdown",
+
+                countryNameLocale: "en",
+
+                preferredCountries: [
+                    "eg",
+                    "sa",
+                    "ae",
+                    "gb",
+                    "us",
+                    "ca",
+                    "de",
+                    "fr",
+                    "it",
+                    "tr",
+                    "kr"
+                ],
+
+                loadUtils: function () {
+
+                    return import(
+                        "https://cdn.jsdelivr.net/npm/intl-tel-input@26.8.0/dist/js/utils.js"
+                    );
+
+                }
+
             }
-
-            return false;
-        }
-
-
-        const valid =
-            iti.isValidNumber();
-
-
-        if (!valid) {
-
-            if (showMessage) {
-                showPhoneError();
-            }
-
-            return false;
-        }
-
-
-        hidePhoneError();
-
-        return true;
-    }
-
-
-    function showPhoneError() {
-
-        phoneInput.classList.add(
-            "phone-invalid"
-        );
-
-        phoneError.classList.add(
-            "show"
         );
 
     }
 
-
-    function hidePhoneError() {
-
-        phoneInput.classList.remove(
-            "phone-invalid"
-        );
-
-        phoneError.classList.remove(
-            "show"
-        );
-
-    }
-
-
-    phoneInput.addEventListener(
-        "input",
-        function () {
-
-            hidePhoneError();
-
-        }
-    );
-
-
-    phoneInput.addEventListener(
-        "countrychange",
-        function () {
-
-            hidePhoneError();
-
-        }
-    );
 
 
     /* =====================================================
@@ -194,6 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const translations = {
+
+
+        /* =================================================
+           ENGLISH
+        ================================================= */
 
         en: {
 
@@ -347,6 +288,10 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
 
+        /* =================================================
+           ARABIC
+        ================================================= */
+
         ar: {
 
             season:
@@ -398,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "رقم الواتساب",
 
             phoneError:
-                "من فضلك اكتب رقم واتساب صحيح.",
+                "من فضلك اكتب رقم واتساب صحيح للدولة المختارة.",
 
             chooseDepartment:
                 "اختار التيم",
@@ -501,11 +446,13 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
+
     /* =====================================================
        DEPARTMENT QUESTIONS
     ===================================================== */
 
     const questions = {
+
 
         "Research & Opportunities": {
 
@@ -712,6 +659,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
+
     /* =====================================================
        CHANGE LANGUAGE
     ===================================================== */
@@ -720,7 +668,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         currentLanguage = lang;
 
-        document.documentElement.lang = lang;
+
+        document.documentElement.lang =
+            lang;
+
 
         document.documentElement.dir =
             lang === "ar"
@@ -728,7 +679,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 : "ltr";
 
 
-        /* ================= TEXT ================= */
+
+        /* TEXT */
 
         document
             .querySelectorAll("[data-i18n]")
@@ -750,7 +702,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
 
-        /* ================= PLACEHOLDERS ================= */
+
+        /* PLACEHOLDERS */
 
         document
             .querySelectorAll("[data-placeholder]")
@@ -772,7 +725,33 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
 
-        /* ================= PHONE ERROR ================= */
+
+        /* LANGUAGE BUTTON */
+
+        const buttonText =
+            lang === "en"
+                ? "العربية"
+                : "English";
+
+
+        if (languageBtn) {
+
+            languageBtn.textContent =
+                buttonText;
+
+        }
+
+
+        if (languageBtn2) {
+
+            languageBtn2.textContent =
+                buttonText;
+
+        }
+
+
+
+        /* PHONE ERROR */
 
         if (phoneError) {
 
@@ -782,30 +761,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* ================= LANGUAGE BUTTON ================= */
 
-        const buttonText =
-            lang === "en"
-                ? "العربية"
-                : "English";
-
-
-        if (languageBtn) {
-            languageBtn.textContent =
-                buttonText;
-        }
-
-        if (languageBtn2) {
-            languageBtn2.textContent =
-                buttonText;
-        }
-
+        /* QUESTIONS */
 
         renderQuestions();
 
         updateProgress();
 
     }
+
 
 
     /* =====================================================
@@ -848,6 +812,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     /* =====================================================
        START APPLICATION
     ===================================================== */
@@ -866,21 +831,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     "active"
                 );
 
+
                 currentStep = 1;
 
                 showStep(1);
 
                 updateProgress();
 
+
                 window.scrollTo({
+
                     top: 0,
+
                     behavior: "smooth"
+
                 });
 
             }
         );
 
     }
+
 
 
     /* =====================================================
@@ -915,6 +886,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     /* =====================================================
        PROGRESS
     ===================================================== */
@@ -926,22 +898,35 @@ document.addEventListener("DOMContentLoaded", function () {
             (TOTAL_STEPS - 1)) * 100;
 
 
-        progressBar.style.width =
-            percentage + "%";
+        if (progressBar) {
+
+            progressBar.style.width =
+                percentage + "%";
+
+        }
 
 
-        percentText.textContent =
-            Math.round(percentage) + "%";
+        if (percentText) {
+
+            percentText.textContent =
+                Math.round(percentage) + "%";
+
+        }
 
 
-        stepText.textContent =
-            currentLanguage === "ar"
+        if (stepText) {
 
-                ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
+            stepText.textContent =
+                currentLanguage === "ar"
 
-                : `Step ${currentStep} of ${TOTAL_STEPS}`;
+                    ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
+
+                    : `Step ${currentStep} of ${TOTAL_STEPS}`;
+
+        }
 
     }
+
 
 
     /* =====================================================
@@ -951,7 +936,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateStep(step) {
 
         if (!step) {
+
             return false;
+
         }
 
 
@@ -974,17 +961,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* PHONE SPECIAL VALIDATION */
+        /* PHONE VALIDATION */
 
         if (
-            step.dataset.step === "2"
+            step.dataset.step === "2" &&
+            iti
         ) {
 
-            if (!validatePhone(true)) {
+            if (!iti.isValidNumber()) {
+
+                if (phoneError) {
+
+                    phoneError.style.display =
+                        "block";
+
+                    phoneError.textContent =
+                        translations[
+                            currentLanguage
+                        ].phoneError;
+
+                }
 
                 phoneInput.focus();
 
                 return false;
+
+            }
+
+
+            if (phoneError) {
+
+                phoneError.style.display =
+                    "none";
 
             }
 
@@ -994,6 +1002,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
 
     }
+
 
 
     /* =====================================================
@@ -1008,6 +1017,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "click",
                 function () {
 
+
                     const current =
                         document.querySelector(
                             `.step[data-step="${currentStep}"]`
@@ -1015,8 +1025,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     if (!validateStep(current)) {
+
                         return;
+
                     }
+
 
 
                     if (
@@ -1025,16 +1038,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     ) {
 
                         alert(
+
                             currentLanguage === "ar"
 
                                 ? "من فضلك اختار التيم الأول."
 
                                 : "Please choose a department first."
+
                         );
 
                         return;
 
                     }
+
 
 
                     if (
@@ -1044,15 +1060,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         currentStep++;
 
+
                         showStep(
                             currentStep
                         );
 
+
                         updateProgress();
 
+
                         window.scrollTo({
+
                             top: 0,
+
                             behavior: "smooth"
+
                         });
 
                     }
@@ -1061,6 +1083,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         });
+
 
 
     /* =====================================================
@@ -1073,22 +1096,32 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
+
                 if (currentStep > 1) {
 
                     currentStep--;
+
 
                     showStep(
                         currentStep
                     );
 
+
                     updateProgress();
 
+
                     window.scrollTo({
+
                         top: 0,
+
                         behavior: "smooth"
+
                     });
 
-                } else {
+                }
+
+
+                else {
 
                     applicationScreen.classList.remove(
                         "active"
@@ -1106,6 +1139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     /* =====================================================
        DEPARTMENT SELECTION
     ===================================================== */
@@ -1116,6 +1150,7 @@ document.addEventListener("DOMContentLoaded", function () {
             card.addEventListener(
                 "click",
                 function () {
+
 
                     departmentCards.forEach(
                         function (item) {
@@ -1137,12 +1172,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         card.dataset.department;
 
 
-                    departmentInput.value =
-                        selectedDepartment;
+                    if (departmentInput) {
+
+                        departmentInput.value =
+                            selectedDepartment;
+
+                    }
 
 
-                    departmentNext.disabled =
-                        false;
+                    if (departmentNext) {
+
+                        departmentNext.disabled =
+                            false;
+
+                    }
 
 
                     renderQuestions();
@@ -1154,6 +1197,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+
     /* =====================================================
        RENDER QUESTIONS
     ===================================================== */
@@ -1161,21 +1205,29 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderQuestions() {
 
         if (!questionsContainer) {
+
             return;
+
         }
 
 
         if (!selectedDepartment) {
+
             return;
+
         }
 
 
         const departmentQuestions =
-            questions[selectedDepartment];
+            questions[
+                selectedDepartment
+            ];
 
 
         if (!departmentQuestions) {
+
             return;
+
         }
 
 
@@ -1192,10 +1244,12 @@ document.addEventListener("DOMContentLoaded", function () {
         currentQuestions.forEach(
             function (question, index) {
 
+
                 const wrapper =
                     document.createElement(
                         "div"
                     );
+
 
                 wrapper.className =
                     "question";
@@ -1206,15 +1260,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         "label"
                     );
 
+
                 label.className =
                     "question-title";
 
 
                 label.innerHTML = `
+
                     <span class="question-number">
                         ${index + 1}
                     </span>
+
                     ${question}
+
                 `;
 
 
@@ -1264,6 +1322,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
+    /* =====================================================
+       PHONE INPUT EVENTS
+    ===================================================== */
+
+    if (phoneInput && iti) {
+
+
+        phoneInput.addEventListener(
+            "input",
+            function () {
+
+                if (phoneError) {
+
+                    phoneError.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        phoneInput.addEventListener(
+            "countrychange",
+            function () {
+
+                if (phoneError) {
+
+                    phoneError.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
     /* =====================================================
        FORM SUBMIT
     ===================================================== */
@@ -1277,9 +1376,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                /* =========================
-                   FINAL VALIDATION
-                ========================= */
+
+                /* FINAL STEP */
 
                 const lastStep =
                     document.querySelector(
@@ -1288,22 +1386,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 if (!validateStep(lastStep)) {
+
                     return;
+
                 }
 
 
-                /* =========================
-                   DEPARTMENT CHECK
-                ========================= */
+
+                /* DEPARTMENT */
 
                 if (!selectedDepartment) {
 
                     alert(
+
                         currentLanguage === "ar"
 
                             ? "من فضلك اختار التيم."
 
                             : "Please choose a department."
+
                     );
 
                     return;
@@ -1311,17 +1412,51 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =========================
-                   PHONE CHECK
-                ========================= */
 
-                if (!validatePhone(true)) {
+                /* PHONE */
 
-                    currentStep = 2;
+                if (!iti) {
 
-                    showStep(2);
+                    alert(
+                        "Phone input failed to load."
+                    );
 
-                    updateProgress();
+                    return;
+
+                }
+
+
+                try {
+
+                    await iti.promise;
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Phone library error:",
+                        error
+                    );
+
+                }
+
+
+
+                if (!iti.isValidNumber()) {
+
+                    if (phoneError) {
+
+                        phoneError.style.display =
+                            "block";
+
+                        phoneError.textContent =
+                            translations[
+                                currentLanguage
+                            ].phoneError;
+
+                    }
+
 
                     phoneInput.focus();
 
@@ -1330,23 +1465,33 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                if (phoneError) {
+
+                    phoneError.style.display =
+                        "none";
+
+                }
+
+
+
                 /*
-                   Get full international number
+                    Get international number.
 
-                   Example:
+                    Example:
 
-                   +201012345678
+                    +201012345678
 
-                   +966501234567
+                    +447700900123
+
+                    +12025550123
                 */
 
-                const fullPhoneNumber =
+                const phone =
                     iti.getNumber();
 
 
-                /* =========================
-                   SUBMIT BUTTON
-                ========================= */
+
+                /* SUBMIT BUTTON */
 
                 const submitButton =
                     form.querySelector(
@@ -1371,17 +1516,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =========================
+
+                /* =================================================
                    FORM DATA
-                ========================= */
+                ================================================= */
 
                 const formData =
                     new FormData();
 
 
-                /* =========================
-                   WEB3FORMS
-                ========================= */
+
+                /* ACCESS KEY */
 
                 formData.append(
                     "access_key",
@@ -1389,9 +1534,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
-                   EMAIL SUBJECT
-                ========================= */
+
+                /* SUBJECT */
 
                 formData.append(
                     "subject",
@@ -1399,9 +1543,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
-                   BASIC INFORMATION
-                ========================= */
+
+                /* BASIC INFORMATION */
 
                 formData.append(
                     "Full Name",
@@ -1439,41 +1582,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
-                   WHATSAPP
-                ========================= */
-
                 formData.append(
                     "WhatsApp",
-                    fullPhoneNumber
+                    phone
                 );
 
 
-                /* =========================
-                   COUNTRY
-                ========================= */
+                /* COUNTRY */
 
                 const countryData =
                     iti.getSelectedCountryData();
 
 
-                formData.append(
-                    "Country",
-                    countryData.name || ""
-                );
+                if (countryData) {
+
+                    formData.append(
+                        "Phone Country",
+                        countryData.name
+                    );
 
 
-                formData.append(
-                    "Country Code",
-                    countryData.dialCode
-                        ? "+" + countryData.dialCode
-                        : ""
-                );
+                    formData.append(
+                        "Phone Country Code",
+                        countryData.iso2
+                    );
+
+                }
 
 
-                /* =========================
-                   DEPARTMENT
-                ========================= */
+                /* DEPARTMENT */
 
                 formData.append(
                     "Department",
@@ -1481,15 +1618,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
+
+                /* =================================================
                    MINI CHALLENGE
-                ========================= */
+                ================================================= */
 
                 const answerInputs =
                     questionsContainer
-                        ? questionsContainer.querySelectorAll(
-                            "textarea"
-                        )
+
+                        ? questionsContainer
+                            .querySelectorAll(
+                                "textarea"
+                            )
+
                         : [];
 
 
@@ -1513,6 +1654,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             index
                         ) {
 
+
                             const questionText =
                                 input.dataset.question ||
 
@@ -1523,6 +1665,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             const answerText =
                                 input.value.trim();
+
 
 
                             formData.append(
@@ -1542,9 +1685,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =========================
+
+                /* =================================================
                    FINAL QUESTIONS
-                ========================= */
+                ================================================= */
 
                 formData.append(
                     "Why do you want to join TOFU?",
@@ -1578,9 +1722,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
-                   APPLICATION LANGUAGE
-                ========================= */
+                /* APPLICATION LANGUAGE */
 
                 formData.append(
                     "Application Language",
@@ -1590,18 +1732,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                /* =========================
+
+                /* =================================================
                    SEND
-                ========================= */
+                ================================================= */
 
                 try {
+
 
                     const response =
                         await fetch(
                             "https://api.web3forms.com/submit",
                             {
+
                                 method: "POST",
+
                                 body: formData
+
                             }
                         );
 
@@ -1616,11 +1763,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    /* =========================
-                       SUCCESS
-                    ========================= */
+
+                    /* SUCCESS */
 
                     if (data.success) {
+
 
                         applicationScreen.classList.remove(
                             "active"
@@ -1633,16 +1780,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                         window.scrollTo({
+
                             top: 0,
+
                             behavior: "smooth"
+
                         });
 
                     }
 
 
-                    /* =========================
-                       ERROR
-                    ========================= */
+
+                    /* ERROR */
 
                     else {
 
@@ -1654,7 +1803,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
 
-                } catch (error) {
+                }
+
+
+                catch (error) {
+
 
                     console.error(
                         "TOFU APPLICATION ERROR:",
@@ -1695,6 +1848,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
+
 
 
     /* =====================================================
