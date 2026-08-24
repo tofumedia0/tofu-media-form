@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TOFU Media | Volunteer Application</title>
@@ -26,12 +27,24 @@
 
         <section class="screen active" id="welcomeScreen">
 
-            <button
-                type="button"
-                class="language-btn"
-                id="languageBtn">
-                العربية
-            </button>
+            <div class="top-controls">
+
+                <button
+                    type="button"
+                    class="language-btn"
+                    id="languageBtn">
+                    العربية
+                </button>
+
+                <button
+                    type="button"
+                    class="theme-btn"
+                    id="themeBtn"
+                    aria-label="Toggle dark mode">
+                    🌙
+                </button>
+
+            </div>
 
             <div class="welcome">
 
@@ -122,12 +135,23 @@
 
                 </div>
 
-                <button
-                    type="button"
-                    class="language-btn"
-                    id="languageBtn2">
-                    العربية
-                </button>
+                <div class="header-controls">
+
+                    <button
+                        type="button"
+                        class="language-btn"
+                        id="languageBtn2">
+                        العربية
+                    </button>
+
+                    <button
+                        type="button"
+                        class="theme-btn"
+                        id="themeBtn2">
+                        🌙
+                    </button>
+
+                </div>
 
             </div>
 
@@ -162,6 +186,7 @@
                         name="name"
                         data-placeholder="fullName"
                         placeholder="Your full name"
+                        autocomplete="name"
                         required
                     >
 
@@ -217,11 +242,18 @@
                                 type="number"
                                 id="age"
                                 name="age"
-                                min="13"
+                                min="11"
                                 max="30"
-                                placeholder="Your age"
+                                step="1"
+                                placeholder="11 - 30"
                                 required
                             >
+
+                            <small
+                                class="field-hint"
+                                data-i18n="ageHint">
+                                Applicants must be between 11 and 30 years old.
+                            </small>
 
                         </div>
 
@@ -238,6 +270,7 @@
                                 type="text"
                                 id="governorate"
                                 name="governorate"
+                                data-placeholder="governoratePlaceholder"
                                 placeholder="Cairo, Giza..."
                                 required
                             >
@@ -257,7 +290,9 @@
                         type="email"
                         id="email"
                         name="email"
+                        data-placeholder="emailPlaceholder"
                         placeholder="example@email.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -267,8 +302,6 @@
                         data-i18n="whatsapp">
                         WhatsApp Number
                     </label>
-
-                    <!-- PHONE -->
 
                     <input
                         type="tel"
@@ -578,6 +611,7 @@
                     <textarea
                         id="whyTofu"
                         name="whyTofu"
+                        data-placeholder="whyPlaceholder"
                         placeholder="Tell us why..."
                         required></textarea>
 
@@ -591,6 +625,7 @@
                     <textarea
                         id="contribution"
                         name="contribution"
+                        data-placeholder="contributionPlaceholder"
                         placeholder="Skills, ideas, experience..."
                         required></textarea>
 
@@ -698,8 +733,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/intlTelInput.min.js"></script>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=20"></script>
 
 </body>
-
 </html>
