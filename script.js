@@ -59,22 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const TOTAL_STEPS = 5;
 
-    /*
-     * =====================================================
-     * GOOGLE SHEETS URL
-     * =====================================================
-     *
-     * حطي هنا رابط الـ Web App اللي طلعلك من Google Apps Script.
-     *
-     * مثال:
-     *
-     * const GOOGLE_SHEETS_URL =
-     *     "https://script.google.com/macros/s/AKfycbw7OIowRUO5QtuSKXLx7tQcVEJqP5h5SU3GiNJT8fTYiRTp3rVDf5f0eLrxNmROdgus/exec";
-     *
-     */
+
+    /* =====================================================
+       GOOGLE SHEETS WEB APP
+    ===================================================== */
 
     const GOOGLE_SHEETS_URL =
-        "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+        "https://script.google.com/macros/s/AKfycbw7OIowRUO5QtuSKXLx7tQcVEJqP5h5SU3GiNJT8fTYiRTp3rVDf5f0eLrxNmROdgus/exec";
 
 
     /* =====================================================
@@ -823,18 +814,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 (TOTAL_STEPS - 1)) * 100;
 
 
-        progressBar.style.width =
-            percentage + "%";
+        if (progressBar) {
+            progressBar.style.width =
+                percentage + "%";
+        }
 
 
-        percentText.textContent =
-            Math.round(percentage) + "%";
+        if (percentText) {
+            percentText.textContent =
+                Math.round(percentage) + "%";
+        }
 
 
-        stepText.textContent =
-            currentLanguage === "ar"
-                ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
-                : `Step ${currentStep} of ${TOTAL_STEPS}`;
+        if (stepText) {
+            stepText.textContent =
+                currentLanguage === "ar"
+                    ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
+                    : `Step ${currentStep} of ${TOTAL_STEPS}`;
+        }
     }
 
 
@@ -866,8 +863,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (age < 11 || age > 30) {
 
-            ageError.textContent =
-                translations[currentLanguage].ageError;
+            if (ageError) {
+                ageError.textContent =
+                    translations[currentLanguage].ageError;
+            }
 
             ageInput.classList.add("invalid-field");
 
@@ -877,7 +876,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ageInput.setCustomValidity("");
 
-        ageError.textContent = "";
+        if (ageError) {
+            ageError.textContent = "";
+        }
 
         ageInput.classList.remove("invalid-field");
 
@@ -889,7 +890,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ageInput.addEventListener("input", function () {
 
-            ageError.textContent = "";
+            if (ageError) {
+                ageError.textContent = "";
+            }
 
             ageInput.classList.remove("invalid-field");
 
@@ -1109,11 +1112,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.dataset.department;
 
 
-            departmentInput.value =
-                selectedDepartment;
+            if (departmentInput) {
+                departmentInput.value =
+                    selectedDepartment;
+            }
 
 
-            departmentNext.disabled = false;
+            if (departmentNext) {
+                departmentNext.disabled = false;
+            }
 
 
             renderQuestions();
@@ -1238,7 +1245,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!validatePhone()) {
 
-                phoneInput.focus();
+                if (phoneInput) {
+                    phoneInput.focus();
+                }
 
                 return;
             }
@@ -1389,29 +1398,37 @@ document.addEventListener("DOMContentLoaded", function () {
                FINAL QUESTIONS
             ================================================= */
 
+            const whyTofuInput =
+                document.getElementById("whyTofu");
+
+            const contributionInput =
+                document.getElementById("contribution");
+
+            const hoursInput =
+                document.getElementById("hours");
+
+
             formData.append(
                 "Why do you want to join TOFU?",
-                document
-                    .getElementById("whyTofu")
-                    .value
-                    .trim()
+                whyTofuInput
+                    ? whyTofuInput.value.trim()
+                    : ""
             );
 
 
             formData.append(
                 "What can you add to TOFU?",
-                document
-                    .getElementById("contribution")
-                    .value
-                    .trim()
+                contributionInput
+                    ? contributionInput.value.trim()
+                    : ""
             );
 
 
             formData.append(
                 "Weekly Commitment",
-                document
-                    .getElementById("hours")
-                    .value
+                hoursInput
+                    ? hoursInput.value
+                    : ""
             );
 
 
@@ -1465,11 +1482,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 formData.forEach(function (value, key) {
 
-                    /*
-                     * Web3Forms has access_key and subject.
-                     * We don't need those inside the sheet.
-                     */
-
                     if (
                         key === "access_key" ||
                         key === "subject"
@@ -1477,11 +1489,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         return;
                     }
 
-
-                    /*
-                     * If a key already exists,
-                     * keep all values.
-                     */
 
                     if (sheetData[key] !== undefined) {
 
@@ -1506,25 +1513,19 @@ document.addEventListener("DOMContentLoaded", function () {
                    3. SEND TO GOOGLE SHEETS
                 --------------------------------------------- */
 
-                if (
-                    GOOGLE_SHEETS_URL &&
-                    !GOOGLE_SHEETS_URL.includes("PASTE_YOUR")
-                ) {
-
-                    await fetch(
-                        GOOGLE_SHEETS_URL,
-                        {
-                            method: "POST",
-                            mode: "no-cors",
-                            headers: {
-                                "Content-Type":
-                                    "text/plain;charset=utf-8"
-                            },
-                            body:
-                                JSON.stringify(sheetData)
-                        }
-                    );
-                }
+                await fetch(
+                    GOOGLE_SHEETS_URL,
+                    {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+                        },
+                        body:
+                            JSON.stringify(sheetData)
+                    }
+                );
 
 
                 /* ---------------------------------------------
