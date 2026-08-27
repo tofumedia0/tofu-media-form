@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const backBtn = document.getElementById("backBtn");
 
     const form = document.getElementById("applicationForm");
-
     const steps = document.querySelectorAll(".step");
 
     const progressBar = document.getElementById("progressBar");
@@ -59,6 +58,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedDepartment = "";
 
     const TOTAL_STEPS = 5;
+
+    /*
+     * =====================================================
+     * GOOGLE SHEETS URL
+     * =====================================================
+     *
+     * حطي هنا رابط الـ Web App اللي طلعلك من Google Apps Script.
+     *
+     * مثال:
+     *
+     * const GOOGLE_SHEETS_URL =
+     *     "https://script.google.com/macros/s/AKfycbw7OIowRUO5QtuSKXLx7tQcVEJqP5h5SU3GiNJT8fTYiRTp3rVDf5f0eLrxNmROdgus/exec";
+     *
+     */
+
+    const GOOGLE_SHEETS_URL =
+        "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
 
     /* =====================================================
@@ -658,6 +674,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key = element.dataset.i18n;
 
                 if (translations[lang][key]) {
+
                     element.innerHTML =
                         translations[lang][key];
                 }
@@ -671,6 +688,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const key = element.dataset.placeholder;
 
                 if (translations[lang][key]) {
+
                     element.placeholder =
                         translations[lang][key];
                 }
@@ -691,12 +709,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (phoneError && phoneError.textContent) {
+
             phoneError.textContent =
                 translations[lang].phoneError;
         }
 
 
         if (ageError && ageError.textContent) {
+
             ageError.textContent =
                 translations[lang].ageError;
         }
@@ -786,6 +806,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (target) {
+
             target.classList.add("active");
         }
     }
@@ -827,6 +848,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const age =
             Number(ageInput.value);
+
 
         if (!ageInput.value.trim()) {
 
@@ -1109,8 +1131,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!questionsContainer) return;
 
+
         if (!selectedDepartment) {
+
             questionsContainer.innerHTML = "";
+
             return;
         }
 
@@ -1243,13 +1268,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+            /* =================================================
+               WEB3FORMS DATA
+            ================================================= */
+
             const formData = new FormData();
 
-
-            /*
-                IMPORTANT:
-                Keep your Web3Forms access key here.
-            */
 
             formData.append(
                 "access_key",
@@ -1319,7 +1343,9 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            /* QUESTIONS */
+            /* =================================================
+               QUESTIONS
+            ================================================= */
 
             const answerInputs =
                 questionsContainer
@@ -1359,7 +1385,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            /* FINAL */
+            /* =================================================
+               FINAL QUESTIONS
+            ================================================= */
 
             formData.append(
                 "Why do you want to join TOFU?",
@@ -1395,9 +1423,15 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            /* SEND */
+            /* =================================================
+               SEND
+            ================================================= */
 
             try {
+
+                /* ---------------------------------------------
+                   1. SEND TO WEB3FORMS
+                --------------------------------------------- */
 
                 const response =
                     await fetch(
@@ -1413,24 +1447,98 @@ document.addEventListener("DOMContentLoaded", function () {
                     await response.json();
 
 
-                if (data.success) {
-
-                    applicationScreen.classList.remove("active");
-
-                    successScreen.classList.add("active");
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-                } else {
+                if (!data.success) {
 
                     throw new Error(
                         data.message ||
-                        "Submission failed"
+                        "Web3Forms submission failed"
                     );
                 }
+
+
+                /* ---------------------------------------------
+                   2. PREPARE GOOGLE SHEETS DATA
+                --------------------------------------------- */
+
+                const sheetData = {};
+
+
+                formData.forEach(function (value, key) {
+
+                    /*
+                     * Web3Forms has access_key and subject.
+                     * We don't need those inside the sheet.
+                     */
+
+                    if (
+                        key === "access_key" ||
+                        key === "subject"
+                    ) {
+                        return;
+                    }
+
+
+                    /*
+                     * If a key already exists,
+                     * keep all values.
+                     */
+
+                    if (sheetData[key] !== undefined) {
+
+                        if (!Array.isArray(sheetData[key])) {
+
+                            sheetData[key] = [
+                                sheetData[key]
+                            ];
+                        }
+
+                        sheetData[key].push(value);
+
+                    } else {
+
+                        sheetData[key] = value;
+                    }
+
+                });
+
+
+                /* ---------------------------------------------
+                   3. SEND TO GOOGLE SHEETS
+                --------------------------------------------- */
+
+                if (
+                    GOOGLE_SHEETS_URL &&
+                    !GOOGLE_SHEETS_URL.includes("PASTE_YOUR")
+                ) {
+
+                    await fetch(
+                        GOOGLE_SHEETS_URL,
+                        {
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: {
+                                "Content-Type":
+                                    "text/plain;charset=utf-8"
+                            },
+                            body:
+                                JSON.stringify(sheetData)
+                        }
+                    );
+                }
+
+
+                /* ---------------------------------------------
+                   SUCCESS
+                --------------------------------------------- */
+
+                applicationScreen.classList.remove("active");
+
+                successScreen.classList.add("active");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
 
             } catch (error) {
@@ -1442,7 +1550,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 alert(
-                    translations[currentLanguage].submitError
+                    translations[currentLanguage]
+                        .submitError
                 );
 
 
@@ -1451,7 +1560,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     submitButton.disabled = false;
 
                     submitButton.innerHTML =
-                        translations[currentLanguage].submitAgain;
+                        translations[currentLanguage]
+                            .submitAgain;
                 }
             }
 
