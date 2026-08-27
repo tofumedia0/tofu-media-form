@@ -1,4 +1,3 @@
-```javascript
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
@@ -60,10 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const TOTAL_STEPS = 5;
 
-
-    /* =====================================================
-       GOOGLE SHEETS WEB APP
-    ===================================================== */
+    /*
+     * =====================================================
+     * GOOGLE SHEETS URL
+     * =====================================================
+     *
+     * حطي هنا رابط الـ Web App اللي طلعلك من Google Apps Script.
+     *
+     * مثال:
+     *
+     * const GOOGLE_SHEETS_URL =
+     *     "https://script.google.com/macros/s/AKfycbw7OIowRUO5QtuSKXLx7tQcVEJqP5h5SU3GiNJT8fTYiRTp3rVDf5f0eLrxNmROdgus/exec";
+     *
+     */
 
     const GOOGLE_SHEETS_URL =
         "https://script.google.com/macros/s/AKfycbw7OIowRUO5QtuSKXLx7tQcVEJqP5h5SU3GiNJT8fTYiRTp3rVDf5f0eLrxNmROdgus/exec";
@@ -104,9 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    applyTheme(
-        localStorage.getItem("tofuTheme") || "light"
-    );
+    const savedTheme =
+        localStorage.getItem("tofuTheme") || "light";
+
+    applyTheme(savedTheme);
 
 
     function toggleTheme() {
@@ -114,9 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const isDark =
             document.body.classList.contains("dark");
 
-        applyTheme(
-            isDark ? "light" : "dark"
-        );
+        applyTheme(isDark ? "light" : "dark");
     }
 
 
@@ -137,32 +144,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (phoneInput && window.intlTelInput) {
 
-        iti = window.intlTelInput(
-            phoneInput,
-            {
-                initialCountry: "eg",
+        iti = window.intlTelInput(phoneInput, {
 
-                separateDialCode: true,
+            initialCountry: "eg",
 
-                nationalMode: true,
+            separateDialCode: true,
 
-                preferredCountries: [
-                    "eg",
-                    "sa",
-                    "ae",
-                    "jo",
-                    "kw",
-                    "qa",
-                    "gb",
-                    "us"
-                ],
+            nationalMode: true,
 
-                loadUtils: () =>
-                    import(
-                        "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/utils.js"
-                    )
-            }
-        );
+            preferredCountries: [
+                "eg",
+                "sa",
+                "ae",
+                "jo",
+                "kw",
+                "qa",
+                "gb",
+                "us"
+            ],
+
+            loadUtils: () =>
+                import(
+                    "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/utils.js"
+                )
+        });
     }
 
 
@@ -174,7 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         en: {
 
-            season: "TOFU MEDIA — SEASON 2",
+            season:
+                "TOFU MEDIA — SEASON 2",
 
             welcomeTitle:
                 `Let's make<br><span>opportunities happen.</span>`,
@@ -182,7 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
             welcomeText:
                 "Help us connect young people with scholarships, free courses, competitions, events and opportunities.",
 
-            start: "Start Application",
+            start:
+                "Start Application",
 
             hint:
                 "It only takes a few minutes.",
@@ -208,12 +215,14 @@ document.addEventListener("DOMContentLoaded", function () {
             aboutDescription:
                 "These details help us understand our applicants better.",
 
-            age: "Age",
+            age:
+                "Age",
 
             governorate:
                 "Governorate",
 
-            email: "Email",
+            email:
+                "Email",
 
             whatsapp:
                 "WhatsApp Number",
@@ -687,9 +696,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const buttonText =
-            lang === "en"
-                ? "العربية"
-                : "English";
+            lang === "en" ? "العربية" : "English";
 
 
         if (languageBtn) {
@@ -716,7 +723,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         renderQuestions();
-
         updateProgress();
     }
 
@@ -727,33 +733,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (languageBtn) {
 
-        languageBtn.addEventListener(
-            "click",
-            function () {
+        languageBtn.addEventListener("click", function () {
 
-                changeLanguage(
-                    currentLanguage === "en"
-                        ? "ar"
-                        : "en"
-                );
-            }
-        );
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
+
+        });
     }
 
 
     if (languageBtn2) {
 
-        languageBtn2.addEventListener(
-            "click",
-            function () {
+        languageBtn2.addEventListener("click", function () {
 
-                changeLanguage(
-                    currentLanguage === "en"
-                        ? "ar"
-                        : "en"
-                );
-            }
-        );
+            changeLanguage(
+                currentLanguage === "en"
+                    ? "ar"
+                    : "en"
+            );
+
+        });
     }
 
 
@@ -763,26 +765,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (startBtn) {
 
-        startBtn.addEventListener(
-            "click",
-            function () {
+        startBtn.addEventListener("click", function () {
 
-                welcomeScreen.classList.remove("active");
+            welcomeScreen.classList.remove("active");
 
-                applicationScreen.classList.add("active");
+            applicationScreen.classList.add("active");
 
-                currentStep = 1;
+            currentStep = 1;
 
-                showStep(1);
+            showStep(1);
 
-                updateProgress();
+            updateProgress();
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-        );
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
     }
 
 
@@ -823,27 +823,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 (TOTAL_STEPS - 1)) * 100;
 
 
-        if (progressBar) {
-
-            progressBar.style.width =
-                percentage + "%";
-        }
+        progressBar.style.width =
+            percentage + "%";
 
 
-        if (percentText) {
-
-            percentText.textContent =
-                Math.round(percentage) + "%";
-        }
+        percentText.textContent =
+            Math.round(percentage) + "%";
 
 
-        if (stepText) {
-
-            stepText.textContent =
-                currentLanguage === "ar"
-                    ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
-                    : `Step ${currentStep} of ${TOTAL_STEPS}`;
-        }
+        stepText.textContent =
+            currentLanguage === "ar"
+                ? `الخطوة ${currentStep} من ${TOTAL_STEPS}`
+                : `Step ${currentStep} of ${TOTAL_STEPS}`;
     }
 
 
@@ -875,16 +866,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (age < 11 || age > 30) {
 
-            if (ageError) {
+            ageError.textContent =
+                translations[currentLanguage].ageError;
 
-                ageError.textContent =
-                    translations[currentLanguage]
-                        .ageError;
-            }
-
-            ageInput.classList.add(
-                "invalid-field"
-            );
+            ageInput.classList.add("invalid-field");
 
             return false;
         }
@@ -892,16 +877,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ageInput.setCustomValidity("");
 
+        ageError.textContent = "";
 
-        if (ageError) {
-
-            ageError.textContent = "";
-        }
-
-
-        ageInput.classList.remove(
-            "invalid-field"
-        );
+        ageInput.classList.remove("invalid-field");
 
         return true;
     }
@@ -909,21 +887,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (ageInput) {
 
-        ageInput.addEventListener(
-            "input",
-            function () {
+        ageInput.addEventListener("input", function () {
 
-                if (ageError) {
-                    ageError.textContent = "";
-                }
+            ageError.textContent = "";
 
-                ageInput.classList.remove(
-                    "invalid-field"
-                );
+            ageInput.classList.remove("invalid-field");
 
-                ageInput.setCustomValidity("");
-            }
-        );
+            ageInput.setCustomValidity("");
+
+        });
     }
 
 
@@ -939,12 +911,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!phoneInput.value.trim()) {
 
             phoneError.textContent =
-                translations[currentLanguage]
-                    .phoneError;
+                translations[currentLanguage].phoneError;
 
-            phoneInput.classList.add(
-                "phone-invalid"
-            );
+            phoneInput.classList.add("phone-invalid");
 
             return false;
         }
@@ -953,12 +922,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!iti.isValidNumber()) {
 
             phoneError.textContent =
-                translations[currentLanguage]
-                    .phoneError;
+                translations[currentLanguage].phoneError;
 
-            phoneInput.classList.add(
-                "phone-invalid"
-            );
+            phoneInput.classList.add("phone-invalid");
 
             return false;
         }
@@ -966,9 +932,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         phoneError.textContent = "";
 
-        phoneInput.classList.remove(
-            "phone-invalid"
-        );
+        phoneInput.classList.remove("phone-invalid");
 
         return true;
     }
@@ -976,17 +940,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (phoneInput) {
 
-        phoneInput.addEventListener(
-            "input",
-            function () {
+        phoneInput.addEventListener("input", function () {
 
-                phoneError.textContent = "";
+            phoneError.textContent = "";
 
-                phoneInput.classList.remove(
-                    "phone-invalid"
-                );
-            }
-        );
+            phoneInput.classList.remove("phone-invalid");
+
+        });
     }
 
 
@@ -1049,68 +1009,36 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelectorAll(".next-btn")
         .forEach(function (button) {
 
-            button.addEventListener(
-                "click",
-                function () {
+            button.addEventListener("click", function () {
 
-                    const current =
-                        document.querySelector(
-                            `.step[data-step="${currentStep}"]`
-                        );
+                const current =
+                    document.querySelector(
+                        `.step[data-step="${currentStep}"]`
+                    );
 
 
-                    if (!validateStep(current)) {
-                        return;
-                    }
-
-
-                    if (
-                        currentStep === 3 &&
-                        !selectedDepartment
-                    ) {
-
-                        alert(
-                            translations[currentLanguage]
-                                .chooseDepartmentError
-                        );
-
-                        return;
-                    }
-
-
-                    if (
-                        currentStep < TOTAL_STEPS
-                    ) {
-
-                        currentStep++;
-
-                        showStep(currentStep);
-
-                        updateProgress();
-
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "smooth"
-                        });
-                    }
+                if (!validateStep(current)) {
+                    return;
                 }
-            );
-        });
 
 
-    /* =====================================================
-       BACK
-    ===================================================== */
+                if (
+                    currentStep === 3 &&
+                    !selectedDepartment
+                ) {
 
-    if (backBtn) {
+                    alert(
+                        translations[currentLanguage]
+                            .chooseDepartmentError
+                    );
 
-        backBtn.addEventListener(
-            "click",
-            function () {
+                    return;
+                }
 
-                if (currentStep > 1) {
 
-                    currentStep--;
+                if (currentStep < TOTAL_STEPS) {
+
+                    currentStep++;
 
                     showStep(currentStep);
 
@@ -1120,19 +1048,42 @@ document.addEventListener("DOMContentLoaded", function () {
                         top: 0,
                         behavior: "smooth"
                     });
-
-                } else {
-
-                    applicationScreen
-                        .classList
-                        .remove("active");
-
-                    welcomeScreen
-                        .classList
-                        .add("active");
                 }
+
+            });
+
+        });
+
+
+    /* =====================================================
+       BACK
+    ===================================================== */
+
+    if (backBtn) {
+
+        backBtn.addEventListener("click", function () {
+
+            if (currentStep > 1) {
+
+                currentStep--;
+
+                showStep(currentStep);
+
+                updateProgress();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            } else {
+
+                applicationScreen.classList.remove("active");
+
+                welcomeScreen.classList.add("active");
             }
-        );
+
+        });
     }
 
 
@@ -1140,51 +1091,36 @@ document.addEventListener("DOMContentLoaded", function () {
        DEPARTMENT
     ===================================================== */
 
-    departmentCards.forEach(
-        function (card) {
+    departmentCards.forEach(function (card) {
 
-            card.addEventListener(
-                "click",
-                function () {
+        card.addEventListener("click", function () {
 
-                    departmentCards.forEach(
-                        function (item) {
+            departmentCards.forEach(function (item) {
 
-                            item.classList.remove(
-                                "selected"
-                            );
-                        }
-                    );
+                item.classList.remove("selected");
+
+            });
 
 
-                    card.classList.add(
-                        "selected"
-                    );
+            card.classList.add("selected");
 
 
-                    selectedDepartment =
-                        card.dataset.department;
+            selectedDepartment =
+                card.dataset.department;
 
 
-                    if (departmentInput) {
-
-                        departmentInput.value =
-                            selectedDepartment;
-                    }
+            departmentInput.value =
+                selectedDepartment;
 
 
-                    if (departmentNext) {
-
-                        departmentNext.disabled =
-                            false;
-                    }
+            departmentNext.disabled = false;
 
 
-                    renderQuestions();
-                }
-            );
-        }
-    );
+            renderQuestions();
+
+        });
+
+    });
 
 
     /* =====================================================
@@ -1212,65 +1148,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const currentQuestions =
-            departmentQuestions[
-                currentLanguage
-            ];
+            departmentQuestions[currentLanguage];
 
 
         questionsContainer.innerHTML = "";
 
 
-        currentQuestions.forEach(
-            function (question, index) {
+        currentQuestions.forEach(function (question, index) {
 
-                const wrapper =
-                    document.createElement("div");
+            const wrapper =
+                document.createElement("div");
 
-                wrapper.className =
-                    "question";
+            wrapper.className = "question";
 
 
-                const label =
-                    document.createElement("label");
+            const label =
+                document.createElement("label");
 
-                label.className =
-                    "question-title";
-
-
-                label.innerHTML = `
-                    <span class="question-number">
-                        ${index + 1}
-                    </span>
-                    ${question}
-                `;
+            label.className = "question-title";
 
 
-                const textarea =
-                    document.createElement("textarea");
-
-                textarea.required = true;
-
-                textarea.name =
-                    `challenge_${index + 1}`;
-
-                textarea.dataset.question =
-                    question;
-
-                textarea.placeholder =
-                    currentLanguage === "ar"
-                        ? "اكتب إجابتك هنا..."
-                        : "Write your answer here...";
+            label.innerHTML = `
+                <span class="question-number">
+                    ${index + 1}
+                </span>
+                ${question}
+            `;
 
 
-                wrapper.appendChild(label);
+            const textarea =
+                document.createElement("textarea");
 
-                wrapper.appendChild(textarea);
+            textarea.required = true;
 
-                questionsContainer.appendChild(
-                    wrapper
-                );
-            }
-        );
+            textarea.name =
+                `challenge_${index + 1}`;
+
+            textarea.dataset.question =
+                question;
+
+            textarea.placeholder =
+                currentLanguage === "ar"
+                    ? "اكتب إجابتك هنا..."
+                    : "Write your answer here...";
+
+
+            wrapper.appendChild(label);
+
+            wrapper.appendChild(textarea);
+
+            questionsContainer.appendChild(wrapper);
+
+        });
     }
 
 
@@ -1280,422 +1209,363 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
 
-        form.addEventListener(
-            "submit",
-            async function (event) {
+        form.addEventListener("submit", async function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
 
-                const lastStep =
-                    document.querySelector(
-                        `.step[data-step="${TOTAL_STEPS}"]`
+            const lastStep =
+                document.querySelector(
+                    `.step[data-step="${TOTAL_STEPS}"]`
+                );
+
+
+            if (!validateStep(lastStep)) {
+                return;
+            }
+
+
+            if (!selectedDepartment) {
+
+                alert(
+                    translations[currentLanguage]
+                        .chooseDepartmentError
+                );
+
+                return;
+            }
+
+
+            if (!validatePhone()) {
+
+                phoneInput.focus();
+
+                return;
+            }
+
+
+            if (!validateAge()) {
+                return;
+            }
+
+
+            const internationalPhone =
+                iti
+                    ? iti.getNumber()
+                    : phoneInput.value.trim();
+
+
+            const submitButton =
+                form.querySelector(".submit-btn");
+
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.innerHTML =
+                    translations[currentLanguage].sending;
+            }
+
+
+            /* =================================================
+               WEB3FORMS DATA
+            ================================================= */
+
+            const formData = new FormData();
+
+
+            formData.append(
+                "access_key",
+                "4579e504-4006-4d59-99fb-ff7ff12f1fc1"
+            );
+
+
+            formData.append(
+                "subject",
+                `TOFU Media — New ${selectedDepartment} Application`
+            );
+
+
+            formData.append(
+                "Full Name",
+                document
+                    .getElementById("name")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Age",
+                document
+                    .getElementById("age")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Governorate",
+                document
+                    .getElementById("governorate")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Email",
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "WhatsApp",
+                internationalPhone
+            );
+
+
+            formData.append(
+                "Country",
+                iti
+                    ? iti.getSelectedCountryData().name
+                    : ""
+            );
+
+
+            formData.append(
+                "Department",
+                selectedDepartment
+            );
+
+
+            /* =================================================
+               QUESTIONS
+            ================================================= */
+
+            const answerInputs =
+                questionsContainer
+                    ? questionsContainer.querySelectorAll("textarea")
+                    : [];
+
+
+            const departmentQuestions =
+                questions[selectedDepartment];
+
+
+            if (departmentQuestions) {
+
+                const displayedQuestions =
+                    departmentQuestions[currentLanguage];
+
+
+                answerInputs.forEach(function (input, index) {
+
+                    const questionText =
+                        input.dataset.question ||
+                        displayedQuestions[index];
+
+
+                    formData.append(
+                        `Question ${index + 1}`,
+                        questionText
                     );
 
 
-                if (!validateStep(lastStep)) {
-                    return;
-                }
-
-
-                if (!selectedDepartment) {
-
-                    alert(
-                        translations[currentLanguage]
-                            .chooseDepartmentError
+                    formData.append(
+                        `Answer ${index + 1}`,
+                        input.value.trim()
                     );
 
-                    return;
-                }
-
-
-                if (!validatePhone()) {
-
-                    if (phoneInput) {
-                        phoneInput.focus();
-                    }
-
-                    return;
-                }
-
-
-                if (!validateAge()) {
-                    return;
-                }
-
-
-                const internationalPhone =
-                    iti
-                        ? iti.getNumber()
-                        : phoneInput.value.trim();
-
-
-                const submitButton =
-                    form.querySelector(
-                        ".submit-btn"
-                    );
-
-
-                if (submitButton) {
-
-                    submitButton.disabled = true;
-
-                    submitButton.innerHTML =
-                        translations[
-                            currentLanguage
-                        ].sending;
-                }
-
-
-                /* =================================================
-                   WEB3FORMS DATA
-                ================================================= */
-
-                const formData =
-                    new FormData();
-
-
-                formData.append(
-                    "access_key",
-                    "4579e504-4006-4d59-99fb-ff7ff12f1fc1"
-                );
-
-
-                formData.append(
-                    "subject",
-                    `TOFU Media — New ${selectedDepartment} Application`
-                );
-
-
-                formData.append(
-                    "Full Name",
-                    document
-                        .getElementById("name")
-                        .value
-                        .trim()
-                );
-
-
-                formData.append(
-                    "Age",
-                    document
-                        .getElementById("age")
-                        .value
-                        .trim()
-                );
-
-
-                formData.append(
-                    "Governorate",
-                    document
-                        .getElementById("governorate")
-                        .value
-                        .trim()
-                );
-
-
-                formData.append(
-                    "Email",
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim()
-                );
-
-
-                formData.append(
-                    "WhatsApp",
-                    internationalPhone
-                );
-
-
-                formData.append(
-                    "Country",
-                    iti
-                        ? iti
-                            .getSelectedCountryData()
-                            .name
-                        : ""
-                );
-
-
-                formData.append(
-                    "Department",
-                    selectedDepartment
-                );
-
-
-                /* =================================================
-                   DEPARTMENT QUESTIONS
-                ================================================= */
-
-                const answerInputs =
-                    questionsContainer
-                        ? questionsContainer
-                            .querySelectorAll(
-                                "textarea"
-                            )
-                        : [];
-
-
-                const departmentQuestions =
-                    questions[
-                        selectedDepartment
-                    ];
-
-
-                if (departmentQuestions) {
-
-                    const displayedQuestions =
-                        departmentQuestions[
-                            currentLanguage
-                        ];
-
-
-                    answerInputs.forEach(
-                        function (
-                            input,
-                            index
-                        ) {
-
-                            const questionText =
-                                input.dataset.question ||
-                                displayedQuestions[index];
-
-
-                            formData.append(
-                                `Question ${index + 1}`,
-                                questionText
-                            );
-
-
-                            formData.append(
-                                `Answer ${index + 1}`,
-                                input.value.trim()
-                            );
-                        }
-                    );
-                }
-
-
-                /* =================================================
-                   FINAL QUESTIONS
-                ================================================= */
-
-                const whyTofu =
-                    document.getElementById(
-                        "whyTofu"
-                    );
-
-                const contribution =
-                    document.getElementById(
-                        "contribution"
-                    );
-
-                const hours =
-                    document.getElementById(
-                        "hours"
-                    );
-
-
-                formData.append(
-                    "Why do you want to join TOFU?",
-                    whyTofu
-                        ? whyTofu.value.trim()
-                        : ""
-                );
-
-
-                formData.append(
-                    "What can you add to TOFU?",
-                    contribution
-                        ? contribution.value.trim()
-                        : ""
-                );
-
-
-                formData.append(
-                    "Weekly Commitment",
-                    hours
-                        ? hours.value
-                        : ""
-                );
-
-
-                formData.append(
-                    "Application Language",
-                    currentLanguage === "ar"
-                        ? "Arabic"
-                        : "English"
-                );
-
-
-                /* =================================================
-                   SEND
-                ================================================= */
-
-                try {
-
-                    /* ---------------------------------------------
-                       1. WEB3FORMS
-                    --------------------------------------------- */
-
-                    const response =
-                        await fetch(
-                            "https://api.web3forms.com/submit",
-                            {
-                                method: "POST",
-                                body: formData
-                            }
-                        );
-
-
-                    const data =
-                        await response.json();
-
-
-                    if (!data.success) {
-
-                        throw new Error(
-                            data.message ||
-                            "Web3Forms submission failed"
-                        );
-                    }
-
-
-                    /* ---------------------------------------------
-                       2. PREPARE GOOGLE SHEETS DATA
-                    --------------------------------------------- */
-
-                    const sheetData = {};
-
-
-                    formData.forEach(
-                        function (
-                            value,
-                            key
-                        ) {
-
-                            if (
-                                key === "access_key" ||
-                                key === "subject"
-                            ) {
-                                return;
-                            }
-
-
-                            if (
-                                sheetData[key] !==
-                                undefined
-                            ) {
-
-                                if (
-                                    !Array.isArray(
-                                        sheetData[key]
-                                    )
-                                ) {
-
-                                    sheetData[key] = [
-                                        sheetData[key]
-                                    ];
-                                }
-
-
-                                sheetData[key].push(
-                                    value
-                                );
-
-                            } else {
-
-                                sheetData[key] =
-                                    value;
-                            }
+                });
+            }
+
+
+            /* =================================================
+               FINAL QUESTIONS
+            ================================================= */
+
+            formData.append(
+                "Why do you want to join TOFU?",
+                document
+                    .getElementById("whyTofu")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "What can you add to TOFU?",
+                document
+                    .getElementById("contribution")
+                    .value
+                    .trim()
+            );
+
+
+            formData.append(
+                "Weekly Commitment",
+                document
+                    .getElementById("hours")
+                    .value
+            );
+
+
+            formData.append(
+                "Application Language",
+                currentLanguage === "ar"
+                    ? "Arabic"
+                    : "English"
+            );
+
+
+            /* =================================================
+               SEND
+            ================================================= */
+
+            try {
+
+                /* ---------------------------------------------
+                   1. SEND TO WEB3FORMS
+                --------------------------------------------- */
+
+                const response =
+                    await fetch(
+                        "https://api.web3forms.com/submit",
+                        {
+                            method: "POST",
+                            body: formData
                         }
                     );
 
 
-                    /* ---------------------------------------------
-                       3. GOOGLE SHEETS
-                       Do NOT await this request.
-                    --------------------------------------------- */
+                const data =
+                    await response.json();
 
-                    fetch(
+
+                if (!data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "Web3Forms submission failed"
+                    );
+                }
+
+
+                /* ---------------------------------------------
+                   2. PREPARE GOOGLE SHEETS DATA
+                --------------------------------------------- */
+
+                const sheetData = {};
+
+
+                formData.forEach(function (value, key) {
+
+                    /*
+                     * Web3Forms has access_key and subject.
+                     * We don't need those inside the sheet.
+                     */
+
+                    if (
+                        key === "access_key" ||
+                        key === "subject"
+                    ) {
+                        return;
+                    }
+
+
+                    /*
+                     * If a key already exists,
+                     * keep all values.
+                     */
+
+                    if (sheetData[key] !== undefined) {
+
+                        if (!Array.isArray(sheetData[key])) {
+
+                            sheetData[key] = [
+                                sheetData[key]
+                            ];
+                        }
+
+                        sheetData[key].push(value);
+
+                    } else {
+
+                        sheetData[key] = value;
+                    }
+
+                });
+
+
+                /* ---------------------------------------------
+                   3. SEND TO GOOGLE SHEETS
+                --------------------------------------------- */
+
+                if (
+                    GOOGLE_SHEETS_URL &&
+                    !GOOGLE_SHEETS_URL.includes("PASTE_YOUR")
+                ) {
+
+                    await fetch(
                         GOOGLE_SHEETS_URL,
                         {
                             method: "POST",
-
                             mode: "no-cors",
-
                             headers: {
                                 "Content-Type":
                                     "text/plain;charset=utf-8"
                             },
-
                             body:
-                                JSON.stringify(
-                                    sheetData
-                                )
-                        }
-                    ).catch(
-                        function (error) {
-
-                            console.error(
-                                "Google Sheets Error:",
-                                error
-                            );
+                                JSON.stringify(sheetData)
                         }
                     );
-
-
-                    /* ---------------------------------------------
-                       4. SUCCESS
-                    --------------------------------------------- */
-
-                    applicationScreen
-                        .classList
-                        .remove("active");
-
-
-                    successScreen
-                        .classList
-                        .add("active");
-
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-
-                } catch (error) {
-
-                    console.error(
-                        "TOFU APPLICATION ERROR:",
-                        error
-                    );
-
-
-                    alert(
-                        translations[
-                            currentLanguage
-                        ].submitError
-                    );
-
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            false;
-
-                        submitButton.innerHTML =
-                            translations[
-                                currentLanguage
-                            ].submitAgain;
-                    }
                 }
 
+
+                /* ---------------------------------------------
+                   SUCCESS
+                --------------------------------------------- */
+
+                applicationScreen.classList.remove("active");
+
+                successScreen.classList.add("active");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+
+            } catch (error) {
+
+                console.error(
+                    "TOFU APPLICATION ERROR:",
+                    error
+                );
+
+
+                alert(
+                    translations[currentLanguage]
+                        .submitError
+                );
+
+
+                if (submitButton) {
+
+                    submitButton.disabled = false;
+
+                    submitButton.innerHTML =
+                        translations[currentLanguage]
+                            .submitAgain;
+                }
             }
-        );
+
+        });
     }
 
 
@@ -1710,4 +1580,3 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProgress();
 
 });
-```
