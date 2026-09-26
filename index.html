@@ -229,6 +229,18 @@
                     </div>
 
 
+                    <label for="school" data-i18n="school">
+                        School Name
+                    </label>
+
+                    <input type="text"
+                        id="school"
+                        name="school"
+                        data-placeholder="schoolPlaceholder"
+                        placeholder="Your school name"
+                        required>
+
+
                     <label for="email" data-i18n="email">
                         Email
                     </label>
@@ -272,16 +284,16 @@
 
                 <div class="step" data-step="3">
 
-                    <p class="section-label" data-i18n="chooseDepartment">
-                        CHOOSE YOUR DEPARTMENT
+                    <p class="section-label" data-i18n="chooseCommittee">
+                        CHOOSE YOUR COMMITTEE
                     </p>
 
-                    <h2 data-i18n="departmentTitle">
-                        Where do you see yourself? 🎯
+                    <h2 data-i18n="committeeTitle">
+                        Which committee do you want to join? 🎯
                     </h2>
 
-                    <p class="description" data-i18n="departmentDescription">
-                        Choose the field that best matches your skills and interests.
+                    <p class="description" data-i18n="committeeDescription">
+                        Choose the committee that best matches your skills and interests.
                     </p>
 
 
@@ -419,6 +431,36 @@
 
                         </button>
 
+                        <button type="button"
+                            class="department"
+                            data-department="Technology">
+                            <span>💻</span>
+                            <div>
+                                <strong data-i18n="technology">Technology</strong>
+                                <small data-i18n="technologySmall">Build and improve with technology</small>
+                            </div>
+                        </button>
+
+                        <button type="button"
+                            class="department"
+                            data-department="Social Media">
+                            <span>📱</span>
+                            <div>
+                                <strong data-i18n="socialMedia">Social Media</strong>
+                                <small data-i18n="socialMediaSmall">Create and grow TOFU online</small>
+                            </div>
+                        </button>
+
+                        <button type="button"
+                            class="department"
+                            data-department="Organization">
+                            <span>🎯</span>
+                            <div>
+                                <strong data-i18n="organization">Organization</strong>
+                                <small data-i18n="organizationSmall">Plan and organize activities</small>
+                            </div>
+                        </button>
+
                     </div>
 
 
@@ -511,6 +553,28 @@
                     <textarea id="contribution"
                         name="contribution"
                         placeholder="Skills, ideas, experience..."
+                        required></textarea>
+
+
+                    <label for="skills" data-i18n="skills">
+                        What are your skills?
+                    </label>
+
+                    <textarea id="skills"
+                        name="skills"
+                        data-placeholder="skillsPlaceholder"
+                        placeholder="Tell us about your skills..."
+                        required></textarea>
+
+
+                    <label for="howHeard" data-i18n="howHeard">
+                        How did you hear about TOFU Media?
+                    </label>
+
+                    <textarea id="howHeard"
+                        name="howHeard"
+                        data-placeholder="howHeardPlaceholder"
+                        placeholder="Tell us how you found out about TOFU Media..."
                         required></textarea>
 
 
@@ -610,7 +674,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.2/build/js/intlTelInput.min.js"></script>
 
-    <script src="script.js?v=20"></script>
+    <script src="script.js?v=21"></script>
 
 </body>
 
