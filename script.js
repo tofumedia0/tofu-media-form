@@ -303,7 +303,6 @@ const departmentQuestions = {
             "How would you make sure an opportunity is trustworthy?",
             "What would you do if you found conflicting information about an opportunity?"
         ],
-
         ar: [
             "هتدور إزاي على منحة أو فرصة مفيدة لطلاب TOFU؟",
             "إيه المعلومات اللي هتتأكد منها قبل ما تنشر أي فرصة؟",
@@ -319,7 +318,6 @@ const departmentQuestions = {
             "What makes a social media caption interesting?",
             "How would you turn information into useful content for students?"
         ],
-
         ar: [
             "اكتب Hook قصير لمنشور عن منحة على TOFU.",
             "هتشرح إزاي فرصة معقدة بطريقة بسيطة؟",
@@ -335,7 +333,6 @@ const departmentQuestions = {
             "What type of content do you think attracts young people?",
             "How would you promote an opportunity with a small audience?"
         ],
-
         ar: [
             "ادينا 3 أفكار لترويج فرصة على TOFU.",
             "إزاي توصل لطلاب لسه مايعرفوش TOFU؟",
@@ -351,7 +348,6 @@ const departmentQuestions = {
             "What information should be easy to notice in an opportunity design?",
             "What design tools do you know or want to learn?"
         ],
-
         ar: [
             "إيه اللي يخلي تصميم السوشيال ميديا جذاب؟",
             "هتعمل تصميم إزاي لمنحة موجهة للطلاب؟",
@@ -367,7 +363,6 @@ const departmentQuestions = {
             "How would you handle a member who is not participating?",
             "What would make you personally stay in an online community?"
         ],
-
         ar: [
             "إزاي تخلي Community بتاعة TOFU أكثر نشاطًا؟",
             "إيه الأنشطة اللي ممكن تساعد الأعضاء يتعرفوا على بعض؟",
@@ -383,7 +378,6 @@ const departmentQuestions = {
             "How would you introduce TOFU Media to a new organization?",
             "What would you do if an organization did not reply to your message?"
         ],
-
         ar: [
             "هتتواصل إزاي مع Organization عشان تعمل Collaboration؟",
             "إيه اللي يخلي الـ Partnership مفيدة للطرفين؟",
@@ -399,7 +393,6 @@ const departmentQuestions = {
             "What qualities are important in a good volunteer?",
             "How would you solve a conflict between two team members?"
         ],
-
         ar: [
             "إزاي تساعد Volunteer جديد يحس إنه مرتاح مع التيم؟",
             "هتتعامل إزاي مع Member بيتأخر عن الـ Deadlines باستمرار؟",
@@ -415,7 +408,6 @@ const departmentQuestions = {
             "How would you find and fix a bug in a website?",
             "Tell us about a project you have built or worked on."
         ],
-
         ar: [
             "إيه لغات البرمجة أو الـ Technologies اللي بتعرفها؟",
             "إيه نوع الـ Digital Tool اللي ممكن يساعد متطوعي TOFU؟",
@@ -431,7 +423,6 @@ const departmentQuestions = {
             "What makes a social media account worth following?",
             "How would you handle negative comments on TOFU content?"
         ],
-
         ar: [
             "ادينا فكرة واحدة لفيديو TOFU على Instagram أو TikTok.",
             "إزاي تزود الـ Engagement على Post بتاع TOFU؟",
@@ -447,7 +438,6 @@ const departmentQuestions = {
             "How would you divide tasks between the organizing team?",
             "How would you make sure an event runs smoothly?"
         ],
-
         ar: [
             "هتنظم إيفنت من مرحلة التخطيط لحد التنفيذ إزاي؟",
             "هتعمل إيه لو حصلت مشكلة مفاجئة أثناء الإيفنت؟",
@@ -501,16 +491,13 @@ if (
     phoneInput.addEventListener(
         "input",
         function () {
-            let value =
-                phoneInput.value;
+            let value = phoneInput.value;
 
             value = value.replace(
                 /[٠-٩]/g,
                 function (digit) {
                     return String(
-                        "٠١٢٣٤٥٦٧٨٩".indexOf(
-                            digit
-                        )
+                        "٠١٢٣٤٥٦٧٨٩".indexOf(digit)
                     );
                 }
             );
@@ -609,11 +596,9 @@ function updateLanguage() {
 
     document
         .querySelectorAll("[data-i18n]")
-        .forEach((element) => {
+        .forEach(function (element) {
             const key =
-                element.getAttribute(
-                    "data-i18n"
-                );
+                element.getAttribute("data-i18n");
 
             if (lang[key] !== undefined) {
                 element.innerHTML =
@@ -623,11 +608,9 @@ function updateLanguage() {
 
     document
         .querySelectorAll("[data-placeholder]")
-        .forEach((element) => {
+        .forEach(function (element) {
             const key =
-                element.getAttribute(
-                    "data-placeholder"
-                );
+                element.getAttribute("data-placeholder");
 
             if (lang[key] !== undefined) {
                 element.placeholder =
@@ -657,11 +640,8 @@ function updateLanguage() {
     }
 
     if (phoneInput) {
-        phoneInput.style.direction =
-            "ltr";
-
-        phoneInput.style.textAlign =
-            "left";
+        phoneInput.style.direction = "ltr";
+        phoneInput.style.textAlign = "left";
     }
 
     const hours =
@@ -741,10 +721,8 @@ function updateProgress() {
 function showStep(stepNumber) {
     document
         .querySelectorAll(".step")
-        .forEach((step) => {
-            step.classList.remove(
-                "active"
-            );
+        .forEach(function (step) {
+            step.classList.remove("active");
         });
 
     const targetStep =
@@ -753,9 +731,7 @@ function showStep(stepNumber) {
         );
 
     if (targetStep) {
-        targetStep.classList.add(
-            "active"
-        );
+        targetStep.classList.add("active");
     }
 
     currentStep = stepNumber;
@@ -784,15 +760,11 @@ if (startBtn) {
         "click",
         function () {
             if (welcomeScreen) {
-                welcomeScreen.classList.remove(
-                    "active"
-                );
+                welcomeScreen.classList.remove("active");
             }
 
             if (applicationScreen) {
-                applicationScreen.classList.add(
-                    "active"
-                );
+                applicationScreen.classList.add("active");
             }
 
             showStep(1);
@@ -809,20 +781,14 @@ if (backBtn) {
         "click",
         function () {
             if (currentStep > 1) {
-                showStep(
-                    currentStep - 1
-                );
+                showStep(currentStep - 1);
             } else {
                 if (applicationScreen) {
-                    applicationScreen.classList.remove(
-                        "active"
-                    );
+                    applicationScreen.classList.remove("active");
                 }
 
                 if (welcomeScreen) {
-                    welcomeScreen.classList.add(
-                        "active"
-                    );
+                    welcomeScreen.classList.add("active");
                 }
             }
         }
@@ -850,30 +816,21 @@ function validateStep(stepNumber) {
             "input[required], textarea[required], select[required]"
         );
 
-    requiredFields.forEach(
-        function (field) {
-            if (field.type === "hidden") {
-                return;
-            }
-
-            if (!field.value.trim()) {
-                valid = false;
-
-                field.classList.add(
-                    "invalid"
-                );
-
-                setTimeout(
-                    function () {
-                        field.classList.remove(
-                            "invalid"
-                        );
-                    },
-                    1500
-                );
-            }
+    requiredFields.forEach(function (field) {
+        if (field.type === "hidden") {
+            return;
         }
-    );
+
+        if (!field.value.trim()) {
+            valid = false;
+
+            field.classList.add("invalid");
+
+            setTimeout(function () {
+                field.classList.remove("invalid");
+            }, 1500);
+        }
+    });
 
     if (stepNumber === 2) {
         const age =
@@ -949,18 +906,11 @@ function validateStep(stepNumber) {
             valid = false;
 
             if (departmentNext) {
-                departmentNext.classList.add(
-                    "invalid"
-                );
+                departmentNext.classList.add("invalid");
 
-                setTimeout(
-                    function () {
-                        departmentNext.classList.remove(
-                            "invalid"
-                        );
-                    },
-                    1500
-                );
+                setTimeout(function () {
+                    departmentNext.classList.remove("invalid");
+                }, 1500);
             }
         }
     }
@@ -985,11 +935,7 @@ document
                     return;
                 }
 
-                if (
-                    !validateStep(
-                        currentStep
-                    )
-                ) {
+                if (!validateStep(currentStep)) {
                     return;
                 }
 
@@ -1016,20 +962,12 @@ document
             "click",
             function () {
                 document
-                    .querySelectorAll(
-                        ".department"
-                    )
-                    .forEach(
-                        function (item) {
-                            item.classList.remove(
-                                "selected"
-                            );
-                        }
-                    );
+                    .querySelectorAll(".department")
+                    .forEach(function (item) {
+                        item.classList.remove("selected");
+                    });
 
-                button.classList.add(
-                    "selected"
-                );
+                button.classList.add("selected");
 
                 selectedDepartment =
                     button.dataset.department;
@@ -1059,9 +997,7 @@ function renderQuestions() {
     }
 
     if (!selectedDepartment) {
-        questionsContainer.innerHTML =
-            "";
-
+        questionsContainer.innerHTML = "";
         return;
     }
 
@@ -1071,9 +1007,7 @@ function renderQuestions() {
         ];
 
     if (!departmentData) {
-        questionsContainer.innerHTML =
-            "";
-
+        questionsContainer.innerHTML = "";
         return;
     }
 
@@ -1082,55 +1016,177 @@ function renderQuestions() {
             currentLanguage
         ];
 
-    questionsContainer.innerHTML =
-        "";
+    questionsContainer.innerHTML = "";
 
-    questions.forEach(
-        function (question, index) {
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
+    questions.forEach(function (question, index) {
+        const wrapper =
+            document.createElement("div");
 
-            wrapper.className =
-                "question";
+        wrapper.className = "question";
 
-            const label =
-                document.createElement(
-                    "label"
-                );
+        const label =
+            document.createElement("label");
 
-            label.textContent =
-                `${index + 1}. ${question}`;
+        label.textContent =
+            `${index + 1}. ${question}`;
 
-            const textarea =
-                document.createElement(
-                    "textarea"
-                );
+        const textarea =
+            document.createElement("textarea");
 
-            textarea.name =
-                `question${index + 1}`;
+        textarea.name =
+            `question${index + 1}`;
 
-            textarea.required = true;
+        textarea.required = true;
 
-            textarea.placeholder =
-                currentLanguage === "en"
-                    ? "Your answer..."
-                    : "اكتب إجابتك...";
+        textarea.placeholder =
+            currentLanguage === "en"
+                ? "Your answer..."
+                : "اكتب إجابتك...";
 
-            wrapper.appendChild(
-                label
-            );
+        wrapper.appendChild(label);
+        wrapper.appendChild(textarea);
 
-            wrapper.appendChild(
-                textarea
-            );
+        questionsContainer.appendChild(wrapper);
+    });
+}
 
-            questionsContainer.appendChild(
-                wrapper
-            );
-        }
+// ================================
+// CREATE EMAIL MESSAGE
+// ================================
+
+function createEmailMessage(dataObject) {
+    const lines = [];
+
+    lines.push("TOFU MEDIA — NEW VOLUNTEER APPLICATION");
+    lines.push("");
+    lines.push("================================");
+    lines.push("APPLICANT INFORMATION");
+    lines.push("================================");
+    lines.push("");
+
+    lines.push(
+        "Full Name: " +
+        (dataObject.name || dataObject.fullName || "")
     );
+
+    lines.push(
+        "Age: " +
+        (dataObject.age || "")
+    );
+
+    lines.push(
+        "Governorate: " +
+        (dataObject.governorate || "")
+    );
+
+    lines.push(
+        "School: " +
+        (dataObject.school || "")
+    );
+
+    lines.push(
+        "Email: " +
+        (dataObject.email || "")
+    );
+
+    lines.push(
+        "WhatsApp: " +
+        (dataObject.phone || "")
+    );
+
+    lines.push(
+        "Committee: " +
+        (dataObject.department || selectedDepartment)
+    );
+
+    lines.push(
+        "Language: " +
+        (dataObject.language || currentLanguage)
+    );
+
+    lines.push("");
+
+    lines.push("================================");
+    lines.push("FINAL QUESTIONS");
+    lines.push("================================");
+    lines.push("");
+
+    const finalQuestions = [
+        {
+            key: "whyTofu",
+            en: "Why do you want to join TOFU Media?",
+            ar: "ليه حابب تنضم لـ TOFU Media؟"
+        },
+        {
+            key: "contribution",
+            en: "What can you add to TOFU Media?",
+            ar: "إيه اللي تقدر تضيفه لـ TOFU Media؟"
+        },
+        {
+            key: "skills",
+            en: "What are your skills?",
+            ar: "إيه مهاراتك؟"
+        },
+        {
+            key: "howHeard",
+            en: "How did you hear about TOFU Media?",
+            ar: "عرفت TOFU Media إزاي؟"
+        },
+        {
+            key: "hours",
+            en: "How much time can you commit weekly?",
+            ar: "قد إيه تقدر تلتزم أسبوعيًا؟"
+        }
+    ];
+
+    finalQuestions.forEach(function (item) {
+        const answer =
+            dataObject[item.key] || "";
+
+        const question =
+            currentLanguage === "ar"
+                ? item.ar
+                : item.en;
+
+        lines.push("Question:");
+        lines.push(question);
+        lines.push("Answer:");
+        lines.push(answer);
+        lines.push("");
+    });
+
+    lines.push("================================");
+    lines.push("COMMITTEE MINI CHALLENGE");
+    lines.push("================================");
+    lines.push("");
+
+    const questions =
+        departmentQuestions[selectedDepartment]
+            ? departmentQuestions[selectedDepartment][currentLanguage]
+            : [];
+
+    questions.forEach(function (question, index) {
+        const answer =
+            dataObject[`question${index + 1}`] || "";
+
+        lines.push(
+            `Question ${index + 1}:`
+        );
+
+        lines.push(question);
+
+        lines.push("Answer:");
+
+        lines.push(answer);
+
+        lines.push("");
+    });
+
+    lines.push("================================");
+    lines.push("End of application");
+    lines.push("================================");
+
+    return lines.join("\n");
 }
 
 // ================================
@@ -1152,9 +1208,7 @@ if (form) {
             }
 
             const submitButton =
-                form.querySelector(
-                    ".submit-btn"
-                );
+                form.querySelector(".submit-btn");
 
             if (
                 submitButton &&
@@ -1196,9 +1250,7 @@ if (form) {
                 ) {
                     fullPhone =
                         "+20" +
-                        rawPhone.substring(
-                            1
-                        );
+                        rawPhone.substring(1);
                 } else {
                     fullPhone =
                         iti.getNumber();
@@ -1229,19 +1281,16 @@ if (form) {
                         "textarea"
                     );
 
-                questions.forEach(
-                    function (textarea) {
-                        formData.set(
-                            textarea.name,
-                            textarea.value.trim()
-                        );
-                    }
-                );
+                questions.forEach(function (textarea) {
+                    formData.set(
+                        textarea.name,
+                        textarea.value.trim()
+                    );
+                });
             }
 
             if (submitButton) {
-                submitButton.disabled =
-                    true;
+                submitButton.disabled = true;
 
                 submitButton.innerHTML =
                     currentLanguage === "en"
@@ -1251,14 +1300,19 @@ if (form) {
 
             const dataObject = {};
 
-            formData.forEach(
-                function (value, key) {
-                    dataObject[key] =
-                        value;
-                }
-            );
+            formData.forEach(function (value, key) {
+                dataObject[key] = value;
+            });
 
-            // Show success screen immediately
+            // Create full email message
+            const emailMessage =
+                createEmailMessage(dataObject);
+
+            // Add email message to the data sent to Google Apps Script
+            dataObject.email_message =
+                emailMessage;
+
+            // Show success screen
 
             if (applicationScreen) {
                 applicationScreen.classList.remove(
@@ -1277,7 +1331,9 @@ if (form) {
                 behavior: "smooth"
             });
 
-            // Send to Web3Forms
+            // ================================
+            // WEB3FORMS
+            // ================================
 
             try {
                 const web3Data =
@@ -1298,14 +1354,19 @@ if (form) {
                     "TOFU Media Volunteer Form"
                 );
 
-                Object.keys(
-                    dataObject
-                ).forEach(
+                web3Data.append(
+                    "message",
+                    emailMessage
+                );
+
+                Object.keys(dataObject).forEach(
                     function (key) {
-                        web3Data.append(
-                            key,
-                            dataObject[key]
-                        );
+                        if (key !== "email_message") {
+                            web3Data.append(
+                                key,
+                                dataObject[key]
+                            );
+                        }
                     }
                 );
 
@@ -1321,9 +1382,7 @@ if (form) {
                 const web3Result =
                     await web3Response.json();
 
-                if (
-                    !web3Result.success
-                ) {
+                if (!web3Result.success) {
                     console.error(
                         "Web3Forms error:",
                         web3Result
@@ -1333,6 +1392,7 @@ if (form) {
                         "Web3Forms submission successful."
                     );
                 }
+
             } catch (error) {
                 console.error(
                     "Web3Forms submission error:",
@@ -1340,7 +1400,9 @@ if (form) {
                 );
             }
 
-            // Send to Google Sheets
+            // ================================
+            // GOOGLE APPS SCRIPT
+            // ================================
 
             try {
                 await fetch(
@@ -1348,10 +1410,12 @@ if (form) {
                     {
                         method: "POST",
                         mode: "no-cors",
+
                         headers: {
                             "Content-Type":
-                                "application/json"
+                                "text/plain;charset=utf-8"
                         },
+
                         body:
                             JSON.stringify(
                                 dataObject
@@ -1360,11 +1424,12 @@ if (form) {
                 );
 
                 console.log(
-                    "Google Sheets request sent."
+                    "Google Apps Script request sent."
                 );
+
             } catch (error) {
                 console.error(
-                    "Google Sheets error:",
+                    "Google Apps Script error:",
                     error
                 );
             }
@@ -1408,6 +1473,5 @@ updateLanguage();
 showStep(1);
 
 if (backBtn) {
-    backBtn.style.visibility =
-        "hidden";
+    backBtn.style.visibility = "hidden";
 }
